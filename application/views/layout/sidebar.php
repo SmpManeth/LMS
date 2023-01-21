@@ -340,7 +340,7 @@
                     $this->rbac->hasPrivilege('student_houses', 'can_view') ||
                     $this->rbac->hasPrivilege('disable_student', 'can_view') || $this->rbac->hasPrivilege('disable_reason', 'can_view') || $this->rbac->hasPrivilege('online_admission', 'can_view') || $this->rbac->hasPrivilege('multiclass_student', 'can_view') || $this->rbac->hasPrivilege('disable_reason', 'can_view'))) { ?>
 
-                    <li class="treeview <?php echo set_Topmenu('Lead Information'); ?>">
+                   <li class="treeview <?php echo set_Topmenu('Lead Information'); ?>">
 
                         <a href="#"><i class="fa fa-file-text-o ftlayer"></i> <span><?php echo $this->lang->line('lead_information'); ?></span> <i class="fa fa-angle-left pull-right"></i></a>
 

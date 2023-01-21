@@ -357,7 +357,7 @@ class Lead extends Admin_Controller
             access_denied();
         }
 
-        $this->session->set_userdata('top_menu', 'Deal Information');
+        $this->session->set_userdata('top_menu', 'Lead Information');
 
         $this->session->set_userdata('sub_menu', 'lead/create');
 
