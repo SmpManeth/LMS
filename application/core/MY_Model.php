@@ -8,7 +8,7 @@ class MY_Model extends CI_Model {
         parent::__construct();
         $this->load->library('user_agent');
     }
-
+	
     public function log($message = null, $record_id = null, $action = null) {
         $user_id = $this->customlib->getStaffID();
 

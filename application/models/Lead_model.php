@@ -9,7 +9,7 @@ if (!defined('BASEPATH')) {
 
 
 
-class Student_model extends MY_Model
+class Lead_model extends MY_Model
 
 {
 
@@ -433,49 +433,7 @@ class Student_model extends MY_Model
 
     {
 
-        $this->db->select('student_session.transport_fees,students.app_key,students.parent_app_key,students.vehroute_id,vehicle_routes.route_id,vehicle_routes.vehicle_id,transport_route.route_title,vehicles.vehicle_no,hostel_rooms.room_no,vehicles.driver_name,vehicles.driver_contact,hostel.id as `hostel_id`,hostel.hostel_name,room_types.id as `room_type_id`,room_types.room_type ,students.hostel_room_id,student_session.id as `student_session_id`,student_session.fees_discount,classes.id AS `class_id`,classes.class,sections.id AS `section_id`,sections.section,students.id,students.admission_no , students.roll_no,students.admission_date,students.firstname,students.middlename,  students.lastname,students.image,    students.mobileno, students.email ,students.state ,   students.city , students.pincode , students.note, students.religion, students.cast, school_houses.house_name,   students.dob ,students.current_address, students.previous_school,
-
-            students.guardian_is,students.parent_id,
-
-            students.permanent_address,students.category_id,students.adhar_no,students.samagra_id,students.bank_account_no,students.bank_name, students.ifsc_code , students.guardian_name , students.father_pic ,students.height ,students.weight,students.measurement_date, students.mother_pic , students.guardian_pic , students.guardian_relation,students.guardian_phone,students.guardian_address,students.is_active ,students.created_at ,students.updated_at,students.father_name,students.father_phone,students.blood_group,students.school_house_id,students.father_occupation,students.mother_name,students.mother_phone,students.mother_occupation,students.guardian_occupation,students.gender,students.guardian_is,students.rte,students.guardian_email, users.username,users.password,students.dis_reason,students.dis_note,students.disable_at')->from('students');
-
-        $this->db->join('student_session', 'student_session.student_id = students.id');
-
-        $this->db->join('classes', 'student_session.class_id = classes.id');
-
-        $this->db->join('sections', 'sections.id = student_session.section_id');
-
-        $this->db->join('hostel_rooms', 'hostel_rooms.id = students.hostel_room_id', 'left');
-
-        $this->db->join('hostel', 'hostel.id = hostel_rooms.hostel_id', 'left');
-
-        $this->db->join('room_types', 'room_types.id = hostel_rooms.room_type_id', 'left');
-
-        $this->db->join('vehicle_routes', 'vehicle_routes.id = students.vehroute_id', 'left');
-
-        $this->db->join('transport_route', 'vehicle_routes.route_id = transport_route.id', 'left');
-
-        $this->db->join('vehicles', 'vehicles.id = vehicle_routes.vehicle_id', 'left');
-
-        $this->db->join('school_houses', 'school_houses.id = students.school_house_id', 'left');
-
-        $this->db->join('users', 'users.user_id = students.id', 'left');
-
-
-
-        $this->db->where('student_session.session_id', $this->current_session);
-
-        $this->db->where('users.role', 'student');
-
-        if ($id != null) {
-
-            $this->db->where('students.id', $id);
-        } else {
-
-            $this->db->where('students.is_active', 'yes');
-
-            $this->db->order_by('students.id', 'desc');
-        }
+        $this->db->select()->from('leads');
 
         $query = $this->db->get();
 
@@ -487,6 +445,20 @@ class Student_model extends MY_Model
             return $query->result_array();
         }
     }
+
+
+    public function getLaststudent_reg_no ($id = null)
+
+    {
+
+        $this->db->select('student_reg_no');
+        $this->db->order_by('student_reg_no','desc');
+        $this->db->limit(1);
+        $query = $this->db->get('leads');
+        $last_student_reg_no = $query->row()->student_reg_no;
+         return $last_student_reg_no ;
+    }
+
 
 
 
@@ -998,13 +970,8 @@ class Student_model extends MY_Model
 
 
 
-    public function searchdatatableByClassSectionCategoryGenderRte(
-        $class_id = null,
-        $section_id = null,
-        $category = null,
-        $gender = null,
-        $rte = null
-    ) {
+    public function searchdatatableByClassSectionCategoryGenderRte($class_id = null,$section_id = null, $category = null,$gender = null, $rte = null) 
+    {
 
 
 
@@ -1061,13 +1028,6 @@ class Student_model extends MY_Model
 
         return $this->datatables->generate('json');
     }
-
-
-
-
-
-
-
 
 
     public function searchFullText($searchterm, $carray = null)
@@ -1560,9 +1520,6 @@ class Student_model extends MY_Model
     }
 
 
-
-
-
     public function sibling_reportsearch($searchterm, $carray = null, $condition = null)
 
     {
@@ -1641,9 +1598,6 @@ class Student_model extends MY_Model
 
         return $query->result_array();
     }
-
-
-
 
 
     public function getStudentListBYStudentsessionID($array)
@@ -1751,9 +1705,6 @@ class Student_model extends MY_Model
     public function add($data, $data_setting = array())
 
     {
-
-
-
         if (isset($data['id'])) {
 
             $this->db->where('id', $data['id']);
@@ -1768,35 +1719,19 @@ class Student_model extends MY_Model
 
             $this->log($message, $record_id, $action);
         } else {
-
             if (!empty($data_setting)) {
-
-
-
                 if ($data_setting['adm_auto_insert']) {
-
                     if ($data_setting['adm_update_status'] == 0) {
-
                         $data_setting['adm_update_status'] = 1;
-
                         $this->setting_model->add($data_setting);
                     }
                 }
-
-                $this->db->insert('students', $data);
-
+                $this->db->insert('leads', $data);
                 $insert_id = $this->db->insert_id();
-
                 $message   = INSERT_RECORD_CONSTANT . " On students id " . $insert_id;
-
                 $action    = "Insert";
-
                 $record_id = $insert_id;
-
                 $this->log($message, $record_id, $action);
-
-
-
                 return $insert_id;
             }
         }
@@ -1942,7 +1877,6 @@ class Student_model extends MY_Model
     }
 
 
-
     public function add_student_session_update($data)
 
     {
@@ -1965,7 +1899,6 @@ class Student_model extends MY_Model
     }
 
 
-
     public function alumni_student_status($data)
 
     {
@@ -1976,7 +1909,6 @@ class Student_model extends MY_Model
 
         $this->db->update('student_session', $data);
     }
-
 
 
     public function adddoc($data)
