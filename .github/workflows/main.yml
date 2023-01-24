@@ -14,6 +14,7 @@ jobs:
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@4.3.3
         with:
-          server: iad1-shared-d12-02.dreamhost.com/lms.ieltsatcia.com
+          server: iad1-shared-d12-02.dreamhost.com
           username: ${{ secrets.ftp_username }}
           password: ${{ secrets.ftp_password }}
+          remote-dir: lms.ieltsatcia.com/
