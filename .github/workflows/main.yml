@@ -17,6 +17,4 @@ jobs:
           server: iad1-shared-d12-02.dreamhost.com
           username: ${{ secrets.ftp_username }}
           password: ${{ secrets.ftp_password }}
-          local-dir: 'lms.ieltsatcia.com/'
-
-
+          local-dir: 'lms.ieltsatcia.com'
