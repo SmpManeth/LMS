@@ -2098,19 +2098,11 @@ class Customlib
     public function sendMailSMS($find)
 
     {
-
-
-
         $notifications = $this->CI->notificationsetting_model->get();
-
-
-
         if (!empty($notifications)) {
-
             foreach ($notifications as $note_key => $note_value) {
-
                 if ($note_value->type == $find) {
-
+                   
                     return array('mail' => $note_value->is_mail, 'sms' => $note_value->is_sms, 'notification' => $note_value->is_notification, 'template' => $note_value->template, 'template_id' => $note_value->template_id, 'subject' => $note_value->subject);
                 }
             }
