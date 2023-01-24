@@ -432,16 +432,21 @@ class Lead_model extends MY_Model
     public function get($id = null)
 
     {
-
+      
         $this->db->select()->from('leads');
 
         $query = $this->db->get();
 
-        if ($id != null) {
 
+        $this->db->select()->from('leads');
+
+       
+
+        if ($id != null) {
+            $this->db->where('id', $id);
+            $query = $this->db->get();
             return $query->row_array();
         } else {
-
             return $query->result_array();
         }
     }
@@ -1609,62 +1614,13 @@ class Lead_model extends MY_Model
 
 
 
-        $sql   = "SELECT * FROM `users` WHERE childs LIKE '%," . $id . ",%' OR childs LIKE '" . $id . ",%' OR childs LIKE '%," . $id . "' OR childs = " . $id;
-
-        $query = $this->db->query($sql);
-
-
-
-        if ($query->num_rows() > 0) {
-
-            $result      = $query->row();
-
-            $array_slice = explode(',', $result->childs);
-
-            if (count($array_slice) > 1) {
-
-                $arr    = array_diff($array_slice, array($id));
-
-                $update = implode(",", $arr);
-
-                $data   = array('childs' => $update);
-
-
-
-                $this->db->where('id', $result->id);
-
-                $this->db->update('users', $data);
-            } else {
-
-                $this->db->where('id', $result->id);
-
-                $this->db->delete('users');
-            }
-        }
-
 
 
         $this->db->where('id', $id);
 
-        $this->db->delete('students');
-
-
-
-        $this->db->where('student_id', $id);
-
-        $this->db->delete('student_session');
-
-
-
-        $this->db->where('user_id', $id);
-
-        $this->db->where('role', 'student');
-
-        $this->db->delete('users');
+        $this->db->delete('leads');
 
         $this->db->trans_complete();
-
-
 
         if ($this->db->trans_status() === false) {
 
@@ -1691,13 +1647,16 @@ class Lead_model extends MY_Model
     public function add($data, $data_setting = array())
 
     {
+
+        
         if (isset($data['id'])) {
 
             $this->db->where('id', $data['id']);
 
-            $this->db->update('students', $data);
-
-            $message   = UPDATE_RECORD_CONSTANT . " On students id " . $data['id'];
+            $this->db->update('leads', $data);
+            // echo"<pre>", print_r($data , true), "</pre>";
+            // die();
+            $message   = UPDATE_RECORD_CONSTANT . " On Lead id " . $data['id'];
 
             $action    = "Update";
 

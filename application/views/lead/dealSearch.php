@@ -50,9 +50,9 @@ $currency_symbol = $this->customlib->getSchoolCurrencyFormat();
 
                     </div>
 
-                </div><!--./col-md-6-->
+                </div>
 
-            </div><!--./row-->
+            </div>
 
         </div>
 
@@ -95,7 +95,7 @@ $currency_symbol = $this->customlib->getSchoolCurrencyFormat();
                                 <th>IELTS Course</th>
                                 <th>Expected Band Score</th>
                                 <th>Course Code</th>
-                                <th class="text-right noExport"><?php echo $this->lang->line('action'); ?></th>
+                                <th  colspan="2"><?php echo $this->lang->line('action'); ?></th>
 
                             </tr>
 
@@ -103,21 +103,32 @@ $currency_symbol = $this->customlib->getSchoolCurrencyFormat();
 
                         <tbody>
                             <?php foreach ($leads as $key => $array) {
-                                            // echo "<pre>", print_r($array), "</pre>";
-                                            // die();
-                                
-                                          unset($array['id']) ;
-                                          unset($array['created_at']) ;
-                                          unset($array['User_id']) ;
-                                          unset($array['is_student']) ;
-                                 ?>
+                                // echo "<pre>", print_r($array), "</pre>";
+                                // die();
+                                $id = $array['id'];
+                                unset($array['id']);
+                                unset($array['created_at']);
+                                unset($array['User_id']);
+                                unset($array['is_student']);
+                            ?>
                                 <tr>
                                     <?php foreach ($array as $key => $singleLead) { ?>
-                                        
-                                        
-                                        <td><?php echo $singleLead ?></td>
+
+
+                                        <td class=""><?php echo $singleLead ?></td>
+
                                     <?php  } ?>
+                                    <td><a href="<?php echo base_url(); ?>lead/edit/<?php echo $id ?>" class="btn btn-default btn-xs" data-toggle="tooltip" title="<?php echo $this->lang->line('edit'); ?>"><i class="fa fa-pencil"></i></a>
+                                        <a href="<?php echo base_url(); ?>lead/delete/<?php echo $id ?>" class=" btn text-danger" data-toggle="tooltip" title="<?php echo $this->lang->line('delete'); ?>"><i class="fa fa-eraser"></i></a>
+                                        <a href="<?php echo base_url(); ?>lead/makestudent/<?php echo $id ?>" class="btn text-green " data-toggle="tooltip" title="Make a Student>"><i class="fa fa-user"></i></a>
+
+                                    </td>
+                                    <td>
+                                        <hr>
+                                    </td>
                                 </tr>
+
+
                             <?php  } ?>
 
 

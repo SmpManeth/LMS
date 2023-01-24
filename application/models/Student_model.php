@@ -1773,16 +1773,7 @@ class Student_model extends MY_Model
 
 
 
-                if ($data_setting['adm_auto_insert']) {
-
-                    if ($data_setting['adm_update_status'] == 0) {
-
-                        $data_setting['adm_update_status'] = 1;
-
-                        $this->setting_model->add($data_setting);
-                    }
-                }
-
+               
                 $this->db->insert('students', $data);
 
                 $insert_id = $this->db->insert_id();
