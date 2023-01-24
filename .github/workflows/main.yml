@@ -10,12 +10,12 @@ jobs:
     steps:
       - name: 🚚 Get latest code
         uses: actions/checkout@v2
-
+        
       - name: Change Directory
-        run: cd ./lms.ieltsatcia.com
+        run: cd lms.ieltsatcia.com
 
-      - name: SFTP Deploy
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@4.3.3
         with:
           server: iad1-shared-d12-02.dreamhost.com
           username: ${{ secrets.ftp_username }}
