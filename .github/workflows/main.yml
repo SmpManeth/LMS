@@ -17,4 +17,4 @@ jobs:
           server: iad1-shared-d12-02.dreamhost.com
           username: ${{ secrets.ftp_username }}
           password: ${{ secrets.ftp_password }}
-          remote-dir: lms.ieltsatcia.com/
+          server-dir: lms.ieltsatcia.com/
