@@ -150,13 +150,13 @@ $db['default'] = array(
 
 	'dsn'	=> '',
 
-	'hostname' => 'localhost',
+	'hostname' => 'mysql.ieltsatcia.com',
 
-	'username' => 'root',
+	'username' => 'maneth',
 
-	'password' => '',
+	'password' => 'Maneth@12',
 
-	'database' => 'ygcsl919_ygcslportal',
+	'database' => 'ielts',
 
 	'dbdriver' => 'mysqli',
 
