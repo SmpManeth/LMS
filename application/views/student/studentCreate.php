@@ -68,7 +68,7 @@
                                                 <div class="form-group">
                                                     <label for="coursecode">Course Code</label><small class="req"> *</small>
                                                     <select id="coursecode" name="coursecode" class="form-control">
-                                                        <option value="">Select</option>
+                                                        <option selected value="<?php echo $new_student['coursecode']; ?>"><?php echo $new_student['coursecode']; ?></option>
                                                         <?php foreach ($classlist as $class) { ?>
                                                             <option value="<?php echo $class['class'] ?>"><?php echo $class['class'] ?></option>
 
@@ -84,7 +84,7 @@
                                                 <div class="form-group">
                                                     <label for="bandscore">Band Score</label><small class="req"> *</small>
                                                     <select id="bandscore" name="bandscore" class="form-control">
-                                                        <option value="">Select</option>
+                                                        <option value="<?php echo $new_student['bandscore']; ?>"><?php echo $new_student['bandscore']; ?></option>
                                                         <?php foreach ($band_scrore as $class) { ?>
                                                             <option value="<?php echo $class['band_score'] ?>"><?php echo $class['band_score'] ?></option>
 
@@ -169,7 +169,7 @@
                                                 <div class="form-group">
                                                     <label for="ielts_course">IELTS Course</label><small class="req"> *</small>
                                                     <select id="ielts_course" name="ielts_course" class="form-control">
-                                                        <option value="">Select</option>
+                                                        <option value="<?php echo $new_student['ielts_course']; ?>"><?php echo $new_student['ielts_course']; ?></option>
                                                         <?php foreach ($ieltscourses as $course) { ?>
                                                             <option value="<?php echo $course['section'] ?>"><?php echo $course['section'] ?></option>
 

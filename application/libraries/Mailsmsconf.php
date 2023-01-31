@@ -40,23 +40,22 @@ class Mailsmsconf
     {
 
 
-        
+
 
         $send_for = $this->config_mailsms[$send_for];
-       
+
         $chk_mail_sms = $this->CI->customlib->sendMailSMS($send_for);
 
         $sms_detail = $this->CI->smsconfig_model->getActiveSMS();
 
         // echo "<pre>", print_r($sms_detail, true), "</pre>";
-		// die();
-       
+        // die();
+
 
         if (!empty($chk_mail_sms)) {
-           
+
             if ($send_for == "student_admission") {
-                echo "<pre>", print_r($sms_detail, true), "</pre>";
-                die();
+
                 if ($chk_mail_sms['mail'] && $chk_mail_sms['template'] != "") {
 
                     $this->CI->mailgateway->sentRegisterMail($sender_details['student_id'], $sender_details['email'], $chk_mail_sms['template'], $chk_mail_sms['subject']);
@@ -77,14 +76,11 @@ class Mailsmsconf
 
 
 
-                if ($chk_mail_sms['mail'] && $chk_mail_sms['template'] != "") {
-
-
-
+                if ($chk_mail_sms['template'] != "") {
                     $this->CI->mailgateway->sendLoginCredential($chk_mail_sms, $sender_details, $chk_mail_sms['template'], $chk_mail_sms['subject']);
                 }
-
-                if ($chk_mail_sms['sms'] && $chk_mail_sms['template'] != "" && !empty($sms_detail)) {
+               
+                if ($chk_mail_sms['template'] != "" ) {
 
                     $this->CI->smsgateway->sendLoginCredential($chk_mail_sms, $sender_details, $chk_mail_sms['template'], $chk_mail_sms['template_id']);
                 }
