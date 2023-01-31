@@ -28,13 +28,13 @@
                                     <?php echo $this->customlib->getCSRF(); ?>
 
                                     <div class="row">
-
                                         <!-- Course Code  -->
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label for="coursecode">Course Code</label><small class="req"> *</small>
                                                 <select id="coursecode" name="coursecode" class="form-control">
                                                     <option value="">Select</option>
+                                                    
                                                     <?php foreach ($classlist as $class) { ?>
                                                         <option value="<?php echo $class['class'] ?>"><?php echo $class['class'] ?></option>
 
@@ -42,7 +42,6 @@
                                                 </select>
                                                 <span class="text-danger"><?php echo form_error('coursecode'); ?></span>
                                             </div>
-
                                         </div>
 
                                         <!-- Band Score  -->

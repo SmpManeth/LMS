@@ -76,7 +76,7 @@ class Lead extends Admin_Controller
         }
 
         $data['id'] = $id;
-        $data['is_student'] = 1;  
+        $data['is_student'] = 1;
         $this->Lead_model->add($data);
         $band_scrore                = $this->Band_Score_model->getAll();
         $ieltscourses                = $this->Section_model->get();
@@ -86,12 +86,13 @@ class Lead extends Admin_Controller
         $data['classlist']          = $class;
         $data['band_scrore']          = $band_scrore;
 
-      
+
 
 
         $data['new_student'] = $this->Lead_model->get($data['id']);
-       
-        
+
+        // echo "<pre>", print_r($data['new_student']), "</pre>";
+        // die();
         $this->session->set_flashdata('msg', '<i class="fa fa-check-square-o" aria-hidden="true"></i> ' . "Updated as a Student" . '');
 
         $this->load->view('layout/header', $data);
@@ -360,7 +361,8 @@ class Lead extends Admin_Controller
 
 
 
-
+        // echo "<pre>", print_r($data['lead']), "</pre>";
+        // die();
 
 
 
@@ -470,8 +472,6 @@ class Lead extends Admin_Controller
                 'bank_name'         => $this->input->post('bank_name'),
 
                 'ifsc_code'         => $this->input->post('ifsc_code'),
-
-
 
                 'guardian_email'    => $this->input->post('guardian_email'),
 
