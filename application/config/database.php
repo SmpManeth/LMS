@@ -150,13 +150,13 @@ $db['default'] = array(
 
 	'dsn'	=> '',
 
-	'hostname' => 'mysql.ieltsatcia.com',
+	'hostname' => 'mysql.lms.ieltsatcia.com',
 
-	'username' => 'maneth',
+	'username' => 'manethpathirana',
 
 	'password' => 'Maneth@12',
 
-	'database' => 'ielts',
+	'database' => 'ieltsnew',
 
 	'dbdriver' => 'mysqli',
 
