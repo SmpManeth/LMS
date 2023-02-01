@@ -180,6 +180,21 @@
 
                                             </div>
 
+                                            <!-- Batch  -->
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="batch">Batch</label><small class="req"> *</small>
+                                                    <select id="batch" name="batch" class="form-control">
+                                                        <option value="empty"></option>
+                                                        <option value="fakebatch1">Example Batch</option>
+                                                    </select>
+                                                    <span class="text-danger"><?php echo form_error('batch'); ?></span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+
                                             <!-- Expected band Score  -->
                                             <div class="col-md-3">
                                                 <div class="form-group">
@@ -187,9 +202,8 @@
                                                     <input autofocus="" id="expected_band_score" name="expected_band_score" placeholder="" type="text" class="form-control" value="<?php echo set_value('expected_band_score', $new_student['expected_band_score']); ?>" />
                                                 </div>
                                             </div>
-                                        </div>
 
-                                        <div class="row">
+
                                             <!-- Parsport No  -->
                                             <div class="col-md-3">
                                                 <div class="form-group">
@@ -205,8 +219,22 @@
                                                     <input autofocus="" id="purpose" name="purpose" placeholder="" type="text" class="form-control" value="<?php echo set_value('purpose', $new_student['purpose']); ?>" />
                                                 </div>
                                             </div>
+                                        </div>
 
-
+                                        <div class="row">
+                                            <!-- Slots  -->
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="slots">Slots</label><small class="req"> *</small>
+                                                    <select multiple id="slots" name="slots" class="form-control">
+                                                        <option value="fakeslot1">Example Slot</option>
+                                                        <option value="fakeslot2">Example Slot</option>
+                                                        <option value="fakeslot3">Example Slot</option>
+                                                        <option value="fakeslot4">Example Slot</option>
+                                                    </select>
+                                                    <span class="text-danger"><?php echo form_error('slots'); ?></span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -215,6 +243,7 @@
                                 <div class="box-footer">
 
                                     <button type="submit" class="btn btn-info pull-right"><?php echo $this->lang->line('save'); ?></button>
+                                    <button class="btn btn-info pull-left">Assign Time Slots</button>
 
                                 </div>
 

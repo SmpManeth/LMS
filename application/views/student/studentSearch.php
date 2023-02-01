@@ -132,8 +132,7 @@ $currency_symbol = $this->customlib->getSchoolCurrencyFormat();
                                     <?php  } ?>
                                     <td><a href="<?php echo base_url(); ?>student/edit/<?php echo $id ?>" class="btn btn-default btn-xs" data-toggle="tooltip" title="<?php echo $this->lang->line('edit'); ?>"><i class="fa fa-pencil"></i></a>
                                         <a href="<?php echo base_url(); ?>student/delete/<?php echo $id ?>" class=" btn text-danger" data-toggle="tooltip" title="<?php echo $this->lang->line('delete'); ?>"><i class="fa fa-eraser"></i></a>
-                                        <a href="<?php echo base_url(); ?>student/makestudent/<?php echo $id ?>" class="btn text-green " data-toggle="tooltip" title="Make a Student>"><i class="fa fa-user"></i></a>
-
+                                        <!-- <a href="<?php echo base_url(); ?>student/makestudent/<?php echo $id ?>" class="btn text-green " data-toggle="tooltip" title="Make a Student>"><i class="fa fa-user"></i></a> -->
                                     </td>
                                     <td>
                                         <hr>
