@@ -8,16 +8,17 @@ if (!defined('BASEPATH'))
 
 
 
-class Course_slots_model extends MY_Model {
+class Course_slots_model extends MY_Model
+{
 
 
 
-    public function __construct() {
+    public function __construct()
+    {
 
         parent::__construct();
 
         $this->current_session = $this->setting_model->getCurrentSession();
-
     }
 
 
@@ -34,18 +35,17 @@ class Course_slots_model extends MY_Model {
 
      */
 
-    public function get($id = null) {
+    public function get($id = null)
+    {
 
         $this->db->select()->from('course_slots');
 
         if ($id != null) {
 
             $this->db->where('course_slots.id', $id);
-
         } else {
 
             $this->db->order_by('course_slots.id');
-
         }
 
         $query = $this->db->get();
@@ -53,13 +53,10 @@ class Course_slots_model extends MY_Model {
         if ($id != null) {
 
             return $query->row_array();
-
         } else {
 
             return $query->result_array();
-
         }
-
     }
 
 
@@ -71,7 +68,8 @@ class Course_slots_model extends MY_Model {
 
      */
 
-    public function remove($id) {
+    public function remove($id)
+    {
 
         $this->db->trans_start(); # Starting Transaction
 
@@ -104,13 +102,11 @@ class Course_slots_model extends MY_Model {
             $this->db->trans_rollback();
 
             return false;
-
         } else {
 
             //return $return_value;
 
         }
-
     }
 
 
@@ -127,8 +123,10 @@ class Course_slots_model extends MY_Model {
 
      */
 
-    public function add($data) {
-
+    public function add($data)
+    {
+        echo "<pre>", print_r($data), "</pre>";
+        die();
         $this->db->trans_start(); # Starting Transaction
 
         $this->db->trans_strict(false); # See Note 01. If you wish can remove as well
@@ -166,13 +164,11 @@ class Course_slots_model extends MY_Model {
                 $this->db->trans_rollback();
 
                 return false;
-
             } else {
 
                 //return $return_value;
 
             }
-
         } else {
 
             $this->db->insert('course_slots', $data);
@@ -204,7 +200,6 @@ class Course_slots_model extends MY_Model {
                 $this->db->trans_rollback();
 
                 return false;
-
             } else {
 
                 //return $return_value;
@@ -212,14 +207,13 @@ class Course_slots_model extends MY_Model {
             }
 
             return $insert_id;
-
         }
-
     }
 
 
 
-    public function list() {
+    public function list()
+    {
 
         $this->db->select()->from('course_slots');
 
@@ -228,7 +222,5 @@ class Course_slots_model extends MY_Model {
         $list = $this->db->get();
 
         return $list->result_array();
-
     }
 }
-
