@@ -2,306 +2,275 @@
 
 <html lang="en">
 
-    <head>
+<head>
 
-        <meta charset="utf-8">
+    <meta charset="utf-8">
 
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <meta name="theme-color" content="#424242" />
+    <meta name="theme-color" content="#424242" />
 
-        <title>Login : <?php echo $name; ?></title>
+    <title>Login : <?php echo $name; ?></title>
 
-        <!--favican-->
+    <!--favican-->
 
-        <!-- <link href="<?php echo base_url(); ?>backend/images/s-favican.png" rel="shortcut icon" type="image/x-icon"> -->
+    <!-- <link href="<?php echo base_url(); ?>backend/images/s-favican.png" rel="shortcut icon" type="image/x-icon"> -->
 
-        <link href="<?php echo base_url(); ?>uploads/school_content/admin_small_logo/<?php $this->setting_model->getAdminsmalllogo(); ?>" rel="shortcut icon" type="image/x-icon">
+    <link href="<?php echo base_url(); ?>uploads/school_content/admin_small_logo/<?php $this->setting_model->getAdminsmalllogo(); ?>" rel="shortcut icon" type="image/x-icon">
 
-        <!-- CSS -->
+    <!-- CSS -->
 
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
 
-        <link rel="stylesheet" href="<?php echo base_url(); ?>backend/usertemplate/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>backend/usertemplate/assets/bootstrap/css/bootstrap.min.css">
 
-        <link rel="stylesheet" href="<?php echo base_url(); ?>backend/usertemplate/assets/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>backend/usertemplate/assets/font-awesome/css/font-awesome.min.css">
 
-        <link rel="stylesheet" href="<?php echo base_url(); ?>backend/usertemplate/assets/css/form-elements.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>backend/usertemplate/assets/css/form-elements.css">
 
-        <link rel="stylesheet" href="<?php echo base_url(); ?>backend/usertemplate/assets/css/style.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>backend/usertemplate/assets/css/style.css">
 
-        <link rel="stylesheet" href="<?php echo base_url(); ?>backend/usertemplate/assets/css/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>backend/usertemplate/assets/css/jquery.mCustomScrollbar.min.css">
 
 
 
-        <style type="text/css">
+    <style type="text/css">
+        /*.col-md-offset-3 { margin-left: 29%;}*/
 
-            /*.col-md-offset-3 { margin-left: 29%;}*/
+        .bgoffsetbgno {
+            background: transparent;
+            border-right: 0 !important;
+            box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.29);
+            border-radius: 4px;
+        }
 
-            .bgoffsetbgno{background: transparent; border-right:0 !important; box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.29); border-radius: 4px;}
+        .loginradius {
+            border-radius: 4px;
+        }
 
-            .loginradius{border-radius: 4px;} 
+        /* @media (max-width: 767px){.col-md-offset-3 {margin-left: 0;}}*/
 
-            /* @media (max-width: 767px){.col-md-offset-3 {margin-left: 0;}}*/
+        .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
 
-            .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
+            background: rgb(53, 170, 71);
+        }
 
-                background: rgb(53, 170, 71);} 
 
-                
 
-                button.btn {
+        button.btn {
 
-                
 
-                Background:red !important;
 
-                
+            Background: red !important;
 
-            }
 
-             /* body{background-image: url("https://ygcsl.com/uploads/c_img/bg_log.jpg");  background-repeat: no-repeat; background-size: cover;} */
 
+        }
 
+        /* body{background-image: url("https://ygcsl.com/uploads/c_img/bg_log.jpg");  background-repeat: no-repeat; background-size: cover;} */
+    </style>
 
 
 
-        </style>
+</head>
 
+<body>
 
+    <!-- Top content -->
 
-    </head>
+    <div class="top-content">
 
-    <body>
+        <div class="inner-bg">
 
-        <!-- Top content -->
+            <div class="container">
 
-        <div class="top-content">
+                <div class="row">
 
-            <div class="inner-bg">
+                    <?php
 
-                <div class="container">
+                    $empty_notice = 0;
 
-                    <div class="row">
+                    $offset = "";
 
-                        <?php
+                    $bgoffsetbg = "bgoffsetbg";
 
-                        $empty_notice = 0;
+                    $bgoffsetbgno = "";
 
-                        $offset = "";
+                    if (empty($notice)) {
 
-                        $bgoffsetbg = "bgoffsetbg";
+                        $empty_notice = 1;
 
-                        $bgoffsetbgno = "";
+                        $offset = "col-md-offset-4";
 
-                        if (empty($notice)) {
+                        $bgoffsetbg = "";
 
-                            $empty_notice = 1;
+                        $bgoffsetbgno = "bgoffsetbgno";
+                    }
 
-                            $offset = "col-md-offset-4";
+                    ?>
 
-                            $bgoffsetbg = "";
+                    <div class="<?php echo $bgoffsetbg; ?>">
 
-                            $bgoffsetbgno = "bgoffsetbgno";
 
-                        }
 
-                        ?>  
 
-                        <div class="<?php echo $bgoffsetbg; ?>">   
 
 
 
+                        <div class="col-lg-4 col-md-4 col-sm-12 nopadding <?php echo $bgoffsetbgno; ?> <?php echo $offset; ?>">
 
+                            <div class="loginbg loginradius login390">
 
+                                <div class="form-top">
 
+                                    <div class="form-top-left logowidth">
 
-                            <div class="col-lg-4 col-md-4 col-sm-12 nopadding <?php echo $bgoffsetbgno; ?> <?php echo $offset; ?>">
+                                        <img src="<?php echo base_url(); ?>uploads/school_content/admin_logo/<?php $this->setting_model->getAdminlogo(); ?>" />
 
-                                <div class="loginbg loginradius login390">  
+                                    </div>
 
-                                    <div class="form-top">
+                                    <!-- <div class="form-top-right"><i class="fa fa-key"></i></div> -->
 
-                                        <div class="form-top-left logowidth">
+                                </div>
 
-                                            <img src="<?php echo base_url(); ?>uploads/school_content/admin_logo/<?php $this->setting_model->getAdminlogo(); ?>" />    
+
+
+                                <div class="form-bottom">
+
+                                    <h3 class="font-white bolds"><?php echo $this->lang->line('admin_login'); ?></h3>
+
+                                    <?php
+
+                                    if (isset($error_message)) {
+
+                                        echo "<div class='alert alert-danger'>" . $error_message . "</div>";
+                                    }
+
+                                    ?>
+
+                                    <?php
+
+                                    if ($this->session->flashdata('message')) {
+
+                                        echo "<div class='alert alert-success'>" . $this->session->flashdata('message') . "</div>";
+                                    };
+
+                                    ?>
+
+                                    <?php
+
+                                    if ($this->session->flashdata('disable_message')) {
+
+                                        echo "<div class='alert alert-danger'>" . $this->session->flashdata('disable_message') . "</div>";
+                                    };
+
+                                    ?>
+
+                                    <form action="<?php echo site_url('site/login') ?>" method="post">
+
+                                        <?php echo $this->customlib->getCSRF(); ?>
+
+                                        <div class="form-group has-feedback">
+
+                                            <input type="text" name="username" placeholder="<?php echo $this->lang->line('username'); ?>" value="<?php echo set_value('username') ?>" class="form-username form-control" id="form-username">
+
+                                            <span class="fa fa-envelope form-control-feedback"></span>
+
+                                            <span class="text-danger"><?php echo form_error('username'); ?></span>
 
                                         </div>
 
-                                        <!-- <div class="form-top-right"><i class="fa fa-key"></i></div> -->
+                                        <div class="form-group has-feedback">
 
-                                    </div>
+                                            <input type="password" value="<?php echo set_value('password') ?>" name="password" placeholder="<?php echo $this->lang->line('password'); ?>" class="form-password form-control" id="form-password">
 
+                                            <span class="fa fa-lock form-control-feedback"></span>
 
+                                            <span class="text-danger"><?php echo form_error('password'); ?></span>
 
-                                    <div class="form-bottom">
+                                        </div>
+                                        <button type="submit" class="btn"><?php echo $this->lang->line('sign_in'); ?></button>
 
-                                        <h3 class="font-white bolds"><?php echo $this->lang->line('admin_login'); ?></h3>
+                                    </form>
 
-                                        <?php
-
-                                        if (isset($error_message)) {
-
-                                            echo "<div class='alert alert-danger'>" . $error_message . "</div>";
-
-                                        }
-
-                                        ?>
-
-                                        <?php
-
-                                        if ($this->session->flashdata('message')) {
-
-                                            echo "<div class='alert alert-success'>" . $this->session->flashdata('message') . "</div>";
-
-                                        };
-
-                                        ?>
-
-                                        <?php
-
-                                        if ($this->session->flashdata('disable_message')) {
-
-                                            echo "<div class='alert alert-danger'>" . $this->session->flashdata('disable_message') . "</div>";
-
-                                        };
-
-                                        ?>
-
-                                        <form action="<?php echo site_url('site/login') ?>" method="post">
-
-                                            <?php echo $this->customlib->getCSRF(); ?>
-
-                                            <div class="form-group has-feedback">                                            
-
-                                                <input type="text" name="username" placeholder="<?php echo $this->lang->line('username'); ?>" value="<?php echo set_value('username') ?>" class="form-username form-control" id="form-username">
-
-                                                <span class="fa fa-envelope form-control-feedback"></span>
-
-                                                <span class="text-danger"><?php echo form_error('username'); ?></span>
-
-                                            </div>
-
-                                            <div class="form-group has-feedback">                                           
-
-                                                <input type="password" value="<?php echo set_value('password') ?>" name="password" placeholder="<?php echo $this->lang->line('password'); ?>" class="form-password form-control" id="form-password">
-
-                                                <span class="fa fa-lock form-control-feedback"></span>
-
-                                                <span class="text-danger"><?php echo form_error('password'); ?></span>
-
-                                            </div>
-
-                                            <?php if($is_captcha){ ?>
-
-                                            <div class="form-group has-feedback row"> 
-
-                                                <div class='col-lg-7 col-md-12 col-sm-6'>
-
-                                                    <span id="captcha_image"><?php echo $captcha_image; ?></span>
-
-                                                    <span title='Refresh Catpcha' class="fa fa-refresh catpcha" onclick="refreshCaptcha()"></span>
-
-                                                </div>
-
-                                                <div class='col-lg-5 col-md-12 col-sm-6'>
-
-                                                    <input type="text" name="captcha" placeholder="<?php echo $this->lang->line('captcha'); ?>" class=" form-control" autocomplete="off" id="captcha"> 
-
-                                                    <span class="text-danger"><?php echo form_error('captcha'); ?></span>
-
-                                                </div>
-
-                                            </div>
-
-                                            <?php } ?>
-
-                                            <button type="submit" class="btn"><?php echo $this->lang->line('sign_in'); ?></button>
-
-                                        </form>
-
-                                        <a href="<?php echo site_url('site/forgotpassword') ?>" class="forgot"><i class="fa fa-key"></i> <?php echo $this->lang->line('forgot_password'); ?>?</a>
-
-                                    </div>
+                                    <a href="<?php echo site_url('site/forgotpassword') ?>" class="forgot"><i class="fa fa-key"></i> <?php echo $this->lang->line('forgot_password'); ?>?</a>
 
                                 </div>
 
                             </div>
 
-                            <?php
+                        </div>
 
-                            if (!$empty_notice) {
+                        <?php
 
-                                ?>
+                        if (!$empty_notice) {
 
-                                <!-- <div class="col-lg-1 col-sm-1"><div class="separatline"></div></div>  -->
+                        ?>
 
-                                <div class="col-lg-8 col-md-8 col-sm-12">
+                            <!-- <div class="col-lg-1 col-sm-1"><div class="separatline"></div></div>  -->
 
-                                    <h3 class="h3"><?php echo $this->lang->line('what_is_new_in'); ?> <?php echo $school['name']; ?></h3>
+                            <div class="col-lg-8 col-md-8 col-sm-12">
 
-                                    <div class="loginright mCustomScrollbar">
+                                <h3 class="h3"><?php echo $this->lang->line('what_is_new_in'); ?> <?php echo $school['name']; ?></h3>
 
-                                        <div class="messages"> 
+                                <div class="loginright mCustomScrollbar">
+
+                                    <div class="messages">
 
 
+
+
+
+                                        <?php
+
+                                        foreach ($notice as $notice_key => $notice_value) {
+
+                                        ?>
+
+                                            <h4><?php echo $notice_value['title']; ?></h4>
 
 
 
                                             <?php
 
-                                            foreach ($notice as $notice_key => $notice_value) {
+                                            $string = ($notice_value['description']);
 
-                                                ?>
+                                            $string = strip_tags($string);
 
-                                                <h4><?php echo $notice_value['title']; ?></h4>
-
-
-
-                                                <?php
-
-                                                $string = ($notice_value['description']);
-
-                                                $string = strip_tags($string);
-
-                                                if (strlen($string) > 100) {
+                                            if (strlen($string) > 100) {
 
 
 
-                                                    // truncate string
+                                                // truncate string
 
-                                                    $stringCut = substr($string, 0, 100);
+                                                $stringCut = substr($string, 0, 100);
 
-                                                    $endPoint = strrpos($stringCut, ' ');
-
-
-
-                                                    //if the string doesn't contain any space then it will cut without word basis.
-
-                                                    $string = $endPoint ? substr($stringCut, 0, $endPoint) : substr($stringCut, 0);
-
-                                                    $string .= '... <a class=more href="' . site_url('read/' . $notice_value['slug']) . '" target="_blank">' . $this->lang->line('read') . ' ' . $this->lang->line('more') . '  </a>';
-
-                                                }
-
-                                                echo '<p>' . $string . '</p>';
-
-                                                ?>
+                                                $endPoint = strrpos($stringCut, ' ');
 
 
 
-                                                <div class="logdivider"></div>
+                                                //if the string doesn't contain any space then it will cut without word basis.
 
-                                                <?php
+                                                $string = $endPoint ? substr($stringCut, 0, $endPoint) : substr($stringCut, 0);
 
+                                                $string .= '... <a class=more href="' . site_url('read/' . $notice_value['slug']) . '" target="_blank">' . $this->lang->line('read') . ' ' . $this->lang->line('more') . '  </a>';
                                             }
+
+                                            echo '<p>' . $string . '</p>';
 
                                             ?>
 
 
 
+                                            <div class="logdivider"></div>
+
+                                        <?php
+
+                                        }
+
+                                        ?>
 
 
 
@@ -310,25 +279,26 @@
 
 
 
-                                        </div>  
+
+
 
                                     </div>
 
-                                        <!-- <img src="<?php echo base_url(); ?>backend/usertemplate/assets/img/backgrounds/bg3.jpg" class="img-responsive" style="border-radius:4px;" /> -->
+                                </div>
 
-                                </div><!--./col-lg-6-->
+                                <!-- <img src="<?php echo base_url(); ?>backend/usertemplate/assets/img/backgrounds/bg3.jpg" class="img-responsive" style="border-radius:4px;" /> -->
+
+                            </div><!--./col-lg-6-->
 
 
 
 
 
-                                <?php
+                        <?php
 
-                            }
+                        }
 
-                            ?>
-
-                        </div>  
+                        ?>
 
                     </div>
 
@@ -338,35 +308,36 @@
 
         </div>
 
-        <!-- Javascript -->
+    </div>
 
-        <script src="<?php echo base_url(); ?>backend/usertemplate/assets/js/jquery-1.11.1.min.js"></script>
+    <!-- Javascript -->
 
-        <script src="<?php echo base_url(); ?>backend/usertemplate/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="<?php echo base_url(); ?>backend/usertemplate/assets/js/jquery-1.11.1.min.js"></script>
 
-        <script src="<?php echo base_url(); ?>backend/usertemplate/assets/js/jquery.backstretch.min.js"></script>
+    <script src="<?php echo base_url(); ?>backend/usertemplate/assets/bootstrap/js/bootstrap.min.js"></script>
 
-        <script src="<?php echo base_url(); ?>backend/usertemplate/assets/js/jquery.mCustomScrollbar.min.js"></script>
+    <script src="<?php echo base_url(); ?>backend/usertemplate/assets/js/jquery.backstretch.min.js"></script>
 
-        <script src="<?php echo base_url(); ?>backend/usertemplate/assets/js/jquery.mousewheel.min.js"></script>
+    <script src="<?php echo base_url(); ?>backend/usertemplate/assets/js/jquery.mCustomScrollbar.min.js"></script>
 
-    </body>
+    <script src="<?php echo base_url(); ?>backend/usertemplate/assets/js/jquery.mousewheel.min.js"></script>
+
+</body>
 
 </html>
 
 <script type="text/javascript">
+    $(document).ready(function() {
 
-    $(document).ready(function () {
-
-        $('.login-form input[type="text"], .login-form input[type="password"], .login-form textarea').on('focus', function () {
+        $('.login-form input[type="text"], .login-form input[type="password"], .login-form textarea').on('focus', function() {
 
             $(this).removeClass('input-error');
 
         });
 
-        $('.login-form').on('submit', function (e) {
+        $('.login-form').on('submit', function(e) {
 
-            $(this).find('input[type="text"], input[type="password"], textarea').each(function () {
+            $(this).find('input[type="text"], input[type="password"], textarea').each(function() {
 
                 if ($(this).val() == "") {
 
@@ -385,12 +356,10 @@
         });
 
     });
-
 </script>
 
 <script type="text/javascript">
-
-    function refreshCaptcha(){
+    function refreshCaptcha() {
 
         $.ajax({
 
@@ -400,7 +369,7 @@
 
             data: {},
 
-            success: function(captcha){
+            success: function(captcha) {
 
                 $("#captcha_image").html(captcha);
 
@@ -408,6 +377,5 @@
 
         });
 
-    }    
-
+    }
 </script>

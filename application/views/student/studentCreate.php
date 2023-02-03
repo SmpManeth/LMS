@@ -55,7 +55,7 @@
 
                                                     <label for="student_reg_no">Registration No</label> <small class="req"> *</small>
 
-                                                    <input autofocus="" id="student_reg_no" name="student_reg_no" placeholder="" type="text" class="form-control" value="<?php echo set_value('student_reg_no', $new_student['student_reg_no']); ?>" />
+                                                    <input disabled id="student_reg_no" name="student_reg_no" placeholder="" type="text" class="form-control" value="<?php echo set_value('student_reg_no', $new_student['student_reg_no']); ?>" />
 
                                                     <span class="text-danger"><?php echo form_error('student_reg_no'); ?></span>
 
@@ -223,7 +223,7 @@
 
                                         <div class="row">
                                             <!-- Slots  -->
-                                            <div class="col-md-3">
+                                            <!-- <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="slots">Slots</label><small class="req"> *</small>
                                                     <select multiple id="slots" name="slots" class="form-control">
@@ -234,7 +234,7 @@
                                                     </select>
                                                     <span class="text-danger"><?php echo form_error('slots'); ?></span>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
 
