@@ -444,7 +444,7 @@ class Student_model extends MY_Model
 
         if ($query->num_rows() > 0) {
 
-            return $query->row();
+            return $query->result_array();
         }
 
         return false;
@@ -747,11 +747,11 @@ class Student_model extends MY_Model
 
         $this->datatables->group_start();
 
-        $this->datatables->or_like_string('students.admission_no, students.firstname, students.lastname', $searchterm);
+        $this->datatables->or_like_string('students.student_reg_no, students.first_name, students.last_name', $searchterm);
 
         $this->datatables->group_end();
 
-        $this->datatables->sort('students.admission_no', 'asc');
+        $this->datatables->sort('students.student_reg_no', 'asc');
 
         $this->datatables->searchable('first_name,last_name,admission_no');
 

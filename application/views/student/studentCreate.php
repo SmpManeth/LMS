@@ -41,8 +41,8 @@
                                     <div class="row">
 
                                         <?php
-                                        // print_r($new_student);
-                                        // die();
+                                        //  echo "<pre>", print_r($new_student ,true), "</pre>";
+                                        //  die();
                                         ?>
 
 
@@ -56,6 +56,7 @@
                                                     <label for="student_reg_no">Registration No</label> <small class="req"> *</small>
 
                                                     <input disabled id="student_reg_no" name="student_reg_no" placeholder="" type="text" class="form-control" value="<?php echo set_value('student_reg_no', $new_student['student_reg_no']); ?>" />
+                                                    <input name="id" type="text" value="<?php echo set_value('student_reg_no', $id); ?>" hidden />
 
                                                     <span class="text-danger"><?php echo form_error('student_reg_no'); ?></span>
 
@@ -179,22 +180,6 @@
                                                 </div>
 
                                             </div>
-
-                                            <!-- Batch  -->
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label for="batch">Batch</label><small class="req"> *</small>
-                                                    <select id="batch" name="batch" class="form-control">
-                                                        <option value="empty"></option>
-                                                        <option value="fakebatch1">Example Batch</option>
-                                                    </select>
-                                                    <span class="text-danger"><?php echo form_error('batch'); ?></span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-
                                             <!-- Expected band Score  -->
                                             <div class="col-md-3">
                                                 <div class="form-group">
@@ -202,6 +187,11 @@
                                                     <input autofocus="" id="expected_band_score" name="expected_band_score" placeholder="" type="text" class="form-control" value="<?php echo set_value('expected_band_score', $new_student['expected_band_score']); ?>" />
                                                 </div>
                                             </div>
+                                        </div>
+
+                                        <div class="row">
+
+
 
 
                                             <!-- Parsport No  -->

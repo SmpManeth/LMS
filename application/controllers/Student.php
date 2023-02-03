@@ -473,20 +473,20 @@ class Student extends Admin_Controller
 
             $data_insert = array(
 
-                'admission_no'         => $newstudentRegNo,
+                'student_reg_no'         => $newstudentRegNo,
 
                 'bandscore'               => $this->input->post('bandscore'),
 
-                'firstname'             => $this->input->post('first_name'),
+                'first_name'             => $this->input->post('first_name'),
 
-                'lastname'              => $this->input->post('last_name'),
+                'last_name'              => $this->input->post('last_name'),
 
-                'mobileno'           => $this->input->post('phone'),
+                'phone'           => $this->input->post('phone'),
 
                 'email'              => $this->input->post('email'),
                 'dob'              => $this->input->post('dob'),
 
-                'current_address'   => $this->input->post('address'),
+                'address'   => $this->input->post('address'),
 
                 'occupation'               => $this->input->post('occupation'),
 
@@ -518,7 +518,13 @@ class Student extends Admin_Controller
 
 
             if ($insert) {
+                $datanew['id'] = $this->input->post('id');
+                $datanew['is_student'] = 1;
 
+                // echo "<pre>", print_r($datanew), "</pre>";
+                // die();
+
+                $this->Lead_model->add($datanew);
                 $insert_id = $this->student_model->add($data_insert, $data_setting);
 
 
@@ -1460,25 +1466,31 @@ class Student extends Admin_Controller
     public function edit($id)
     {
 
-        // if (!$this->rbac->hasPrivilege('student', 'can_edit')) {
+        if (!$this->rbac->hasPrivilege('student', 'can_edit')) {
 
-        //     access_denied();
-        // }
-
-        $data['title']   = 'Edit Student';
-
+            access_denied();
+        }
         $data['id']      = $id;
+        $data['title']   = 'Edit Student';
+        $student = $this->student_model->get($id);
+        $data['new_student'] =    $student[0];
 
-        $data['student'] = $student;
-
-
-        $class                   = $this->class_model->get();
-
+        $band_scrore                = $this->Band_Score_model->getAll();
+        $ieltscourses                = $this->Section_model->get();
+        $class                      = $this->class_model->get('', $classteacher = 'yes');
 
         $data['classlist']          = $class;
+        $data['band_scrore']          = $band_scrore;
+        $data['ieltscourses']          = $ieltscourses;
 
+        $userdata                   = $this->customlib->getUserData();
 
-        $this->form_validation->set_rules('guardian_pic', $this->lang->line('image'), 'callback_handle_guardian_upload');
+        $this->form_validation->set_rules('first_name', ' ', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('email', ' ', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('ielts_course', ' ', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('coursecode', ' ', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('bandscore', ' ', 'trim|required|xss_clean');
+
 
 
         if ($this->form_validation->run() == false) {
@@ -1489,6 +1501,48 @@ class Student extends Admin_Controller
 
             $this->load->view('layout/footer', $data);
         } else {
+
+
+            $data_insert = array(
+
+                'id' => $id,
+
+                'bandscore'               => $this->input->post('bandscore'),
+
+                'first_name'             => $this->input->post('first_name'),
+
+                'last_name'              => $this->input->post('last_name'),
+
+                'phone'           => $this->input->post('phone'),
+
+                'email'              => $this->input->post('email'),
+                'dob'              => $this->input->post('dob'),
+
+                'address'   => $this->input->post('address'),
+
+                'occupation'               => $this->input->post('occupation'),
+
+                'ielts_course'   => $this->input->post('ielts_course'),
+
+                'expected_band_score' => $this->input->post('expected_band_score'),
+
+                'coursecode'          => $this->input->post('coursecode'),
+                'passportNo'          => $this->input->post('passportNo'),
+                'purpose'          => $this->input->post('purpose'),
+
+                'User_id'        =>  $userdata['id'],
+
+                'is_student'         => 1
+
+            );
+
+            // echo "<pre>", print_r($data_insert, true), "</pre>";
+            // die();
+            $this->student_model->add($data_insert);
+
+
+
+            $this->session->set_flashdata('msg', '<div class="alert alert-success">' . $this->lang->line('success_message') . '</div>');
 
             redirect('student/search');
         }
