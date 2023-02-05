@@ -1507,7 +1507,7 @@ class Student extends Admin_Controller
             $this->load->view('layout/footer', $data);
         } else {
 
-            
+
             $data_insert = array(
 
                 'id' => $id,
@@ -1551,6 +1551,10 @@ class Student extends Admin_Controller
             // die();
             $this->student_model->add($data_insert);
             $this->Studentcourseslots_model->add($slot_data);
+
+
+
+
 
 
 

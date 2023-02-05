@@ -1683,6 +1683,7 @@ class Student_model extends MY_Model
                 return $insert_id;
             }
         }
+        return $insert_id;
     }
 
 
