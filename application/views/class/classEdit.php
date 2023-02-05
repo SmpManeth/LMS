@@ -97,6 +97,7 @@
                                     <span class="text-danger"><?php echo form_error('class'); ?></span>
 
                                 </div>
+                                
 
                                 <div class="form-group">
 
