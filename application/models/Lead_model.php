@@ -1649,7 +1649,6 @@ class Lead_model extends MY_Model
     {
 
         
-
         if (isset($data['id'])) {
 
             $this->db->where('id', $data['id']);
@@ -1666,6 +1665,12 @@ class Lead_model extends MY_Model
             $this->log($message, $record_id, $action);
         } else {
             if (!empty($data_setting)) {
+                if ($data_setting['adm_auto_insert']) {
+                    if ($data_setting['adm_update_status'] == 0) {
+                        $data_setting['adm_update_status'] = 1;
+                        $this->setting_model->add($data_setting);
+                    }
+                }
                 $this->db->insert('leads', $data);
                 $insert_id = $this->db->insert_id();
                 $message   = INSERT_RECORD_CONSTANT . " On students id " . $insert_id;
