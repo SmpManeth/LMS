@@ -1489,6 +1489,55 @@ class Student extends Admin_Controller
 
             $this->load->view('layout/footer', $data);
         } else {
+            $data_insert = array(
+
+                'id' => $id,
+
+                'bandscore'               => $this->input->post('bandscore'),
+
+                'first_name'             => $this->input->post('first_name'),
+
+                'last_name'              => $this->input->post('last_name'),
+
+                'phone'           => $this->input->post('phone'),
+
+                'email'              => $this->input->post('email'),
+                'dob'              => $this->input->post('dob'),
+
+                'address'   => $this->input->post('address'),
+
+                'occupation'               => $this->input->post('occupation'),
+
+                'ielts_course'   => $this->input->post('ielts_course'),
+
+                'expected_band_score' => $this->input->post('expected_band_score'),
+
+                'coursecode'          => $this->input->post('coursecode'),
+                'passportNo'          => $this->input->post('passportNo'),
+                'purpose'          => $this->input->post('purpose'),
+
+                'User_id'        =>  $userdata['id'],
+
+                'is_student'         => 1
+
+            );
+
+            foreach ($this->input->post('ielts_course_slot') as $key => $value) {
+
+                $slot_data = array(
+
+                    'student_id' => $id,
+                    'course_slot_id'          => $value,
+
+                );
+                $this->Studentcourseslots_model->add($slot_data);
+            }
+
+            //echo "<pre>", print_r( $this->input->post('ielts_course_slot'), true), "</pre>";
+            // die();
+            $this->student_model->add($data_insert);
+
+            $this->session->set_flashdata('msg', '<div class="alert alert-success">' . $this->lang->line('success_message') . '</div>');
 
             redirect('student/search');
         }
