@@ -42,6 +42,7 @@
                                                 <div class="form-group">
 
                                                     <label for="student_reg_no">Registration No</label> <small class="req"> *</small>
+                                                    <input hidden id="studentid" name="studentid" placeholder="" type="text" value="<?php echo set_value('student_reg_no', $new_student['id']); ?>" />
 
                                                     <input disabled id="student_reg_no" name="student_reg_no" placeholder="" type="text" class="form-control" value="<?php echo set_value('student_reg_no', $new_student['student_reg_no']); ?>" />
                                                     <input name="id" type="text" value="<?php echo set_value('student_reg_no', $id); ?>" hidden />
@@ -205,7 +206,6 @@
                                             <div class="col-md-5">
                                                 <label for="course_slots">Course Slots</label>
                                                 <div class="form-group ">
-
                                                     <div id="class-slots" class="" style="margin: 5px;">
 
                                                     </div>
@@ -217,11 +217,7 @@
                                 </div>
 
                                 <div class="box-footer">
-
                                     <button type="submit" class="btn btn-info pull-right"><?php echo $this->lang->line('save'); ?></button>
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Assign Time Slots</button>
-
-
                                 </div>
 
                     </form>
@@ -237,27 +233,77 @@
 </div>
 <script>
     $(document).ready(function() {
-        var classes;
-        // Listen for changes to the IELTS course dropdown
-        $("#ielts-courses").change(function() {
-            // Get the selected IELTS course ID
-            var ieltsCourseid = $(this).val();
 
-            // Make an AJAX call to retrieve the class slots for the selected IELTS course
+        var studentid = $("#studentid").val();
+        var AllselectedSlots;
+        $("#ielts-courses").change(function() {
+
+            $("#class-slots").empty();
+
+            var ieltsCourseid = $(this).val();
+            // console.log(ieltsCourseid);
+
             $.ajax({
                 url: `http://localhost/LMS/student/getcourseslotdata/${ieltsCourseid}`,
                 type: "GET",
                 success: function(classSlots) {
-                    classes = classSlots;
-                    // Clear any existing class slots
-                    $("#class-slots").empty();
-                    classSlots = JSON.parse(classSlots)
-                    // Dynamically generate checkboxes for each class slot
-                    classSlots.forEach(function(classSlot) {
-                        $("#class-slots").append(`<div style="width:150px; float:right;">
-                        <label for="class-slot-${classSlot.id}">${classSlot.name} </label>
-                        <input type="checkbox" name="ielts_course_slot[]" id="class-slot-${classSlot.name}" value="${classSlot.id}"></div>`);
+                    $.ajax({
+                        url: `http://localhost/LMS/student/getcourseslotdataofStudents/${studentid}`,
+                        type: "GET",
+                        success: function(selectedSlotss) {
+                            AllselectedSlots = JSON.parse(selectedSlotss)
+                        }
                     });
+                    classSlots = JSON.parse(classSlots);
+                    // console.log("classSlots");
+                    // console.log(classSlots);
+                    // console.log("AllselectedSlots");
+                    // console.log(AllselectedSlots);
+                    // classSlots.forEach(Slot => {
+
+                    //     if (typeof AllselectedSlots !== "undefined") {
+                    //         if ($.inArray(Slot.id, AllselectedSlots.course_slot_id)) {
+
+                    //             $("#class-slots").append(`<div style="width:150px; float:right;"><label for="class-slot-${Slot.id}">${Slot.name} </label><input checked type="checkbox" name="ielts_course_slot[]" id="class-slot-${Slot.name}" value="${Slot.id}"></div>`);
+                    //         }
+                    //     } else {
+                    //         $("#class-slots").append(`<div style="width:150px; float:right;"><label for="class-slot-${Slot.id}">${Slot.name} </label><input type="checkbox" name="ielts_course_slot[]" id="class-slot-${Slot.name}" value="${Slot.id}"></div>`);
+
+                    //     }
+
+                    // });
+
+                    AllselectedSlots.forEach(selectedSlot => {
+
+                        var UncheckedClassSlots = classSlots;
+                        classSlots.forEach(classSlot => {
+
+                            if (selectedSlot.course_slot_id == classSlot.id) {
+                                UncheckedClassSlots = $.grep(UncheckedClassSlots, function(obj) {
+                                    return obj.id !== classSlot.id;
+                                });
+                                console.log(UncheckedClassSlots);
+                                $("#class-slots").append(`<div style="width:150px; float:right;"><label for="class-slot-${classSlot.id}">${classSlot.name} </label><input type="checkbox" checked name="ielts_course_slot[]" id="class-slot-${classSlot.name}" value="${classSlot.id}"></div>`);
+
+                            } else {
+
+                            }
+                        });
+                    });
+
+                    // selectedStudentClassSlots.forEach(function(studentslot) {
+
+                    //     classSlots.forEach(function(classSlot) {
+
+                    //         if (studentslot.course_slot_id == classSlot.id) {
+                    //             $("#class-slots").append(`<div style="width:150px; float:right;"><label for="class-slot-${classSlot.id}">${classSlot.name} </label><input checked type="checkbox" name="ielts_course_slot[]" id="class-slot-${classSlot.name}" value="${classSlot.id}"></div>`);
+                    //         } else {
+                    //             $("#class-slots").append(`<div style="width:150px; float:right;"><label for="class-slot-${classSlot.id}">${classSlot.name} </label><input type="checkbox" name="ielts_course_slot[]" id="class-slot-${classSlot.name}" value="${classSlot.id}"></div>`);
+                    //         }
+                    //     });
+
+                    // });
+
                 }
             });
 

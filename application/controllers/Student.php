@@ -1570,10 +1570,17 @@ class Student extends Admin_Controller
 
     public function getcourseslotdata($ielts_course_id)
     {
-
-
+      
         // Get the class slots from the database
         $class_slots = $this->Course_slots_model->get($ielts_course_id);
+       
+        // Return the class slots as JSON
+        echo json_encode($class_slots);
+    }
+
+    public function getcourseslotdataofStudents($studentId)
+    {
+        $class_slots = $this->Studentcourseslots_model->getByStudentID($studentId);
 
         // Return the class slots as JSON
         echo json_encode($class_slots);

@@ -45,9 +45,28 @@ class Course_slots_model extends MY_Model
         if ($name != null) {
 
             $this->db->where('course_slots.course_id', $name);
+        }
+        $query = $this->db->get();
+
+        if ($name != null) {
+
+            return $query->result_array();
         } else {
 
-            $this->db->order_by('course_slots.name');
+            return $query->result_array();
+        }
+    }
+
+    public function getbyStudentId($id = null)
+    {
+        
+
+
+        $this->db->select()->from('course_slots');
+
+        if ($name != null) {
+
+            $this->db->where('course_slots.course_id', $id);
         }
 
         $query = $this->db->get();

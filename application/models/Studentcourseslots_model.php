@@ -35,33 +35,56 @@ class Studentcourseslots_model extends MY_Model
 
      */
 
-    public function get($name = null)
-    {
-
-
-
-        $this->db->select()->from('course_slots');
-
-        if ($name != null) {
-
-            $this->db->where('course_slots.name', $name);
-        } else {
-
-            $this->db->order_by('course_slots.name');
-        }
-
-        $query = $this->db->get();
-
-        if ($name != null) {
-
-            return $query->result_array();
-        } else {
-
-            return $query->result_array();
-        }
-    }
-
-
+     public function get($name = null)
+     {
+ 
+ 
+ 
+         $this->db->select()->from('course_slots');
+ 
+         if ($name != null) {
+ 
+             $this->db->where('course_slots.name', $name);
+         } else {
+ 
+             $this->db->order_by('course_slots.name');
+         }
+ 
+         $query = $this->db->get();
+ 
+         if ($name != null) {
+ 
+             return $query->result_array();
+         } else {
+ 
+             return $query->result_array();
+         }
+     }
+ 
+     public function getByStudentID($id = null)
+     {
+ 
+ 
+ 
+         $this->db->select()->from('student_course_slots');
+ 
+         if ($name != null) {
+ 
+             $this->db->where('student_course_slots.student_id', $id);
+         } 
+ 
+         $query = $this->db->get();
+ 
+         if ($name != null) {
+ 
+             return $query->result_array();
+         } else {
+ 
+             return $query->result_array();
+         }
+     }
+ 
+  
     /**
 
      * This function will delete the record based on the id
