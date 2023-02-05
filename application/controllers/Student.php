@@ -1506,8 +1506,6 @@ class Student extends Admin_Controller
 
             $this->load->view('layout/footer', $data);
         } else {
-
-
             $data_insert = array(
 
                 'id' => $id,
@@ -1540,22 +1538,22 @@ class Student extends Admin_Controller
                 'is_student'         => 1
 
             );
-           
+
             foreach ($this->input->post('ielts_course_slot') as $key => $value) {
-               
+
                 $slot_data = array(
 
                     'student_id' => $id,
                     'course_slot_id'          => $value,
-    
+
                 );
                 $this->Studentcourseslots_model->add($slot_data);
             }
 
             //echo "<pre>", print_r( $this->input->post('ielts_course_slot'), true), "</pre>";
             // die();
-             $this->student_model->add($data_insert);
-           
+            $this->student_model->add($data_insert);
+
 
 
 
