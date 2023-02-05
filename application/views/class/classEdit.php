@@ -1,5 +1,6 @@
 <?php $currency_symbol = $this->customlib->getSchoolCurrencyFormat(); ?>
 
+<!-- Content Wrapper. Contains page content -->
 
 <div class="content-wrapper">
 
