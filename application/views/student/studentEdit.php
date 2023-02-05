@@ -185,10 +185,16 @@
                                                 <div class="form-group">
                                                     <label for="ielts_course">IELTS Course</label><small class="req"> *</small>
                                                     <select id="ielts-courses" name="ielts_course" class="form-control">
-                                                        <option value="<?php echo $new_student['ielts_course']; ?>"><?php echo $new_student['ielts_course']; ?></option>
-                                                        <?php foreach ($ieltscourses as $course) { ?>
-                                                            <option value="<?php echo $course['section'] ?>"><?php echo $course['section'] ?></option>
 
+                                                        <?php foreach ($ieltscourses as $course) {
+
+                                                            if ($new_student['ielts_course'] == $course['id']) {  ?>
+                                                                <option selected value="<?php echo $course['id'] ?>"><?php echo $course['section'] ?></option>
+
+                                                            <?php } else { ?>
+                                                                <option value="<?php echo $course['id'] ?>"><?php echo $course['section'] ?></option>
+                                                            <?php  }
+                                                            ?>
                                                         <?php } ?>
                                                     </select>
                                                     <span class="text-danger"><?php echo form_error('ielts_course'); ?></span>
@@ -235,11 +241,11 @@
         // Listen for changes to the IELTS course dropdown
         $("#ielts-courses").change(function() {
             // Get the selected IELTS course ID
-            var ieltsCoursename = $(this).val();
-           
+            var ieltsCourseid = $(this).val();
+
             // Make an AJAX call to retrieve the class slots for the selected IELTS course
             $.ajax({
-                url: `http://localhost/LMS/student/getcourseslotdata/${ieltsCoursename}`,
+                url: `http://localhost/LMS/student/getcourseslotdata/${ieltsCourseid}`,
                 type: "GET",
                 success: function(classSlots) {
                     classes = classSlots;
@@ -250,13 +256,13 @@
                     classSlots.forEach(function(classSlot) {
                         $("#class-slots").append(`<div style="width:150px; float:right;">
                         <label for="class-slot-${classSlot.id}">${classSlot.name} </label>
-                        <input type="checkbox" name="ielts_course_slot" id="class-slot-${classSlot.name}" value="${classSlot.name}"></div>`);
+                        <input type="checkbox" name="ielts_course_slot[]" id="class-slot-${classSlot.name}" value="${classSlot.id}"></div>`);
                     });
                 }
             });
 
         });
-        
+
     });
 </script>
 <script type="text/javascript" src="<?php echo base_url(); ?>backend/dist/js/savemode.js"></script>

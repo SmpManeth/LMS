@@ -44,7 +44,7 @@ class Course_slots_model extends MY_Model
 
         if ($name != null) {
 
-            $this->db->where('course_slots.name', $name);
+            $this->db->where('course_slots.course_id', $name);
         } else {
 
             $this->db->order_by('course_slots.name');
