@@ -76,8 +76,8 @@ class Lead extends Admin_Controller
         }
 
         $data['id'] = $id;
-        // $data['is_student'] = 1;
-        // $this->Lead_model->add($data);
+        $data['is_student'] = 1;
+        $this->Lead_model->add($data);
         $band_scrore                = $this->Band_Score_model->getAll();
         $ieltscourses                = $this->Section_model->get();
         $data['ieltscourses']          = $ieltscourses;
@@ -91,8 +91,9 @@ class Lead extends Admin_Controller
 
         $data['new_student'] = $this->Lead_model->get($data['id']);
 
-        //  echo "<pre>", print_r($data), "</pre>";
-        //  die();
+        // echo "<pre>", print_r($data['new_student']), "</pre>";
+        // die();
+        $this->session->set_flashdata('msg', '<i class="fa fa-check-square-o" aria-hidden="true"></i> ' . "Updated as a Student" . '');
 
         $this->load->view('layout/header', $data);
 
@@ -325,38 +326,43 @@ class Lead extends Admin_Controller
 
     {
 
-
         if (!$this->rbac->hasPrivilege('student', 'can_edit')) {
 
             access_denied();
         }
 
         $data['title']   = 'Edit Lead';
+
         $data['id']      = $id;
+
         $lead         = $this->Lead_model->get($id);
-        $class                      = $this->class_model->get('', $classteacher = 'yes');
-        $band_scrore                = $this->Band_Score_model->getAll();
-        $ieltscourses                = $this->Section_model->get();
-        $data['classlist']          = $class;
-        $data['ieltscourses']          = $ieltscourses;
-        $data['band_scrore']          = $band_scrore;
-        $userdata                   = $this->customlib->getUserData();
-        // echo "<pre>", print_r($data), "</pre>";
-        // die();
+
 
         $data['lead'] = $lead;
 
 
-        $this->form_validation->set_rules('first_name', ' ', 'trim|required|xss_clean');
-        $this->form_validation->set_rules('email', ' ', 'trim|required|xss_clean');
-        $this->form_validation->set_rules('ielts_course', ' ', 'trim|required|xss_clean');
-        $this->form_validation->set_rules('coursecode', ' ', 'trim|required|xss_clean');
-        $this->form_validation->set_rules('bandscore', ' ', 'trim|required|xss_clean');
 
-        // //  echo "<pre>", print_r($this->form_validation), "</pre>";
-        // //  die(); 
-        // //  echo "<pre>", print_r($data), "</pre>";
-        // //  die();
+        $data['adm_auto_insert'] = $this->sch_setting_detail->adm_auto_insert;
+
+
+        $session                 = $this->setting_model->getCurrentSession();
+
+        $data['sch_setting']        = $this->sch_setting_detail;
+
+        $this->form_validation->set_rules('firstname', $this->lang->line('first_name'), 'trim|required|xss_clean');
+
+        $this->form_validation->set_rules('dob', $this->lang->line('date_of_birth'), 'trim|required|xss_clean');
+
+        $this->form_validation->set_rules('class_id', $this->lang->line('class'), 'trim|required|xss_clean');
+
+        $this->form_validation->set_rules('section_id', $this->lang->line('section'), 'trim|required|xss_clean');
+
+        $this->form_validation->set_rules('gender', $this->lang->line('gender'), 'trim|required|xss_clean');
+
+
+
+        // echo "<pre>", print_r($data['lead']), "</pre>";
+        // die();
 
 
 
@@ -368,48 +374,500 @@ class Lead extends Admin_Controller
 
             $this->load->view('layout/footer', $data);
         } else {
-           
-            $data_input = array(
 
-                'id'         => $lead['id'],
-                'student_reg_no'         => $lead['student_reg_no'],
 
-                'bandscore'               => $this->input->post('bandscore'),
 
-                'first_name'             => $this->input->post('first_name'),
+            $custom_field_post = $this->input->post("custom_fields[students]");
 
-                'last_name'              => $this->input->post('last_name'),
+            if (isset($custom_field_post)) {
 
-                'phone'           => $this->input->post('phone'),
+                $custom_value_array = array();
 
-                'email'              => $this->input->post('email'),
+                foreach ($custom_field_post as $key => $value) {
 
-                'address'   => $this->input->post('address'),
+                    $check_field_type = $this->input->post("custom_fields[students][" . $key . "]");
 
-                'occupation'               => $this->input->post('occupation'),
+                    $field_value      = is_array($check_field_type) ? implode(",", $check_field_type) : $check_field_type;
 
-                'ielts_course'   => $this->input->post('ielts_course'),
+                    $array_custom     = array(
 
-                'expected_band_score' => $this->input->post('expected_band_score'),
+                        'belong_table_id' => $id,
 
-                'coursecode'          => $this->input->post('coursecode'),
+                        'custom_field_id' => $key,
 
-                'User_id'        =>  $userdata['id'],
+                        'field_value'     => $field_value,
 
-                'is_student'         =>$lead['is_student'],
+                    );
+
+                    $custom_value_array[] = $array_custom;
+                }
+
+                $this->customfield_model->updateRecord($custom_value_array, $id, 'students');
+            }
+
+            $student_id      = $this->input->post('student_id');
+
+            $student         = $this->student_model->get($student_id);
+
+            $sibling_id      = $this->input->post('sibling_id');
+
+            $siblings_counts = $this->input->post('siblings_counts');
+
+            $siblings        = $this->student_model->getMySiblings($student['parent_id'], $student_id);
+
+            $total_siblings  = count($siblings);
+
+            $class_id        = $this->input->post('class_id');
+
+            $section_id      = $this->input->post('section_id');
+
+            $hostel_room_id  = $this->input->post('hostel_room_id');
+
+            $fees_discount   = $this->input->post('fees_discount');
+
+            $vehroute_id     = $this->input->post('vehroute_id');
+
+            if (empty($vehroute_id)) {
+
+                $vehroute_id = 0;
+            }
+
+            if (empty($hostel_room_id)) {
+
+                $hostel_room_id = 0;
+            }
+
+
+
+            $data = array(
+
+                'id'                => $id,
+
+                'firstname'         => $this->input->post('firstname'),
+
+                'rte'               => $this->input->post('rte'),
+
+                'state'             => $this->input->post('state'),
+
+                'city'              => $this->input->post('city'),
+
+                'pincode'           => $this->input->post('pincode'),
+
+                'cast'              => $this->input->post('cast'),
+
+                'previous_school'   => $this->input->post('previous_school'),
+
+                'dob'               => $this->customlib->dateFormatToYYYYMMDD($this->input->post('dob')),
+
+                'current_address'   => $this->input->post('current_address'),
+
+                'permanent_address' => $this->input->post('permanent_address'),
+
+                'adhar_no'          => $this->input->post('adhar_no'),
+
+                'samagra_id'        => $this->input->post('samagra_id'),
+
+                'bank_account_no'   => $this->input->post('bank_account_no'),
+
+                'bank_name'         => $this->input->post('bank_name'),
+
+                'ifsc_code'         => $this->input->post('ifsc_code'),
+
+                'guardian_email'    => $this->input->post('guardian_email'),
+
+                'gender'            => $this->input->post('gender'),
+
+                'guardian_name'     => $this->input->post('guardian_name'),
+
+                'guardian_relation' => $this->input->post('guardian_relation'),
+
+                'guardian_phone'    => $this->input->post('guardian_phone'),
+
+                'guardian_address'  => $this->input->post('guardian_address'),
+
+                'vehroute_id'       => $vehroute_id,
+
+                'hostel_room_id'    => $hostel_room_id,
+
+                'note'              => $this->input->post('note'),
+
+                'is_active'         => 'yes',
+
             );
-            
 
-            // echo "<pre>", print_r($data_input), "</pre>";
-            // die();
+            if ($this->sch_setting_detail->guardian_occupation) {
 
-            $this->Lead_model->add($data_input);
+                $data['guardian_occupation'] = $this->input->post('guardian_occupation');
+            }
+
+            $house             = $this->input->post('house');
+
+            $blood_group       = $this->input->post('blood_group');
+
+            $measurement_date  = $this->input->post('measure_date');
+
+            $roll_no           = $this->input->post('roll_no');
+
+            $lastname          = $this->input->post('lastname');
+
+            $middlename        = $this->input->post('middlename');
+
+            $category_id       = $this->input->post('category_id');
+
+            $religion          = $this->input->post('religion');
+
+            $mobileno          = $this->input->post('mobileno');
+
+            $email             = $this->input->post('email');
+
+            $admission_date    = $this->input->post('admission_date');
+
+            $height            = $this->input->post('height');
+
+            $weight            = $this->input->post('weight');
+
+            $father_name       = $this->input->post('father_name');
+
+            $father_phone      = $this->input->post('father_phone');
+
+            $father_occupation = $this->input->post('father_occupation');
+
+            $mother_name       = $this->input->post('mother_name');
+
+            $mother_phone      = $this->input->post('mother_phone');
+
+            $mother_occupation = $this->input->post('mother_occupation');
+
+
+
+            if ($this->sch_setting_detail->guardian_name) {
+
+                $data['guardian_is'] = $this->input->post('guardian_is');
+            }
+
+
+
+            if (isset($measurement_date)) {
+
+                $data['measurement_date'] = $this->customlib->dateFormatToYYYYMMDD($this->input->post('measure_date'));
+            }
+
+
+
+            if (isset($house)) {
+
+                $data['school_house_id'] = $this->input->post('house');
+            }
+
+            if (isset($blood_group)) {
+
+
+
+                $data['blood_group'] = $this->input->post('blood_group');
+            }
+
+
+
+            if (isset($roll_no)) {
+
+
+
+                $data['roll_no'] = $this->input->post('roll_no');
+            }
+
+
+
+            if (isset($lastname)) {
+
+
+
+                $data['lastname'] = $this->input->post('lastname');
+            }
+
+
+
+            if (isset($middlename)) {
+
+                $data['middlename'] = $this->input->post('middlename');
+            }
+
+
+
+            if (isset($category_id)) {
+
+
+
+                $data['category_id'] = $this->input->post('category_id');
+            }
+
+
+
+            if (isset($religion)) {
+
+
+
+                $data['religion'] = $this->input->post('religion');
+            }
+
+
+
+            if (isset($mobileno)) {
+
+
+
+                $data['mobileno'] = $this->input->post('mobileno');
+            }
+
+
+
+            if (isset($email)) {
+
+
+
+                $data['email'] = $this->input->post('email');
+            }
+
+
+
+            if (isset($admission_date)) {
+
+
+
+                $data['admission_date'] = $this->customlib->dateFormatToYYYYMMDD($this->input->post('admission_date'));
+            }
+
+
+
+            if (isset($height)) {
+
+
+
+                $data['height'] = $this->input->post('height');
+            }
+
+
+
+            if (isset($weight)) {
+
+
+
+                $data['weight'] = $this->input->post('weight');
+            }
+
+
+
+            if (isset($father_name)) {
+
+
+
+                $data['father_name'] = $this->input->post('father_name');
+            }
+
+
+
+            if (isset($father_phone)) {
+
+
+
+                $data['father_phone'] = $this->input->post('father_phone');
+            }
+
+
+
+            if (isset($father_occupation)) {
+
+
+
+                $data['father_occupation'] = $this->input->post('father_occupation');
+            }
+
+
+
+            if (isset($mother_name)) {
+
+
+
+                $data['mother_name'] = $this->input->post('mother_name');
+            }
+
+
+
+            if (isset($mother_phone)) {
+
+
+
+                $data['mother_phone'] = $this->input->post('mother_phone');
+            }
+
+
+
+            if (isset($mother_occupation)) {
+
+
+
+                $data['mother_occupation'] = $this->input->post('mother_occupation');
+            }
+
+
+
+            $default_image = array('uploads/student_images/default_female.jpg', 'uploads/student_images/default_male.jpg');
+
+            if (in_array($student['image'], $default_image)) {
+
+                if ($this->input->post('gender') == 'Female') {
+
+                    $data['image'] = 'uploads/student_images/default_female.jpg';
+                } else {
+
+                    $data['image'] = 'uploads/student_images/default_male.jpg';
+                }
+            }
+
+
+
+            if (!$this->sch_setting_detail->adm_auto_insert) {
+
+
+
+                $data['admission_no'] = $this->input->post('admission_no');
+            }
+
+            $this->student_model->add($data);
+
+            $data_new = array(
+
+                'student_id'    => $id,
+
+                'class_id'      => $class_id,
+
+                'section_id'    => $section_id,
+
+                'session_id'    => $session,
+
+                'fees_discount' => $fees_discount,
+
+            );
+
+            $insert_id = $this->student_model->add_student_session($data_new);
+
+            if (isset($_FILES["file"]) && !empty($_FILES['file']['name'])) {
+
+                $fileInfo = pathinfo($_FILES["file"]["name"]);
+
+                $img_name = $id . '.' . $fileInfo['extension'];
+
+                move_uploaded_file($_FILES["file"]["tmp_name"], "./uploads/student_images/" . $img_name);
+
+                $data_img = array('id' => $id, 'image' => 'uploads/student_images/' . $img_name);
+
+                $this->student_model->add($data_img);
+            }
+
+
+
+            if (isset($_FILES["father_pic"]) && !empty($_FILES['father_pic']['name'])) {
+
+                $fileInfo = pathinfo($_FILES["father_pic"]["name"]);
+
+                $img_name = $id . "father" . '.' . $fileInfo['extension'];
+
+                move_uploaded_file($_FILES["father_pic"]["tmp_name"], "./uploads/student_images/" . $img_name);
+
+                $data_img = array('id' => $id, 'father_pic' => 'uploads/student_images/' . $img_name);
+
+                $this->student_model->add($data_img);
+            }
+
+
+
+            if (isset($_FILES["mother_pic"]) && !empty($_FILES['mother_pic']['name'])) {
+
+                $fileInfo = pathinfo($_FILES["mother_pic"]["name"]);
+
+                $img_name = $id . "mother" . '.' . $fileInfo['extension'];
+
+                move_uploaded_file($_FILES["mother_pic"]["tmp_name"], "./uploads/student_images/" . $img_name);
+
+                $data_img = array('id' => $id, 'mother_pic' => 'uploads/student_images/' . $img_name);
+
+                $this->student_model->add($data_img);
+            }
+
+
+
+            if (isset($_FILES["guardian_pic"]) && !empty($_FILES['guardian_pic']['name'])) {
+
+                $fileInfo = pathinfo($_FILES["guardian_pic"]["name"]);
+
+                $img_name = $id . "guardian" . '.' . $fileInfo['extension'];
+
+                move_uploaded_file($_FILES["guardian_pic"]["tmp_name"], "./uploads/student_images/" . $img_name);
+
+                $data_img = array('id' => $id, 'guardian_pic' => 'uploads/student_images/' . $img_name);
+
+                $this->student_model->add($data_img);
+            }
+
+
+
+            if (isset($siblings_counts) && ($total_siblings == $siblings_counts)) {
+
+                //if there is no change in sibling
+
+            } else if (!isset($siblings_counts) && $sibling_id == 0 && $total_siblings > 0) {
+
+                // add for new parent
+
+                $parent_password = $this->role->get_random_password($chars_min = 6, $chars_max = 6, $use_upper_case = false, $include_numbers = true, $include_special_chars = false);
+
+
+
+                $data_parent_login = array(
+
+                    'username' => $this->parent_login_prefix . $student_id . "_1",
+
+                    'password' => $parent_password,
+
+                    'user_id'  => "",
+
+                    'role'     => 'parent',
+
+                );
+
+
+
+                $update_student = array(
+
+                    'id'        => $student_id,
+
+                    'parent_id' => 0,
+
+                );
+
+                $ins_id = $this->user_model->addNewParent($data_parent_login, $update_student);
+            } else if ($sibling_id != 0) {
+
+                //join to student with new parent
+
+                $student_sibling = $this->student_model->get($sibling_id);
+
+                $update_student  = array(
+
+                    'id'        => $student_id,
+
+                    'parent_id' => $student_sibling['parent_id'],
+
+                );
+
+                $student_sibling = $this->student_model->add($update_student);
+            } else {
+            }
 
 
 
             $this->session->set_flashdata('msg', '<div student="alert alert-success text-left">' . $this->lang->line('update_message') . '</div>');
 
-            redirect('lead/search');
+            redirect('student/search');
         }
     }
 

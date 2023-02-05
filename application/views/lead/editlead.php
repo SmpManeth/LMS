@@ -10,7 +10,7 @@
 
                 <div class="box box-primary">
 
-                    <form id="form1" action="<?php echo site_url("lead/edit/" . $id) ?>" id="leadeditform" name="leadform" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+                    <form id="form1" action="<?php echo site_url('lead/create') ?>" id="leadform" name="leadform" method="post" accept-charset="utf-8" enctype="multipart/form-data">
 
                         <div class="">
                             <div class="bozero">
@@ -33,8 +33,8 @@
                                             <div class="form-group">
                                                 <label for="coursecode">Course Code</label><small class="req"> *</small>
                                                 <select id="coursecode" name="coursecode" class="form-control">
-                                                    <option value="<?php echo $lead['coursecode'] ?>"><?php echo $lead['coursecode'] ?></option>
-
+                                                    <option value="">Select</option>
+                                                    
                                                     <?php foreach ($classlist as $class) { ?>
                                                         <option value="<?php echo $class['class'] ?>"><?php echo $class['class'] ?></option>
 
@@ -49,7 +49,7 @@
                                             <div class="form-group">
                                                 <label for="bandscore">Band Score</label><small class="req"> *</small>
                                                 <select id="bandscore" name="bandscore" class="form-control">
-                                                    <option value="<?php echo $lead['bandscore'] ?>"><?php echo $lead['bandscore'] ?></option>
+                                                    <option value="">Select</option>
                                                     <?php foreach ($band_scrore as $class) { ?>
                                                         <option value="<?php echo $class['band_score'] ?>"><?php echo $class['band_score'] ?></option>
 
@@ -67,7 +67,7 @@
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label for="first_name">First Name</label> <small class="req"> *</small>
-                                                <input id="first_name" name="first_name" placeholder="" type="text" class="form-control" value="<?php echo set_value('first_name', $lead['first_name']); ?>" />
+                                                <input id="first_name" name="first_name" placeholder="" type="text" class="form-control" value="<?php echo set_value('first_name'); ?>" />
                                                 <span class="text-danger"><?php echo form_error('first_name'); ?></span>
                                             </div>
                                         </div>
@@ -76,7 +76,7 @@
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label for="last_name">Last Name</label>
-                                                <input autofocus="" id="last_name" name="last_name" placeholder="" type="text" class="form-control" value="<?php echo set_value('last_name', $lead['last_name']); ?>" />
+                                                <input autofocus="" id="last_name" name="last_name" placeholder="" type="text" class="form-control" value="<?php echo set_value('last_name'); ?>" />
                                             </div>
                                         </div>
 
@@ -84,7 +84,7 @@
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label for="phone">Phone Number</label>
-                                                <input autofocus="" id="phone" name="phone" placeholder="" type="text" class="form-control" value="<?php echo set_value('phone', $lead['phone']); ?>" />
+                                                <input autofocus="" id="phone" name="phone" placeholder="" type="text" class="form-control" value="<?php echo set_value('phone'); ?>" />
                                             </div>
                                         </div>
 
@@ -92,7 +92,7 @@
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label for="email">Email</label><small class="req"> *</small>
-                                                <input id="email" name="email" placeholder="" type="text" class="form-control" value="<?php echo set_value('email', $lead['email']); ?>" />
+                                                <input  id="email" name="email" placeholder="" type="text" class="form-control" value="<?php echo set_value('email');?>" />
                                                 <span class="text-danger"><?php echo form_error('email'); ?></span>
                                             </div>
                                         </div>
@@ -105,7 +105,7 @@
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label for="address">Address</label>
-                                                <input autofocus="" id="address" name="address" placeholder="" type="text" class="form-control" value="<?php echo set_value('address', $lead['address']); ?>" />
+                                                <input autofocus="" id="address" name="address" placeholder="" type="text" class="form-control" value="<?php echo set_value('address'); ?>" />
                                             </div>
                                         </div>
 
@@ -113,7 +113,7 @@
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label for="occupation">Occupation</label>
-                                                <input autofocus="" id="occupation" name="occupation" placeholder="" type="text" class="form-control" value="<?php echo set_value('occupation', $lead['occupation']); ?>" />
+                                                <input autofocus="" id="occupation" name="occupation" placeholder="" type="text" class="form-control" value="<?php echo set_value('occupation'); ?>" />
                                             </div>
                                         </div>
 
@@ -122,7 +122,7 @@
                                             <div class="form-group">
                                                 <label for="ielts_course">IELTS Course</label><small class="req"> *</small>
                                                 <select id="ielts_course" name="ielts_course" class="form-control">
-                                                    <option value="<?php echo $lead['ielts_course'] ?>"><?php echo $lead['ielts_course'] ?></option>
+                                                    <option value="">Select</option>
                                                     <?php foreach ($ieltscourses as $course) { ?>
                                                         <option value="<?php echo $course['section'] ?>"><?php echo $course['section'] ?></option>
 
@@ -137,7 +137,7 @@
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label for="expected_band_score">Expected Band Score</label>
-                                                <input autofocus="" id="expected_band_score" name="expected_band_score" placeholder="" type="text" class="form-control" value="<?php echo set_value('expected_band_score', $lead['expected_band_score']); ?>" />
+                                                <input autofocus="" id="expected_band_score" name="expected_band_score" placeholder="" type="text" class="form-control" value="<?php echo set_value('expected_band_score'); ?>" />
                                             </div>
                                         </div>
                                     </div>
@@ -146,7 +146,9 @@
 
                             </div>
                             <div class="box-footer">
+
                                 <button type="submit" class="btn btn-info pull-right"><?php echo $this->lang->line('save'); ?></button>
+
                             </div>
 
                     </form>

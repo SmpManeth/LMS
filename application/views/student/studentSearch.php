@@ -67,6 +67,13 @@ $currency_symbol = $this->customlib->getSchoolCurrencyFormat();
         </div>
 
 
+
+        <?php
+
+        //if (isset($resultlist)) {
+
+        ?>
+
         <div class="nav-tabs-custom border0 navnoshadow">
 
             <div class="box-header ptbnull"></div>
@@ -101,7 +108,7 @@ $currency_symbol = $this->customlib->getSchoolCurrencyFormat();
                                 <th>Course Code</th>
                                 <th>Passport No</th>
                                 <th>Purpose</th>
-                                <th colspan="3"><?php echo $this->lang->line('action'); ?></th>
+                                <th colspan="2"><?php echo $this->lang->line('action'); ?></th>
 
                             </tr>
 
@@ -109,7 +116,7 @@ $currency_symbol = $this->customlib->getSchoolCurrencyFormat();
 
                         <tbody>
                             <?php foreach ($students as $key => $array) {
-
+                                
                                 $id = $array['id'];
                                 unset($array['id']);
                                 unset($array['created_at']);
@@ -125,9 +132,7 @@ $currency_symbol = $this->customlib->getSchoolCurrencyFormat();
                                     <?php  } ?>
                                     <td><a href="<?php echo base_url(); ?>student/edit/<?php echo $id ?>" class="btn btn-default btn-xs" data-toggle="tooltip" title="<?php echo $this->lang->line('edit'); ?>"><i class="fa fa-pencil"></i></a>
                                         <a href="<?php echo base_url(); ?>student/delete/<?php echo $id ?>" class=" btn text-danger" data-toggle="tooltip" title="<?php echo $this->lang->line('delete'); ?>"><i class="fa fa-eraser"></i></a>
-                                        <a class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModal" data-id="<?php echo $id ?>"><i class="fa fa-clock-o" aria-hidden="true"></i>
-                                        </a>
-
+                                        <a href="<?php echo base_url(); ?>student/makestudent/<?php echo $id ?>" class="btn text-green " data-toggle="tooltip" title="Make a Student>"><i class="fa fa-user"></i></a>
 
                                     </td>
                                     <td>
@@ -148,61 +153,20 @@ $currency_symbol = $this->customlib->getSchoolCurrencyFormat();
             </div>
 
         </div>
-        <!-- Class Slots  -->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Modal Title</h4>
-                    </div>
-                    <div class="modal-body">
-                        ID: <span id="id-display"></span>
-                        <form id="form1" action="<?php echo site_url('student/assignslot/' . $id) ?>" id="employeeform" name="employeeform" method="post" accept-charset="utf-8" enctype="multipart/form-data">
 
 
+</div><!--./box box-primary -->
 
+<?php
 
-                        </form>
-                        <div class="col-md-8">
-                            <div class="form-group">
-                                <?php
-                                foreach ($course_slots as $key => $slot) { ?>
-                                    <label for="slot<?php echo $slot['id'] ?>"><?php echo $slot['name'] ?> </label>
-                                    <label for="slot<?php echo $slot['id'] ?>"> - <?php echo $slot['type'] ?> </label>
-                                    <!-- <input type="text" value="<?php echo $slot['id'] ?>" name="course_slot_id" hidden required> -->
-                                    <input type="checkbox" name="course_slot_id[]" value="<?php echo $slot['id'] ?>" id="slot<?php echo $slot['id'] ?>">
-                                <?php    } ?>
+//  }
 
-
-                                <span class="text-danger"><?php echo form_error('courseslots'); ?></span>
-                            </div>
-
-                        </div>
-
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-default" data-dismiss="modal">Save</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-    </section>
+?>
 
 </div>
-<script>
-    $(document).ready(function() {
-        $('#myModal').on('show.bs.modal', function(event) {
-            var button = $(event.relatedTarget); // Button that triggered the modal
-            var id = button.data('id'); // Extract info from data-* attributes
 
-            // Update the modal's content.
-            var modal = $(this);
-            modal.find('#id-display').text(id);
-        });
-    });
-</script>
+</div>
+
+</section>
+
+</div>
