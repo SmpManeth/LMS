@@ -41,8 +41,8 @@
                                     <div class="row">
 
                                         <?php
-                                        //  echo "<pre>", print_r($new_student ,true), "</pre>";
-                                        //  die();
+                                        // print_r($new_student);
+                                        // die();
                                         ?>
 
 
@@ -55,8 +55,7 @@
 
                                                     <label for="student_reg_no">Registration No</label> <small class="req"> *</small>
 
-                                                    <input disabled id="student_reg_no" name="student_reg_no" placeholder="" type="text" class="form-control" value="<?php echo set_value('student_reg_no', $new_student['student_reg_no']); ?>" />
-                                                    <input name="id" type="text" value="<?php echo set_value('student_reg_no', $id); ?>" hidden />
+                                                    <input autofocus="" id="student_reg_no" name="student_reg_no" placeholder="" type="text" class="form-control" value="<?php echo set_value('student_reg_no', $new_student['student_reg_no']); ?>" />
 
                                                     <span class="text-danger"><?php echo form_error('student_reg_no'); ?></span>
 
@@ -180,6 +179,7 @@
                                                 </div>
 
                                             </div>
+
                                             <!-- Expected band Score  -->
                                             <div class="col-md-3">
                                                 <div class="form-group">
@@ -190,10 +190,6 @@
                                         </div>
 
                                         <div class="row">
-
-
-
-
                                             <!-- Parsport No  -->
                                             <div class="col-md-3">
                                                 <div class="form-group">
@@ -209,22 +205,8 @@
                                                     <input autofocus="" id="purpose" name="purpose" placeholder="" type="text" class="form-control" value="<?php echo set_value('purpose', $new_student['purpose']); ?>" />
                                                 </div>
                                             </div>
-                                        </div>
 
-                                        <div class="row">
-                                            <!-- Slots  -->
-                                            <!-- <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label for="slots">Slots</label><small class="req"> *</small>
-                                                    <select multiple id="slots" name="slots" class="form-control">
-                                                        <option value="fakeslot1">Example Slot</option>
-                                                        <option value="fakeslot2">Example Slot</option>
-                                                        <option value="fakeslot3">Example Slot</option>
-                                                        <option value="fakeslot4">Example Slot</option>
-                                                    </select>
-                                                    <span class="text-danger"><?php echo form_error('slots'); ?></span>
-                                                </div>
-                                            </div> -->
+
                                         </div>
                                     </div>
 
@@ -233,7 +215,6 @@
                                 <div class="box-footer">
 
                                     <button type="submit" class="btn btn-info pull-right"><?php echo $this->lang->line('save'); ?></button>
-                                    <button class="btn btn-info pull-left">Assign Time Slots</button>
 
                                 </div>
 
