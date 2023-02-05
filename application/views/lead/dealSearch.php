@@ -95,7 +95,7 @@ $currency_symbol = $this->customlib->getSchoolCurrencyFormat();
                                 <th>IELTS Course</th>
                                 <th>Expected Band Score</th>
                                 <th>Course Code</th>
-                                <th  colspan="2"><?php echo $this->lang->line('action'); ?></th>
+                                <th colspan="2"><?php echo $this->lang->line('action'); ?></th>
 
                             </tr>
 
@@ -106,6 +106,7 @@ $currency_symbol = $this->customlib->getSchoolCurrencyFormat();
                                 // echo "<pre>", print_r($array), "</pre>";
                                 // die();
                                 $id = $array['id'];
+                                $is_Student = $array['is_student'];
                                 unset($array['id']);
                                 unset($array['created_at']);
                                 unset($array['User_id']);
@@ -120,7 +121,14 @@ $currency_symbol = $this->customlib->getSchoolCurrencyFormat();
                                     <?php  } ?>
                                     <td><a href="<?php echo base_url(); ?>lead/edit/<?php echo $id ?>" class="btn btn-default btn-xs" data-toggle="tooltip" title="<?php echo $this->lang->line('edit'); ?>"><i class="fa fa-pencil"></i></a>
                                         <a href="<?php echo base_url(); ?>lead/delete/<?php echo $id ?>" class=" btn text-danger" data-toggle="tooltip" title="<?php echo $this->lang->line('delete'); ?>"><i class="fa fa-eraser"></i></a>
-                                        <a href="<?php echo base_url(); ?>lead/makestudent/<?php echo $id ?>" class="btn text-green " data-toggle="tooltip" title="Make a Student>"><i class="fa fa-user"></i></a>
+                                        <?php
+
+                                        if (!$is_Student) { ?>
+                                            <a href="<?php echo base_url(); ?>lead/makestudent/<?php echo $id ?>" class="btn text-green " data-toggle="tooltip" title="Make a Student>"><i class="fa fa-user"></i></a>
+
+                                        <?php   }
+
+                                        ?>
 
                                     </td>
                                     <td>
