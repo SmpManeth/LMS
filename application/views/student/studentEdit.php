@@ -11,34 +11,23 @@
     </section>
 
     <section class="content">
-
         <!-- Student Form  -->
         <div class="row">
-
             <div class="col-md-12">
-
                 <div class="box box-primary">
-
                     <form id="form1" action="<?php echo site_url('student/edit/' . $id) ?>" id="employeeform" name="employeeform" method="post" accept-charset="utf-8" enctype="multipart/form-data">
-
                         <div class="">
                             <div class="bozero">
                                 <h4 class="pagetitleh-whitebg">Edit Student Details</h4>
                                 <div class="around10">
-
                                     <?php if ($this->session->flashdata('msg')) { ?>
                                         <?php echo $this->session->flashdata('msg') ?>
                                     <?php } ?>
-
                                     <?php if (isset($error_message)) { ?>
                                         <div class="alert alert-warning"><?php echo $error_message; ?></div>
                                     <?php } ?>
-
                                     <?php echo $this->customlib->getCSRF(); ?>
-
-
                                     <div class="row">
-
                                         <?php
                                         //  echo "<pre>", print_r($new_student ,true), "</pre>";
                                         //  die();
@@ -163,22 +152,6 @@
                                                     <input autofocus="" id="occupation" name="occupation" placeholder="" type="text" class="form-control" value="<?php echo set_value('occupation', $new_student['occupation']); ?>" />
                                                 </div>
                                             </div>
-
-                                            <!-- IELT Course  -->
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label for="ielts_course">IELTS Course</label><small class="req"> *</small>
-                                                    <select id="ielts_course" name="ielts_course" class="form-control">
-                                                        <option value="<?php echo $new_student['ielts_course']; ?>"><?php echo $new_student['ielts_course']; ?></option>
-                                                        <?php foreach ($ieltscourses as $course) { ?>
-                                                            <option value="<?php echo $course['section'] ?>"><?php echo $course['section'] ?></option>
-
-                                                        <?php } ?>
-                                                    </select>
-                                                    <span class="text-danger"><?php echo form_error('ielts_course'); ?></span>
-                                                </div>
-
-                                            </div>
                                             <!-- Expected band Score  -->
                                             <div class="col-md-3">
                                                 <div class="form-group">
@@ -207,19 +180,31 @@
                                         </div>
 
                                         <div class="row">
-                                            <!-- Slots  -->
-                                            <!-- <div class="col-md-3">
+                                            <!-- IELT Course  -->
+                                            <div class="col-md-3">
                                                 <div class="form-group">
-                                                    <label for="slots">Slots</label><small class="req"> *</small>
-                                                    <select multiple id="slots" name="slots" class="form-control">
-                                                        <option value="fakeslot1">Example Slot</option>
-                                                        <option value="fakeslot2">Example Slot</option>
-                                                        <option value="fakeslot3">Example Slot</option>
-                                                        <option value="fakeslot4">Example Slot</option>
+                                                    <label for="ielts_course">IELTS Course</label><small class="req"> *</small>
+                                                    <select id="ielts-courses" name="ielts_course" class="form-control">
+                                                        <option value="<?php echo $new_student['ielts_course']; ?>"><?php echo $new_student['ielts_course']; ?></option>
+                                                        <?php foreach ($ieltscourses as $course) { ?>
+                                                            <option value="<?php echo $course['section'] ?>"><?php echo $course['section'] ?></option>
+
+                                                        <?php } ?>
                                                     </select>
-                                                    <span class="text-danger"><?php echo form_error('slots'); ?></span>
+                                                    <span class="text-danger"><?php echo form_error('ielts_course'); ?></span>
                                                 </div>
-                                            </div> -->
+                                            </div>
+
+                                            <!-- Course Slots  -->
+                                            <div class="col-md-5">
+                                                <label for="course_slots">Course Slots</label>
+                                                <div class="form-group ">
+
+                                                    <div id="class-slots" class="" style="margin: 5px;">
+
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -240,15 +225,38 @@
             </div>
 
         </div>
-
-
-     
-
-
-
     </section>
 
 
 </div>
+<script>
+    $(document).ready(function() {
+        var classes;
+        // Listen for changes to the IELTS course dropdown
+        $("#ielts-courses").change(function() {
+            // Get the selected IELTS course ID
+            var ieltsCoursename = $(this).val();
+           
+            // Make an AJAX call to retrieve the class slots for the selected IELTS course
+            $.ajax({
+                url: `http://localhost/LMS/student/getcourseslotdata/${ieltsCoursename}`,
+                type: "GET",
+                success: function(classSlots) {
+                    classes = classSlots;
+                    // Clear any existing class slots
+                    $("#class-slots").empty();
+                    classSlots = JSON.parse(classSlots)
+                    // Dynamically generate checkboxes for each class slot
+                    classSlots.forEach(function(classSlot) {
+                        $("#class-slots").append(`<div style="width:150px; float:right;">
+                        <label for="class-slot-${classSlot.id}">${classSlot.name} </label>
+                        <input type="checkbox" name="ielts_course_slot" id="class-slot-${classSlot.name}" value="${classSlot.name}"></div>`);
+                    });
+                }
+            });
 
+        });
+        
+    });
+</script>
 <script type="text/javascript" src="<?php echo base_url(); ?>backend/dist/js/savemode.js"></script>

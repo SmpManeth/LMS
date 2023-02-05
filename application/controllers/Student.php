@@ -29,6 +29,7 @@ class Student extends Admin_Controller
         $this->load->model("Course_slots_model");
         $this->load->model("Student_model");
         $this->load->model("Section_model");
+        $this->load->model("Studentcourseslots_model");
         $this->load->model("Lead_model");
         $this->config->load('app-config');
 
@@ -1482,7 +1483,7 @@ class Student extends Admin_Controller
         $course_slots                = $this->Course_slots_model->get();
         $data['course_slots'] = $course_slots;
         $data['classlist']          = $class;
-        
+
         $data['band_scrore']          = $band_scrore;
         $data['ieltscourses']          = $ieltscourses;
         // echo "<pre>", print_r($data['course_slots'], true), "</pre>";
@@ -1506,7 +1507,7 @@ class Student extends Admin_Controller
             $this->load->view('layout/footer', $data);
         } else {
 
-
+            
             $data_insert = array(
 
                 'id' => $id,
@@ -1539,10 +1540,18 @@ class Student extends Admin_Controller
                 'is_student'         => 1
 
             );
+            $slot_data = array(
+
+                'student_id' => $id,
+                'course_slot_name'          => $this->input->post('ielts_course_slot'),
+
+            );
 
             // echo "<pre>", print_r($data_insert, true), "</pre>";
             // die();
             $this->student_model->add($data_insert);
+            $this->Studentcourseslots_model->add($slot_data);
+
 
 
 
@@ -1552,73 +1561,17 @@ class Student extends Admin_Controller
         }
     }
 
-    public function assignslot($id)
+
+    public function getcourseslotdata($ielts_course_id)
     {
-        if (!$this->rbac->hasPrivilege('student', 'can_add')) {
-            access_denied();
-        }
 
 
-        $this->session->set_userdata('top_menu', 'Student Information');
+        // Get the class slots from the database
+        $class_slots = $this->Course_slots_model->get($ielts_course_id);
 
-        $this->session->set_userdata('sub_menu', 'student/assignslot');
-
-       
-        $this->form_validation->set_rules('first_name', ' ', 'trim|required|xss_clean');
-        $this->form_validation->set_rules('email', ' ', 'trim|required|xss_clean');
-        $this->form_validation->set_rules('ielts_course', ' ', 'trim|required|xss_clean');
-        $this->form_validation->set_rules('coursecode', ' ', 'trim|required|xss_clean');
-        $this->form_validation->set_rules('bandscore', ' ', 'trim|required|xss_clean');
-
-        // echo "<pre>", print_r($this->input->post(), true), "</pre>";
-        // die();
-
-
-
-        if ($this->form_validation->run() == false) {
-
-            $this->load->view('layout/header', $data);
-
-            $this->load->view('student/studentCreate', $data);
-
-            $this->load->view('layout/footer', $data);
-        } else {
-            $course_slot_id = $this->input->post('course_slot_id');
-
-            if ($course_slot_id) {
-                foreach ($course_slot_id as $slot) {
-                    $data_insert = array(
-
-                        'student_id'         => $id,
-        
-                        'course_slot_id'               => $slot,
-        
-                    );
-                    $this->Course_slots_model->add($data_insert);
-                }
-            } else {
-                echo 'No slot selected';
-            }
-
-
-               
-
-                // echo "<pre>", print_r($datanew), "</pre>";
-                // die();
-
-
-
-
-
-                $this->session->set_flashdata('msg', '<div class="alert alert-success">' . $this->lang->line('success_message') . '</div>');
-
-                redirect('student/create');
-           
-        }
-       
+        // Return the class slots as JSON
+        echo json_encode($class_slots);
     }
-
-
     public function bulkdelete()
 
     {

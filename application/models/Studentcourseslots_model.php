@@ -8,7 +8,7 @@ if (!defined('BASEPATH'))
 
 
 
-class Course_slots_model extends MY_Model
+class Studentcourseslots_model extends MY_Model
 {
 
 
@@ -37,7 +37,7 @@ class Course_slots_model extends MY_Model
 
     public function get($name = null)
     {
-        
+
 
 
         $this->db->select()->from('course_slots');
@@ -127,8 +127,7 @@ class Course_slots_model extends MY_Model
 
     public function add($data)
     {
-        echo "<pre>", print_r($data), "</pre>";
-        die();
+
         $this->db->trans_start(); # Starting Transaction
 
         $this->db->trans_strict(false); # See Note 01. If you wish can remove as well
@@ -139,9 +138,9 @@ class Course_slots_model extends MY_Model
 
             $this->db->where('id', $data['id']);
 
-            $this->db->update('course_slots', $data);
+            $this->db->update('student_course_slots', $data);
 
-            $message = UPDATE_RECORD_CONSTANT . " On course_slots id " . $data['id'];
+            $message = UPDATE_RECORD_CONSTANT . " On student_course_slots id " . $data['id'];
 
             $action = "Update";
 
@@ -173,18 +172,19 @@ class Course_slots_model extends MY_Model
             }
         } else {
 
-            $this->db->insert('course_slots', $data);
-
+           
+            $this->db->insert('student_course_slots', $data);
+         
             $insert_id = $this->db->insert_id();
 
-            $message = INSERT_RECORD_CONSTANT . " On course_slots id " . $insert_id;
+            $message = INSERT_RECORD_CONSTANT . " On student_course_slots id " . $insert_id;
 
             $action = "Insert";
 
             $record_id = $insert_id;
 
             $this->log($message, $record_id, $action);
-
+           
             //======================Code End==============================
 
 
@@ -195,18 +195,7 @@ class Course_slots_model extends MY_Model
 
 
 
-            if ($this->db->trans_status() === false) {
 
-                # Something went wrong.
-
-                $this->db->trans_rollback();
-
-                return false;
-            } else {
-
-                //return $return_value;
-
-            }
 
             return $insert_id;
         }
