@@ -454,23 +454,16 @@ class Student extends Admin_Controller
 
             $this->load->view('layout/footer', $data);
         } else {
-
-
-
             $newstudentRegNo = 0;
-
-            if (empty($this->input->post('student_reg_no'))) {
-                $current_year = substr(date('Y'), 2);
-                $current_month = date('m');
-
-                $studentRegNo = substr($this->Lead_model->getLaststudent_reg_no(), -4) + 1;
-                $studentRegNo = strlen($studentRegNo) < 4 ? '000' . $studentRegNo : $studentRegNo;
-
-
-                $newstudentRegNo = $current_year . $current_month . $this->input->post('coursecode') . $this->input->post('bandscore') . $studentRegNo;
-            } else {
-                $newstudentRegNo = $this->input->post('student_reg_no');
-            }
+            // if (empty($this->input->post('student_reg_no'))) {
+            $current_year = substr(date('Y'), 2);
+            $current_month = date('m');
+            $studentRegNo = substr($this->Lead_model->getLaststudent_reg_no(), -4) + 1;
+            $studentRegNo = strlen($studentRegNo) < 4 ? '000' . $studentRegNo : $studentRegNo;
+            $newstudentRegNo = $current_year . $current_month . $this->input->post('coursecode') . $this->input->post('bandscore') . $studentRegNo;
+            // } else {
+            //     $newstudentRegNo = $this->input->post('student_reg_no');
+            // }
 
 
             $data_insert = array(
@@ -1570,7 +1563,7 @@ class Student extends Admin_Controller
 
     public function getcourseslotdata($ielts_course_id)
     {
-      
+
         // Get the class slots from the database
         $class_slots = $this->Course_slots_model->get($ielts_course_id);
 

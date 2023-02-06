@@ -186,12 +186,9 @@
                                                 <div class="form-group">
                                                     <label for="ielts_course">IELTS Course</label><small class="req"> *</small>
                                                     <select id="ielts-courses" name="ielts_course" class="form-control">
-
                                                         <?php foreach ($ieltscourses as $course) {
-
                                                             if ($new_student['ielts_course'] == $course['id']) {  ?>
                                                                 <option selected value="<?php echo $course['id'] ?>"><?php echo $course['section'] ?></option>
-
                                                             <?php } else { ?>
                                                                 <option value="<?php echo $course['id'] ?>"><?php echo $course['section'] ?></option>
                                                             <?php  }
@@ -267,9 +264,9 @@
                             }
                         });
                         if (exists) {
-                            SelectedDisplayInputs.push(`<div style="width:150px; float:right;"><label for="class-slot-${Slot.id}">${Slot.name} </label><input checked type="checkbox" name="ielts_course_slot[]" id="class-slot-${Slot.name}" value="${Slot.id}"></div>`);
+                            SelectedDisplayInputs.push(`<div style="width:150px; float:center;"><label for="class-slot-${Slot.id}">${Slot.name} </label><input checked type="checkbox" name="ielts_course_slot[]" id="class-slot-${Slot.name}" value="${Slot.id}"></div>`);
                         } else {
-                            SelectedDisplayInputs.push(`<div style="width:150px; float:right;"><label for="class-slot-${Slot.id}">${Slot.name} </label><input type="checkbox" name="ielts_course_slot[]" id="class-slot-${Slot.name}" value="${Slot.id}"></div>`);
+                            SelectedDisplayInputs.push(`<div style="width:150px; float:center;"><label for="class-slot-${Slot.id}">${Slot.name} </label><input type="checkbox" name="ielts_course_slot[]" id="class-slot-${Slot.name}" value="${Slot.id}"></div>`);
                         }
                     });
                     $("#class-slots").append(SelectedDisplayInputs);

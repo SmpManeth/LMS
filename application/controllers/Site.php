@@ -651,6 +651,8 @@ class Site extends Public_Controller
 
         $data["is_captcha"] = $is_captcha;
 
+
+
         if ($is_captcha) {
 
             $this->form_validation->set_rules('captcha', $this->lang->line('captcha'), 'trim|required|callback_check_captcha');
@@ -674,81 +676,69 @@ class Site extends Public_Controller
                 'password' => $this->input->post('password'),
 
             );
-
+           
             $data['captcha_image'] = $this->captchalib->generate_captcha()['image'];
 
             $login_details         = $this->user_model->checkLogin($login_post);
 
-
-
+           
+            
             if (isset($login_details) && !empty($login_details)) {
-
+               
                 $user = $login_details[0];
-
+               
                 if ($user->is_active == "yes") {
 
-                    if ($user->role == "student") {
+                    // if ($user->role == "student") {
 
-                        $result = $this->user_model->read_user_information($user->id);
-                    } else if ($user->role == "parent") {
+                    //     $result = $this->user_model->read_user_information($user->id);
+                    // } else if ($user->role == "parent") {
 
-                        $result = $this->user_model->checkLoginParent($login_post);
-                    }
+                    //     $result = $this->user_model->checkLoginParent($login_post);
+                    // }
+                    $setting_result = $this->setting_model->get();
 
+            
 
-
-                    if ($result != false) {
+                    if (true) {
 
                         $setting_result = $this->setting_model->get();
 
                         if ($result[0]->lang_id == 0) {
 
-                            $language = array('lang_id' => $setting_result[0]['lang_id'], 'language' => $setting_result[0]['language']);
+                            $language = array('lang_id' => 4, 'language' => 'English');
                         } else {
 
-                            $language = array('lang_id' => $result[0]->lang_id, 'language' => $result[0]->language);
+                            $language = array('lang_id' => 4, 'language' => 'English');
                         }
 
                         $image    = '';
+                       
+                      if (true) {
 
-                        if ($result[0]->role == "parent") {
+                            $image    = "https://cdn-icons-png.flaticon.com/512/456/456212.png";
 
-                            $username = $result[0]->guardian_name;
-
-                            if ($result[0]->guardian_relation == "Father") {
-
-                                $image = $result[0]->father_pic;
-                            } else if ($result[0]->guardian_relation == "Mother") {
-
-                                $image = $result[0]->mother_pic;
-                            } else if ($result[0]->guardian_relation == "Other") {
-
-                                $image = $result[0]->guardian_pic;
-                            }
-                        } elseif ($result[0]->role == "student") {
-
-                            $image    = $result[0]->image;
-
-                            $username = $this->customlib->getFullName($result[0]->firstname, $result[0]->middlename, $result[0]->lastname, $this->sch_setting->middlename, $this->sch_setting->lastname);
-
-                            $defaultclass = $this->user_model->get_studentdefaultClass($result[0]->user_id);
+                            $username =$user->username;
+                           
+                            $defaultclass = " ";
 
                             $this->customlib->setUserLog($result[0]->username, $result[0]->role, $defaultclass['id']);
                         }
 
-
+                        echo "<pre>", print_r($user  , true), "</pre>";
+                        die();
 
                         $session_data = array(
 
-                            'id'              => $result[0]->id,
+                            'id'              => $user->id,
 
-                            'login_username'  => $result[0]->username,
+                            'login_username'  => $user->username,
 
-                            'student_id'      => $result[0]->user_id,
+                            'student_id'      => $user->student_id,
 
-                            'role'            => $result[0]->role,
+                            'role'            => $user->role,
 
-                            'username'        => $username,
+                            'username'        => $user->username,
 
                             'date_format'     => $setting_result[0]['date_format'],
 
@@ -768,7 +758,7 @@ class Site extends Public_Controller
 
                             'image'           =>  $image,
 
-                            'gender'          => $result[0]->gender,
+                            'gender'          => " ",
 
                         );
 
@@ -787,7 +777,8 @@ class Site extends Public_Controller
                             }
                         }
 
-
+                       
+    
 
                         $this->session->set_userdata('student', $session_data);
 

@@ -165,21 +165,7 @@
                                                 </div>
                                             </div>
 
-                                            <!-- IELT Course  -->
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label for="ielts_course">IELTS Course</label><small class="req"> *</small>
-                                                    <select id="ielts_course" name="ielts_course" class="form-control">
-                                                        <option value="<?php echo $new_student['ielts_course']; ?>"><?php echo $new_student['ielts_course']; ?></option>
-                                                        <?php foreach ($ieltscourses as $course) { ?>
-                                                            <option value="<?php echo $course['section'] ?>"><?php echo $course['section'] ?></option>
 
-                                                        <?php } ?>
-                                                    </select>
-                                                    <span class="text-danger"><?php echo form_error('ielts_course'); ?></span>
-                                                </div>
-
-                                            </div>
                                             <!-- Expected band Score  -->
                                             <div class="col-md-3">
                                                 <div class="form-group">
@@ -187,6 +173,8 @@
                                                     <input autofocus="" id="expected_band_score" name="expected_band_score" placeholder="" type="text" class="form-control" value="<?php echo set_value('expected_band_score', $new_student['expected_band_score']); ?>" />
                                                 </div>
                                             </div>
+
+
                                         </div>
 
                                         <div class="row">
@@ -212,19 +200,31 @@
                                         </div>
 
                                         <div class="row">
-                                            <!-- Slots  -->
-                                            <!-- <div class="col-md-3">
+                                            <!-- IELT Course  -->
+                                            <div class="col-md-3">
                                                 <div class="form-group">
-                                                    <label for="slots">Slots</label><small class="req"> *</small>
-                                                    <select multiple id="slots" name="slots" class="form-control">
-                                                        <option value="fakeslot1">Example Slot</option>
-                                                        <option value="fakeslot2">Example Slot</option>
-                                                        <option value="fakeslot3">Example Slot</option>
-                                                        <option value="fakeslot4">Example Slot</option>
+                                                    <label for="ielts_course">IELTS Course</label><small class="req"> *</small>
+                                                    <select id="ielts-courses" name="ielts_course" class="form-control">
+                                                        <option value="<?php echo $new_student['id']; ?>"><?php echo $new_student['ielts_course']; ?></option>
+                                                        <?php foreach ($ieltscourses as $course) { ?>
+                                                            <option value="<?php echo $course['id'] ?>"><?php echo $course['section'] ?></option>
+
+                                                        <?php } ?>
                                                     </select>
-                                                    <span class="text-danger"><?php echo form_error('slots'); ?></span>
+                                                    <span class="text-danger"><?php echo form_error('ielts_course'); ?></span>
                                                 </div>
-                                            </div> -->
+
+                                            </div>
+
+                                            <!-- Course Slots  -->
+                                            <div class="col-md-5">
+                                                <label for="course_slots">Course Slots</label>
+                                                <div class="form-group ">
+                                                    <div id="class-slots" class="" style="margin: 5px;">
+
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -249,5 +249,31 @@
 
 
 </div>
+<script>
+    $(document).ready(function() {
 
+        var studentid = $("#studentid").val();
+        var AllselectedSlots;
+        $("#ielts-courses").change(function() {
+
+            $("#class-slots").empty();
+
+            var ieltsCourseid = $(this).val();
+           
+            $.ajax({
+                url: `http://localhost/LMS/student/getcourseslotdata/${ieltsCourseid}`,
+                type: "GET",
+                success: function(classSlots) {
+                    classSlots = JSON.parse(classSlots);
+                    console.log(classSlots);
+                    classSlots.forEach(Slot => {
+                        $("#class-slots").append(`<div style="width:150px; float:center;"><label for="class-slot-${Slot.id}">${Slot.name} </label><input type="checkbox" name="ielts_course_slot[]" id="class-slot-${Slot.name}" value="${Slot.id}"></div>`);
+                    });
+                }
+            });
+
+        });
+
+    });
+</script>
 <script type="text/javascript" src="<?php echo base_url(); ?>backend/dist/js/savemode.js"></script>
