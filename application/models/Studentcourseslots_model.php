@@ -63,27 +63,15 @@ class Studentcourseslots_model extends MY_Model
  
      public function getByStudentID($id = null)
      {
- 
- 
- 
          $this->db->select()->from('student_course_slots');
  
-         if ($name != null) {
+         if ($id != null) {
  
              $this->db->where('student_course_slots.student_id', $id);
          } 
- 
          $query = $this->db->get();
- 
-         if ($name != null) {
- 
-             return $query->result_array();
-         } else {
- 
-             return $query->result_array();
-         }
+         return $query->result_array();
      }
- 
   
     /**
 

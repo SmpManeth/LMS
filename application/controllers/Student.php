@@ -1573,17 +1573,16 @@ class Student extends Admin_Controller
       
         // Get the class slots from the database
         $class_slots = $this->Course_slots_model->get($ielts_course_id);
-       
+
         // Return the class slots as JSON
         echo json_encode($class_slots);
     }
 
     public function getcourseslotdataofStudents($studentId)
     {
-        $class_slots = $this->Studentcourseslots_model->getByStudentID($studentId);
-
+        $student_course_slots = $this->Studentcourseslots_model->getByStudentID($studentId);
         // Return the class slots as JSON
-        echo json_encode($class_slots);
+        echo json_encode($student_course_slots);
     }
     public function bulkdelete()
 
