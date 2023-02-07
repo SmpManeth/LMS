@@ -223,23 +223,6 @@ class Student extends Admin_Controller
 
 
 
-    public function download($student_id, $doc)
-
-    {
-
-        $this->load->helper('download');
-
-        $filepath = "./uploads/student_documents/$student_id/" . $this->uri->segment(4);
-
-        $data     = file_get_contents($filepath);
-
-        $name     = $this->uri->segment(6);
-
-        force_download($name, $data);
-    }
-
-
-
     public function view($id)
 
     {
@@ -353,23 +336,6 @@ class Student extends Admin_Controller
 
 
 
-    public function exportformat()
-
-    {
-
-        $this->load->helper('download');
-
-        $filepath = "./backend/import/import_student_sample_file.csv";
-
-        $data     = file_get_contents($filepath);
-
-        $name     = 'import_student_sample_file.csv';
-
-
-
-        force_download($name, $data);
-    }
-
 
 
     public function delete($id)
@@ -386,19 +352,6 @@ class Student extends Admin_Controller
         $this->session->set_flashdata('msg', '<i class="fa fa-check-square-o" aria-hidden="true"></i> ' . $this->lang->line('delete_message') . '');
 
         redirect('student/search');
-    }
-
-
-
-    public function doc_delete($id, $student_id)
-
-    {
-
-        $this->student_model->doc_delete($id);
-
-        $this->session->set_flashdata('msg', '<i class="fa fa-check-square-o" aria-hidden="true"></i> ' . $this->lang->line('delete_message') . '');
-
-        redirect('student/view/' . $student_id);
     }
 
 

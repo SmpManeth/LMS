@@ -39,7 +39,7 @@ class Course_slots_model extends MY_Model
     {
         
 
-
+        
         $this->db->select()->from('course_slots');
 
         if ($name != null) {
@@ -48,6 +48,7 @@ class Course_slots_model extends MY_Model
         }
         $query = $this->db->get();
 
+        
         if ($name != null) {
 
             return $query->result_array();

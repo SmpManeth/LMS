@@ -8,7 +8,69 @@
         </h1>
 
     </section>
+    <style>
+        .slot {
+            padding: 20px !important;
+            box-shadow: 3px 4px 15px 1px #4640403b;
+            border-radius: 20px;
+            background: #f3f3f330;
+        }
 
+        .slota {
+            display: block;
+            border: 1px solid red;
+            padding: 5px;
+            color: red;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .linka {
+            display: block;
+            border: 1px solid #72afd2;
+            padding: 5px;
+            border-radius: 5px;
+            text-align: center;
+            width: 50%;
+            margin: auto;
+        }
+
+        .slota:hover {
+            background: red;
+            color: white;
+            cursor: grab;
+        }
+
+        .disabled {pointer-events: none;
+            color: #d1c7c7;
+            cursor: not-allowed !important;
+            background: #0000001a !important;
+        }
+
+        .slota-disabled {
+            display: block;
+            border: 1px solid #00000047;
+            padding: 5px;
+            color: white;
+            background: #0000001a !important;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .slota-disabled:hover {
+            background: #0000001a;
+            color: white;
+            ;
+            cursor: not-allowed !important;
+        }
+
+        .tablse {
+            width: 100%;
+            max-width: 100%;
+            border-collapse: separate;
+            border-spacing: 4em;
+        }
+    </style>
     <!-- Main content -->
 
     <section class="content">
@@ -16,24 +78,10 @@
             <div class="col-md-12">
                 <div class="box box-warning">
                     <div class="box-header ptbnull">
-
-                        <h3 class="text-center"> <?php echo $this->lang->line('class_timetable'); ?></h3>
+                        <h3 class="box-title titlefix"> IELTS Classes</h3>
                         <hr>
                     </div>
-                    <style>
-                        .slot {
-                            padding: 20px !important;
-                            border: 1px solid black;
-                            box-shadow: 8px 7px 20px 0px #4640403b;
-                        }
 
-                        .tablse {
-                            width: 100%;
-                            max-width: 100%;
-                            border-collapse: separate;
-                            border-spacing: 5em;
-                        }
-                    </style>
                     <div class="box-body">
                         <div class="table-responsive">
                             <table class="tablse">
@@ -47,34 +95,135 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php foreach ($class_slots as $key => $slot) {
+                                        $exists = false;
+                                        foreach ($student_course_slots as $key1 => $selectedSlot) {
+                                            if ($slot['id'] == $selectedSlot['course_slot_id']) {
+                                                $exists = true;
+                                            }
+                                        }
+                                        if ($exists) {
+                                            if ($slot['type'] == "IELTS Classes") { ?>
+                                                <tr class="table-row">
+
+                                                    <td class="slot"><?php echo $slot['name'] ?></td>
+                                                    <td class="slot"><?php echo $slot['date'] ?></td>
+
+                                                    <td class="slot"><?php echo $slot['time'] ?></td>
+
+                                                    <td><a class="slota">Attend</a></td>
+
+                                                    <td><a class="linka" href="https://<?php echo $slot['link'] ?>">Click to Join</a></td>
+                                                </tr>
+                                            <?php  }
+                                        } else {
+                                            if ($slot['type'] == "IELTS Classes") { ?>
+                                                <tr class="table-row">
+
+                                                    <td class="slot disabled"><?php echo $slot['name'] ?></td>
+                                                    <td class="slot disabled"><?php echo $slot['date'] ?></td>
+
+                                                    <td class="slot disabled"><?php echo $slot['time'] ?></td>
+
+                                                    <td><a class="slota-disabled disabled">Attend</a></td>
+
+                                                    <td><a class="linka disabled" href="https://<?php echo $slot['link'] ?>">Click to Join</a></td>
+                                                </tr>
+                                    <?php  }
+                                        }
+                                    } ?>
+
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="box box-warning">
+                    <div class="box-header ptbnull">
+                        <h3 class="box-title titlefix">Mock Tests</h3>
+                        <hr>
+                    </div>
+
+                    <div class="box-body">
+                        <div class="table-responsive">
+                            <table class="tablse">
+                                <thead>
                                     <tr>
-                                        <td class="slot">Row 1, Column 1</td>
-                                        <td class="slot">Row 1, Column 2</td>
-                                        <td class="slot">Row 1, Column 3</td>
-                                        <td class="slot">Row 1, Column 4</td>
-                                        <td class="slot">Row 1, Column 5</td>
+                                        <th class="text-center">Slot</th>
+                                        <th class="text-center">Date</th>
+                                        <th class="text-center">Time</th>
+                                        <th class="text-center">Attendance</th>
+                                        <th class="text-center">Link</th>
                                     </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($class_slots as $key => $slot) {
+                                        if ($slot['type'] == "Mock Test") { ?>
+                                            <tr>
+
+                                                <td class="slot"><?php echo $slot['name'] ?></td>
+                                                <td class="slot"><?php echo $slot['date'] ?></td>
+
+                                                <td class="slot"><?php echo $slot['time'] ?></td>
+
+                                                <td class="slot"><button>Attend</button></td>
+
+                                                <td class="slot"><?php echo $slot['link'] ?></td>
+                                            </tr>
+                                    <?php  }
+                                    } ?>
+
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="box box-warning">
+                    <div class="box-header ptbnull">
+                        <h3 class="box-title titlefix">Grammer Classes</h3>
+                        <hr>
+                    </div>
+
+                    <div class="box-body">
+                        <div class="table-responsive">
+                            <table class="tablse">
+                                <thead>
                                     <tr>
-                                        <td class="slot">Row 1, Column 1</td>
-                                        <td class="slot">Row 1, Column 2</td>
-                                        <td class="slot">Row 1, Column 3</td>
-                                        <td class="slot">Row 1, Column 4</td>
-                                        <td class="slot">Row 1, Column 5</td>
+                                        <th class="text-center">Slot</th>
+                                        <th class="text-center">Date</th>
+                                        <th class="text-center">Time</th>
+                                        <th class="text-center">Attendance</th>
+                                        <th class="text-center">Link</th>
                                     </tr>
-                                    <tr>
-                                        <td class="slot">Row 1, Column 1</td>
-                                        <td class="slot">Row 1, Column 2</td>
-                                        <td class="slot">Row 1, Column 3</td>
-                                        <td class="slot">Row 1, Column 4</td>
-                                        <td class="slot">Row 1, Column 5</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="slot">Row 1, Column 1</td>
-                                        <td class="slot">Row 1, Column 2</td>
-                                        <td class="slot">Row 1, Column 3</td>
-                                        <td class="slot">Row 1, Column 4</td>
-                                        <td class="slot">Row 1, Column 5</td>
-                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($class_slots as $key => $slot) {
+                                        if ($slot['type'] == "Grammer Classes") { ?>
+                                            <tr>
+
+                                                <td class="slot"><?php echo $slot['name'] ?></td>
+                                                <td class="slot"><?php echo $slot['date'] ?></td>
+
+                                                <td class="slot"><?php echo $slot['time'] ?></td>
+
+                                                <td class="slot"><button>Attend</button></td>
+
+                                                <td class="slot"><?php echo $slot['link'] ?></td>
+                                            </tr>
+                                    <?php  }
+                                    } ?>
+
+
                                 </tbody>
                             </table>
 
@@ -83,7 +232,6 @@
                     </div>
 
                 </div>
-
             </div>
 
         </div>
