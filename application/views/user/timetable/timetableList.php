@@ -41,7 +41,8 @@
             cursor: grab;
         }
 
-        .disabled {pointer-events: none;
+        .disabled {
+            pointer-events: none;
             color: #d1c7c7;
             cursor: not-allowed !important;
             background: #0000001a !important;
@@ -76,6 +77,8 @@
     <section class="content">
         <div class="row">
             <div class="col-md-12">
+
+
                 <div class="box box-warning">
                     <div class="box-header ptbnull">
                         <h3 class="box-title titlefix"> IELTS Classes</h3>
@@ -142,7 +145,6 @@
 
                 </div>
 
-
                 <div class="box box-warning">
                     <div class="box-header ptbnull">
                         <h3 class="box-title titlefix">Mock Tests</h3>
@@ -163,19 +165,41 @@
                                 </thead>
                                 <tbody>
                                     <?php foreach ($class_slots as $key => $slot) {
-                                        if ($slot['type'] == "Mock Test") { ?>
-                                            <tr>
+                                        $exists = false;
+                                        foreach ($student_course_slots as $key1 => $selectedSlot) {
+                                            if ($slot['id'] == $selectedSlot['course_slot_id']) {
+                                                $exists = true;
+                                            }
+                                        }
+                                        if ($exists) {
+                                            if ($slot['type'] == "Mock Test") { ?>
+                                                <tr class="table-row">
 
-                                                <td class="slot"><?php echo $slot['name'] ?></td>
-                                                <td class="slot"><?php echo $slot['date'] ?></td>
+                                                    <td class="slot"><?php echo $slot['name'] ?></td>
+                                                    <td class="slot"><?php echo $slot['date'] ?></td>
 
-                                                <td class="slot"><?php echo $slot['time'] ?></td>
+                                                    <td class="slot"><?php echo $slot['time'] ?></td>
 
-                                                <td class="slot"><button>Attend</button></td>
+                                                    <td><a class="slota">Attend</a></td>
 
-                                                <td class="slot"><?php echo $slot['link'] ?></td>
-                                            </tr>
+                                                    <td><a class="linka" href="https://<?php echo $slot['link'] ?>">Click to Join</a></td>
+                                                </tr>
+                                            <?php  }
+                                        } else {
+                                            if ($slot['type'] == "Mock Test") { ?>
+                                                <tr class="table-row">
+
+                                                    <td class="slot disabled"><?php echo $slot['name'] ?></td>
+                                                    <td class="slot disabled"><?php echo $slot['date'] ?></td>
+
+                                                    <td class="slot disabled"><?php echo $slot['time'] ?></td>
+
+                                                    <td><a class="slota-disabled disabled">Attend</a></td>
+
+                                                    <td><a class="linka disabled" href="https://<?php echo $slot['link'] ?>">Click to Join</a></td>
+                                                </tr>
                                     <?php  }
+                                        }
                                     } ?>
 
 
@@ -186,7 +210,6 @@
                     </div>
 
                 </div>
-
 
                 <div class="box box-warning">
                     <div class="box-header ptbnull">
@@ -208,19 +231,41 @@
                                 </thead>
                                 <tbody>
                                     <?php foreach ($class_slots as $key => $slot) {
-                                        if ($slot['type'] == "Grammer Classes") { ?>
-                                            <tr>
+                                        $exists = false;
+                                        foreach ($student_course_slots as $key1 => $selectedSlot) {
+                                            if ($slot['id'] == $selectedSlot['course_slot_id']) {
+                                                $exists = true;
+                                            }
+                                        }
+                                        if ($exists) {
+                                            if ($slot['type'] == "Grammer Classes") { ?>
+                                                <tr class="table-row">
 
-                                                <td class="slot"><?php echo $slot['name'] ?></td>
-                                                <td class="slot"><?php echo $slot['date'] ?></td>
+                                                    <td class="slot"><?php echo $slot['name'] ?></td>
+                                                    <td class="slot"><?php echo $slot['date'] ?></td>
 
-                                                <td class="slot"><?php echo $slot['time'] ?></td>
+                                                    <td class="slot"><?php echo $slot['time'] ?></td>
 
-                                                <td class="slot"><button>Attend</button></td>
+                                                    <td><a class="slota">Attend</a></td>
 
-                                                <td class="slot"><?php echo $slot['link'] ?></td>
-                                            </tr>
+                                                    <td><a class="linka" href="https://<?php echo $slot['link'] ?>">Click to Join</a></td>
+                                                </tr>
+                                            <?php  }
+                                        } else {
+                                            if ($slot['type'] == "Grammer Classes") { ?>
+                                                <tr class="table-row">
+
+                                                    <td class="slot disabled"><?php echo $slot['name'] ?></td>
+                                                    <td class="slot disabled"><?php echo $slot['date'] ?></td>
+
+                                                    <td class="slot disabled"><?php echo $slot['time'] ?></td>
+
+                                                    <td><a class="slota-disabled disabled">Attend</a></td>
+
+                                                    <td><a class="linka disabled" href="https://<?php echo $slot['link'] ?>">Click to Join</a></td>
+                                                </tr>
                                     <?php  }
+                                        }
                                     } ?>
 
 
@@ -228,10 +273,10 @@
                             </table>
 
                         </div>
-
                     </div>
 
                 </div>
+
             </div>
 
         </div>
