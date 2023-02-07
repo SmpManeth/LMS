@@ -2958,13 +2958,12 @@ abstract class CI_DB_query_builder extends CI_DB_driver
 				FALSE
 
 			),
-
+			
 			array_keys($this->qb_set),
 
 			array_values($this->qb_set)
 
 		);
-
 
 
 		$this->_reset_write();

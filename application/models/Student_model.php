@@ -111,6 +111,17 @@ class Student_model extends MY_Model
     }
 
 
+    public function getLaststudent_reg_no($id = null)
+
+    {
+
+        $this->db->select('student_reg_no');
+        $this->db->order_by('student_reg_no', 'desc');
+        $this->db->limit(1);
+        $query = $this->db->get('students');
+        $last_student_reg_no = $query->row()->student_reg_no;
+        return $last_student_reg_no;
+    }
 
     public function getAppStudents()
 
@@ -439,7 +450,7 @@ class Student_model extends MY_Model
         $this->db->where('students.id', $id);
         $query = $this->db->get();
 
-        // echo"<pre>", print_r($query->row(), true), "</pre>";
+        // echo"<pre>", print_r($query, true), "</pre>";
         // die();
 
         if ($query->num_rows() > 0) {
@@ -742,7 +753,7 @@ class Student_model extends MY_Model
     public function getDatatableByFullTextSearch($searchterm)
 
     {
-      
+
         $this->datatables->select('*');
 
         $this->datatables->group_start();
@@ -758,7 +769,7 @@ class Student_model extends MY_Model
         $this->datatables->from('students');
 
         $query = $this->db->get();
-       
+
         return $query->result_array();
 
 

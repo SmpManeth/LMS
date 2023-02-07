@@ -458,7 +458,7 @@ class Student extends Admin_Controller
             // if (empty($this->input->post('student_reg_no'))) {
             $current_year = substr(date('Y'), 2);
             $current_month = date('m');
-            $studentRegNo = substr($this->Lead_model->getLaststudent_reg_no(), -4) + 1;
+            $studentRegNo = substr($this->student_model->getLaststudent_reg_no(), -4) + 1;
             $studentRegNo = strlen($studentRegNo) < 4 ? '000' . $studentRegNo : $studentRegNo;
             $newstudentRegNo = $current_year . $current_month . $this->input->post('coursecode') . $this->input->post('bandscore') . $studentRegNo;
             // } else {
@@ -513,16 +513,15 @@ class Student extends Admin_Controller
 
 
             if ($insert) {
-                $datanew['id'] = $this->input->post('id');
-                $datanew['is_student'] = 1;
-
                 // echo "<pre>", print_r($datanew), "</pre>";
                 // die();
-
+                $datanew['id'] = $this->input->post('id');
+                $datanew['is_student'] = 1;
                 $this->Lead_model->add($datanew);
+                
                 $insert_id = $this->student_model->add($data_insert, $data_setting);
 
-
+                
 
                 $user_password = $this->role->get_random_password($chars_min = 8, $chars_max = 8, $use_upper_case = false, $include_numbers = true, $include_special_chars = false);
 
@@ -538,11 +537,12 @@ class Student extends Admin_Controller
                     'role'     => 'student',
 
                 );
-                // echo"<pre>", print_r($data_student_login, true), "</pre>";
+              
+
+                $user_id_insert =$this->user_model->add($data_student_login);
+                // $users =$this->user_model->read_user();
+                // echo"<pre>", print_r($users, true), "</pre>";
                 // die();
-
-                $this->user_model->add($data_student_login);
-
                 $sender_details = array('student_id' => $newstudentRegNo, 'contact_no' => $data_insert['phone'], 'email' => $data_insert['email']);
 
                 // $this->mailsmsconf->mailsms('student_admission', $sender_details);

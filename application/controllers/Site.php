@@ -724,9 +724,8 @@ class Site extends Public_Controller
 
                             $this->customlib->setUserLog($result[0]->username, $result[0]->role, $defaultclass['id']);
                         }
-
-                        echo "<pre>", print_r($user  , true), "</pre>";
-                        die();
+                        
+                      
 
                         $session_data = array(
 
@@ -734,7 +733,7 @@ class Site extends Public_Controller
 
                             'login_username'  => $user->username,
 
-                            'student_id'      => $user->student_id,
+                            'student_id'      => $user->user_id,
 
                             'role'            => $user->role,
 
@@ -761,11 +760,8 @@ class Site extends Public_Controller
                             'gender'          => " ",
 
                         );
-
+                     
                         if ($session_data['is_rtl'] == "disabled") {
-
-
-
                             $language_result1 = $this->language_model->get($language['lang_id']);
 
                             if ($this->customlib->get_rtl_languages($language_result1['short_code'])) {
@@ -776,16 +772,11 @@ class Site extends Public_Controller
                                 $session_data['is_rtl'] = 'disabled';
                             }
                         }
-
                        
     
 
                         $this->session->set_userdata('student', $session_data);
 
-                        if ($result[0]->role == "parent") {
-
-                            $this->customlib->setUserLog($result[0]->username, $result[0]->role);
-                        }
 
                         redirect('user/user/choose');
                     } else {
