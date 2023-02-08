@@ -8,26 +8,24 @@ if (!defined('BASEPATH'))
 
 
 
-class User_model extends MY_Model {
+class User_model extends MY_Model
+{
 
 
 
-    public function __construct() {
+    public function __construct()
+    {
 
         parent::__construct();
-
     }
 
 
 
-    public function add($data) {
-
-        $this->db->trans_start(); # Starting Transaction
-
-        $this->db->trans_strict(false); # See Note 01. If you wish can remove as well
+    public function add($data)
+    {
 
         //=======================Code Start===========================
-
+        $data['lang_id'] = 4;
         if (isset($data['id'])) {
 
             $this->db->where('id', $data['id']);
@@ -41,12 +39,10 @@ class User_model extends MY_Model {
             $record_id = $data['id'];
 
             $this->log($message, $record_id, $action);
-
         } else {
-            
 
-            $this->db->insert('users', $data);
-           
+            $this->db->insert('users', $data, true);
+
             $insert_id = $this->db->insert_id();
 
             $message = INSERT_RECORD_CONSTANT . " On users id " . $insert_id;
@@ -59,38 +55,21 @@ class User_model extends MY_Model {
 
 
 
-            // return $insert_id;
-
+           
         }
-
+ return $insert_id;
         //======================Code End==============================
 
 
 
-        $this->db->trans_complete(); # Completing transaction
-
-        /* Optional */
 
       
-        if ($this->db->trans_status() === false) {
-           
-            # Something went wrong.
-
-            $this->db->trans_rollback();
-
-            return false;
-
-        } else {
-
-            return $insert_id;
-
-        }
-
     }
 
 
 
-    public function addNewParent($data_parent_login, $student_data) {
+    public function addNewParent($data_parent_login, $student_data)
+    {
 
         $this->db->trans_start();
 
@@ -113,7 +92,6 @@ class User_model extends MY_Model {
             $this->db->trans_rollback();
 
             return FALSE;
-
         } else {
 
 
@@ -121,16 +99,15 @@ class User_model extends MY_Model {
             $this->db->trans_commit();
 
             return TRUE;
-
         }
-
     }
 
 
 
-    public function checkLogin($data) {
+    public function checkLogin($data)
+    {
 
-        $this->db->select('id, username, password,role,is_active,lang_id');
+        $this->db->select('*');
 
         $this->db->from('users');
 
@@ -147,18 +124,16 @@ class User_model extends MY_Model {
         if ($query->num_rows() == 1) {
 
             return $query->result();
-
         } else {
 
             return false;
-
         }
-
     }
 
 
 
-    public function checkLoginParent($data) {
+    public function checkLoginParent($data)
+    {
 
 
 
@@ -173,18 +148,16 @@ class User_model extends MY_Model {
         if ($query->num_rows() == 1) {
 
             return $query->result();
-
         } else {
 
             return false;
-
         }
-
     }
 
 
 
-    public function read_user_information($users_id) {
+    public function read_user_information($users_id)
+    {
 
         $this->db->select('users.*,languages.language,students.firstname, students.middlename,students.image,students.lastname,students.guardian_name,students.gender');
 
@@ -205,18 +178,16 @@ class User_model extends MY_Model {
         if ($query->num_rows() == 1) {
 
             return $query->result();
-
         } else {
 
             return false;
-
         }
-
     }
 
 
 
-    public function read_teacher_information($users_id) {
+    public function read_teacher_information($users_id)
+    {
 
         $this->db->select('users.*,teachers.name');
 
@@ -233,18 +204,16 @@ class User_model extends MY_Model {
         if ($query->num_rows() == 1) {
 
             return $query->result();
-
         } else {
 
             return false;
-
         }
-
     }
 
 
 
-    public function read_accountant_information($users_id) {
+    public function read_accountant_information($users_id)
+    {
 
         $this->db->select('users.*,accountants.name');
 
@@ -261,18 +230,16 @@ class User_model extends MY_Model {
         if ($query->num_rows() == 1) {
 
             return $query->result();
-
         } else {
 
             return false;
-
         }
-
     }
 
 
 
-    public function read_librarian_information($users_id) {
+    public function read_librarian_information($users_id)
+    {
 
         $this->db->select('users.*,librarians.name');
 
@@ -289,18 +256,16 @@ class User_model extends MY_Model {
         if ($query->num_rows() == 1) {
 
             return $query->result();
-
         } else {
 
             return false;
-
         }
-
     }
 
 
 
-    public function checkOldUsername($data) {
+    public function checkOldUsername($data)
+    {
 
         $this->db->where('id', $data['user_id']);
 
@@ -315,12 +280,12 @@ class User_model extends MY_Model {
         else
 
             return FALSE;
-
     }
 
 
 
-    public function checkOldPass($data) {
+    public function checkOldPass($data)
+    {
 
         $this->db->where('id', $data['user_id']);
 
@@ -335,12 +300,12 @@ class User_model extends MY_Model {
         else
 
             return FALSE;
-
     }
 
 
 
-    public function checkUserNameExist($data) {
+    public function checkUserNameExist($data)
+    {
 
         $this->db->where('role', $data['role']);
 
@@ -355,12 +320,12 @@ class User_model extends MY_Model {
         else
 
             return FALSE;
-
     }
 
 
 
-    public function saveNewPass($data) {
+    public function saveNewPass($data)
+    {
 
         $this->db->where('id', $data['id']);
 
@@ -369,18 +334,16 @@ class User_model extends MY_Model {
         if ($query) {
 
             return true;
-
         } else {
 
             return false;
-
         }
-
     }
 
 
 
-    public function changeStatus($data) {
+    public function changeStatus($data)
+    {
 
         $this->db->trans_start(); # Starting Transaction
 
@@ -405,18 +368,16 @@ class User_model extends MY_Model {
         if ($query) {
 
             return true;
-
         } else {
 
             return false;
-
         }
-
     }
 
 
 
-    public function saveNewUsername($data) {
+    public function saveNewUsername($data)
+    {
 
         $this->db->where('id', $data['id']);
 
@@ -425,18 +386,16 @@ class User_model extends MY_Model {
         if ($query) {
 
             return true;
-
         } else {
 
             return false;
-
         }
-
     }
 
 
 
-    public function read_user() {
+    public function read_user()
+    {
 
         $this->db->select('*');
 
@@ -447,18 +406,16 @@ class User_model extends MY_Model {
         if ($query->num_rows() > 0) {
 
             return $query->result();
-
         } else {
 
             return false;
-
         }
-
     }
 
 
 
-    public function read_single_child($child_id) {
+    public function read_single_child($child_id)
+    {
 
         $this->db->select('*');
 
@@ -471,30 +428,28 @@ class User_model extends MY_Model {
         if ($query->num_rows() > 0) {
 
             return $query->row();
-
         } else {
 
             return false;
-
         }
-
     }
 
 
 
-    public function getLoginDetails($student_id) {
+    public function getLoginDetails($student_id)
+    {
 
         $sql = "SELECT * FROM (select * from users where find_in_set('$student_id',childs) <> 0 union SELECT * FROM `users` WHERE `user_id` = " . $this->db->escape($student_id) . " AND `role` != 'teacher' AND `role` != 'librarian' AND `role` != 'accountant') a order by a.role desc";
 
         $query = $this->db->query($sql);
 
         return $query->result();
-
     }
 
 
 
-    public function getStudentLoginDetails($student_id) {
+    public function getStudentLoginDetails($student_id)
+    {
 
 
 
@@ -503,12 +458,12 @@ class User_model extends MY_Model {
         $query = $this->db->query($sql);
 
         return $query->result();
-
     }
 
 
 
-    public function getTeacherLoginDetails($teacher_id) {
+    public function getTeacherLoginDetails($teacher_id)
+    {
 
         $this->db->select('*');
 
@@ -523,18 +478,16 @@ class User_model extends MY_Model {
         if ($query->num_rows() > 0) {
 
             return $query->result();
-
         } else {
 
             return false;
-
         }
-
     }
 
 
 
-    public function getLibrarianLoginDetails($librarian_id) {
+    public function getLibrarianLoginDetails($librarian_id)
+    {
 
         $this->db->select('*');
 
@@ -549,18 +502,16 @@ class User_model extends MY_Model {
         if ($query->num_rows() > 0) {
 
             return $query->result();
-
         } else {
 
             return false;
-
         }
-
     }
 
 
 
-    public function getAccountantLoginDetails($accountant_id) {
+    public function getAccountantLoginDetails($accountant_id)
+    {
 
         $this->db->select('*');
 
@@ -575,18 +526,16 @@ class User_model extends MY_Model {
         if ($query->num_rows() > 0) {
 
             return $query->result();
-
         } else {
 
             return false;
-
         }
-
     }
 
 
 
-    public function updateVerCode($data) {
+    public function updateVerCode($data)
+    {
 
         $this->db->where('id', $data['id']);
 
@@ -595,18 +544,16 @@ class User_model extends MY_Model {
         if ($query) {
 
             return true;
-
         } else {
 
             return false;
-
         }
-
     }
 
 
 
-    public function getUserByEmail($table, $role, $email) {
+    public function getUserByEmail($table, $role, $email)
+    {
 
         $this->db->select($table . '.*,users.id as `user_tbl_id`,users.username,users.password as `user_tbl_password`');
 
@@ -619,11 +566,9 @@ class User_model extends MY_Model {
         if ($role == 'parent') {
 
             $this->db->where($table . '.guardian_email', $email);
-
         } else {
 
             $this->db->where($table . '.email', $email);
-
         }
 
         $query = $this->db->get();
@@ -631,18 +576,16 @@ class User_model extends MY_Model {
         if ($email != null) {
 
             return $query->row();
-
         } else {
 
             return false;
-
         }
-
     }
 
 
 
-    public function getParentByEmail($table, $role, $email) {
+    public function getParentByEmail($table, $role, $email)
+    {
 
         $this->db->select($table . '.*,users.id as `user_tbl_id`,users.username,users.password as `user_tbl_password`');
 
@@ -655,11 +598,9 @@ class User_model extends MY_Model {
         if ($role == 'parent') {
 
             $this->db->where($table . '.guardian_email', $email);
-
         } else {
 
             $this->db->where($table . '.email', $email);
-
         }
 
         $query = $this->db->get();
@@ -667,18 +608,16 @@ class User_model extends MY_Model {
         if ($email != null) {
 
             return $query->row();
-
         } else {
 
             return false;
-
         }
-
     }
 
 
 
-    public function getUserValidCode($table, $role, $code) {
+    public function getUserValidCode($table, $role, $code)
+    {
 
         $this->db->select($table . '.*,users.id as `user_tbl_id`,users.username,users.password as `user_tbl_password`');
 
@@ -699,18 +638,16 @@ class User_model extends MY_Model {
         if ($code != null) {
 
             return $query->row();
-
         } else {
 
             return false;
-
         }
-
     }
 
 
 
-    public function getParentUserValidCode($table, $role, $code) {
+    public function getParentUserValidCode($table, $role, $code)
+    {
 
         $this->db->select($table . '.*,users.id as `user_tbl_id`,users.username,users.password as `user_tbl_password`');
 
@@ -731,18 +668,16 @@ class User_model extends MY_Model {
         if ($code != null) {
 
             return $query->row();
-
         } else {
 
             return false;
-
         }
-
     }
 
 
 
-    public function forgotPassword($usertype, $email) {
+    public function forgotPassword($usertype, $email)
+    {
 
         $result = false;
 
@@ -753,7 +688,6 @@ class User_model extends MY_Model {
             $role = "student";
 
             $result = $this->getUserByEmail($table, $role, $email);
-
         } elseif ($usertype == 'parent') {
 
             $table = "students";
@@ -761,7 +695,6 @@ class User_model extends MY_Model {
             $role = "parent";
 
             $result = $this->getParentByEmail($table, $role, $email);
-
         } elseif ($usertype == 'teacher') {
 
 
@@ -771,7 +704,6 @@ class User_model extends MY_Model {
             $role = "teacher";
 
             $result = $this->getUserByEmail($table, $role, $email);
-
         } elseif ($usertype == 'accountant') {
 
             $table = "accountants";
@@ -779,7 +711,6 @@ class User_model extends MY_Model {
             $role = "accountant";
 
             $result = $this->getUserByEmail($table, $role, $email);
-
         } elseif ($usertype == 'librarian') {
 
             $table = "librarians";
@@ -787,16 +718,15 @@ class User_model extends MY_Model {
             $role = "librarian";
 
             $result = $this->getUserByEmail($table, $role, $email);
-
         }
 
         return $result;
-
     }
 
 
 
-    public function getUserByCodeUsertype($usertype, $code) {
+    public function getUserByCodeUsertype($usertype, $code)
+    {
 
 
 
@@ -811,7 +741,6 @@ class User_model extends MY_Model {
             $role = "student";
 
             $result = $this->getUserValidCode($table, $role, $code);
-
         } elseif ($usertype == 'parent') {
 
             $table = "students";
@@ -819,7 +748,6 @@ class User_model extends MY_Model {
             $role = "parent";
 
             $result = $this->getParentUserValidCode($table, $role, $code);
-
         } elseif ($usertype == 'teacher') {
 
 
@@ -829,7 +757,6 @@ class User_model extends MY_Model {
             $role = "teacher";
 
             $result = $this->getUserValidCode($table, $role, $code);
-
         } elseif ($usertype == 'accountant') {
 
             $table = "accountants";
@@ -837,7 +764,6 @@ class User_model extends MY_Model {
             $role = "accountant";
 
             $result = $this->getUserValidCode($table, $role, $code);
-
         } elseif ($usertype == 'librarian') {
 
             $table = "librarians";
@@ -845,16 +771,15 @@ class User_model extends MY_Model {
             $role = "librarian";
 
             $result = $this->getUserValidCode($table, $role, $code);
-
         }
 
         return $result;
-
     }
 
 
 
-    public function getUserLoginDetails($student_id) {
+    public function getUserLoginDetails($student_id)
+    {
 
 
 
@@ -863,12 +788,12 @@ class User_model extends MY_Model {
         $query = $this->db->query($sql);
 
         return $query->row_array();
-
     }
 
 
 
-    public function getParentLoginDetails($student_id) {
+    public function getParentLoginDetails($student_id)
+    {
 
 
 
@@ -877,12 +802,12 @@ class User_model extends MY_Model {
         $query = $this->db->query($sql);
 
         return $query->row_array();
-
     }
 
-	
 
-	public function student_information($users_id) {
+
+    public function student_information($users_id)
+    {
 
         $this->db->select('users.*,students.firstname,students.lastname,users.password,students.mobileno,students.email,students.guardian_phone,students.guardian_email');
 
@@ -898,35 +823,28 @@ class User_model extends MY_Model {
 
         $query = $this->db->get();
 
-		
+
 
         if ($query->num_rows() == 1) {
 
             return $query->result();
-
         } else {
 
             return false;
-
         }
-
     }
 
 
 
-    public function get_studentdefaultClass($student_id){
+    public function get_studentdefaultClass($student_id)
+    {
 
-       
+
 
         $sql = "SELECT class_sections.id from student_session join class_sections on class_sections.class_id=student_session.class_id and class_sections.section_id=student_session.section_id WHERE student_session.student_id=" . $student_id;
 
         $query = $this->db->query($sql);
 
         return $query->row_array();
-
     }
-
-
-
 }
-

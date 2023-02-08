@@ -223,23 +223,6 @@ class Student extends Admin_Controller
 
 
 
-    public function download($student_id, $doc)
-
-    {
-
-        $this->load->helper('download');
-
-        $filepath = "./uploads/student_documents/$student_id/" . $this->uri->segment(4);
-
-        $data     = file_get_contents($filepath);
-
-        $name     = $this->uri->segment(6);
-
-        force_download($name, $data);
-    }
-
-
-
     public function view($id)
 
     {
@@ -353,23 +336,6 @@ class Student extends Admin_Controller
 
 
 
-    public function exportformat()
-
-    {
-
-        $this->load->helper('download');
-
-        $filepath = "./backend/import/import_student_sample_file.csv";
-
-        $data     = file_get_contents($filepath);
-
-        $name     = 'import_student_sample_file.csv';
-
-
-
-        force_download($name, $data);
-    }
-
 
 
     public function delete($id)
@@ -386,19 +352,6 @@ class Student extends Admin_Controller
         $this->session->set_flashdata('msg', '<i class="fa fa-check-square-o" aria-hidden="true"></i> ' . $this->lang->line('delete_message') . '');
 
         redirect('student/search');
-    }
-
-
-
-    public function doc_delete($id, $student_id)
-
-    {
-
-        $this->student_model->doc_delete($id);
-
-        $this->session->set_flashdata('msg', '<i class="fa fa-check-square-o" aria-hidden="true"></i> ' . $this->lang->line('delete_message') . '');
-
-        redirect('student/view/' . $student_id);
     }
 
 
@@ -454,23 +407,16 @@ class Student extends Admin_Controller
 
             $this->load->view('layout/footer', $data);
         } else {
-
-
-
             $newstudentRegNo = 0;
-
-            if (empty($this->input->post('student_reg_no'))) {
-                $current_year = substr(date('Y'), 2);
-                $current_month = date('m');
-
-                $studentRegNo = substr($this->Lead_model->getLaststudent_reg_no(), -4) + 1;
-                $studentRegNo = strlen($studentRegNo) < 4 ? '000' . $studentRegNo : $studentRegNo;
-
-
-                $newstudentRegNo = $current_year . $current_month . $this->input->post('coursecode') . $this->input->post('bandscore') . $studentRegNo;
-            } else {
-                $newstudentRegNo = $this->input->post('student_reg_no');
-            }
+            // if (empty($this->input->post('student_reg_no'))) {
+            $current_year = substr(date('Y'), 2);
+            $current_month = date('m');
+            $studentRegNo = substr($this->student_model->getLaststudent_reg_no(), -4) + 1;
+            $studentRegNo = strlen($studentRegNo) < 4 ? '000' . $studentRegNo : $studentRegNo;
+            $newstudentRegNo = $current_year . $current_month . $this->input->post('coursecode') . $this->input->post('bandscore') . $studentRegNo;
+            // } else {
+            //     $newstudentRegNo = $this->input->post('student_reg_no');
+            // }
 
 
             $data_insert = array(
@@ -520,13 +466,12 @@ class Student extends Admin_Controller
 
 
             if ($insert) {
-                $datanew['id'] = $this->input->post('id');
-                $datanew['is_student'] = 1;
-
                 // echo "<pre>", print_r($datanew), "</pre>";
                 // die();
-
+                $datanew['id'] = $this->input->post('id');
+                $datanew['is_student'] = 1;
                 $this->Lead_model->add($datanew);
+
                 $insert_id = $this->student_model->add($data_insert, $data_setting);
 
 
@@ -545,11 +490,12 @@ class Student extends Admin_Controller
                     'role'     => 'student',
 
                 );
-                // echo"<pre>", print_r($data_student_login, true), "</pre>";
+
+
+                $user_id_insert = $this->user_model->add($data_student_login);
+                // $users =$this->user_model->read_user();
+                // echo"<pre>", print_r($users, true), "</pre>";
                 // die();
-
-                $this->user_model->add($data_student_login);
-
                 $sender_details = array('student_id' => $newstudentRegNo, 'contact_no' => $data_insert['phone'], 'email' => $data_insert['email']);
 
                 // $this->mailsmsconf->mailsms('student_admission', $sender_details);
@@ -1570,20 +1516,19 @@ class Student extends Admin_Controller
 
     public function getcourseslotdata($ielts_course_id)
     {
-      
+
         // Get the class slots from the database
         $class_slots = $this->Course_slots_model->get($ielts_course_id);
-       
+
         // Return the class slots as JSON
         echo json_encode($class_slots);
     }
 
     public function getcourseslotdataofStudents($studentId)
     {
-        $class_slots = $this->Studentcourseslots_model->getByStudentID($studentId);
-
+        $student_course_slots = $this->Studentcourseslots_model->getByStudentID($studentId);
         // Return the class slots as JSON
-        echo json_encode($class_slots);
+        echo json_encode($student_course_slots);
     }
     public function bulkdelete()
 
@@ -3089,6 +3034,8 @@ class Student extends Admin_Controller
 
     {
 
+        echo ("df");
+        die();
 
 
         $data                 = array();
@@ -3106,5 +3053,16 @@ class Student extends Admin_Controller
         $page                 = $this->load->view('reports/_getStudentByClassSection', $data, true);
 
         echo json_encode(array('status' => 1, 'page' => $page));
+    }
+
+    public function attendclass($ieltsCourseid)
+    {
+        die();
+        $data = array();
+        $data['id'] = $ieltsCourseid;
+        $data['is_attended'] = 1;
+        $id = $this->Studentcourseslots_model->add($data);
+
+        echo json_encode($id);
     }
 }

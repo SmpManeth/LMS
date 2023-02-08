@@ -90,9 +90,8 @@ class Lead extends Admin_Controller
 
 
         $data['new_student'] = $this->Lead_model->get($data['id']);
-
-        //  echo "<pre>", print_r($data), "</pre>";
-        //  die();
+        $data['new_student']['student_reg_no'] = "";
+         
 
         $this->load->view('layout/header', $data);
 
@@ -165,13 +164,7 @@ class Lead extends Admin_Controller
             $studentRegNo = strlen($studentRegNo) < 4 ? '000' . $studentRegNo : $studentRegNo;
 
 
-            $newstudentRegNo = $current_year . $current_month . $this->input->post('coursecode') . $this->input->post('bandscore') . $studentRegNo;
-
-
-
-
-
-            // student_reg_no , User_id *******************************************************************************
+            $newstudentRegNo = "LD".$current_year . $current_month . $this->input->post('coursecode') . $this->input->post('bandscore') . $studentRegNo;
 
             $data_insert = array(
 
