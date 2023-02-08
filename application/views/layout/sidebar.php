@@ -882,13 +882,14 @@
 
                         </ul>
 
-                    </li>
-            <?php }
-            } ?>
-            <?php if ($this->module_lib->hasActive('lesson_plan')) {
+                    </li> <?php
 
+                        }
+                    } ?><?php
 
-                if (($this->rbac->hasPrivilege('manage_lesson_plan', 'can_view')) || ($this->rbac->hasPrivilege('manage_syllabus_status', 'can_view')) || ($this->rbac->hasPrivilege('lesson', 'can_view')) || ($this->rbac->hasPrivilege('topic', 'can_view'))) { ?>
+                        if ($this->module_lib->hasActive('lesson_plan')) {
+
+                            if (($this->rbac->hasPrivilege('manage_lesson_plan', 'can_view')) || ($this->rbac->hasPrivilege('manage_syllabus_status', 'can_view')) || ($this->rbac->hasPrivilege('lesson', 'can_view')) || ($this->rbac->hasPrivilege('topic', 'can_view'))) { ?>
 
                     <li class="treeview <?php echo set_Topmenu('lessonplan'); ?>">
 
@@ -911,12 +912,12 @@
                                 <li class="<?php echo set_Submenu('admin/lessonplan'); ?>"><a href="<?php echo base_url(); ?>admin/syllabus/status"><i class="fa fa-angle-double-right"></i> <?php echo $this->lang->line('manage_syllabus_status'); ?></a></li>
 
                             <?php }
-                            if ($this->rbac->hasPrivilege('lesson', 'can_view')) { ?>
+                                if ($this->rbac->hasPrivilege('lesson', 'can_view')) { ?>
 
                                 <li class="<?php echo set_Submenu('admin/lessonplan/lesson'); ?>"><a href="<?php echo base_url(); ?>admin/lessonplan/lesson"><i class="fa fa-angle-double-right"></i> <?php echo $this->lang->line('lesson'); ?></a></li>
 
                             <?php }
-                            if ($this->rbac->hasPrivilege('topic', 'can_view')) { ?>
+                                if ($this->rbac->hasPrivilege('topic', 'can_view')) { ?>
 
                                 <li class="<?php echo set_Submenu('admin/lessonplan/topic'); ?>"><a href="<?php echo base_url(); ?>admin/lessonplan/topic"><i class="fa fa-angle-double-right"></i> <?php echo $this->lang->line('topic'); ?></a></li>
 
@@ -929,27 +930,29 @@
                     </li>
 
             <?php }
-            } ?> <?php if ($this->module_lib->hasActive('academics')) {
+                        } ?> <?php
 
-                        if (($this->rbac->hasPrivilege('class_timetable', 'can_view') ||
+                                if ($this->module_lib->hasActive('academics')) {
 
-                            $this->rbac->hasPrivilege('teachers_timetable', 'can_view') ||
+                                    if (($this->rbac->hasPrivilege('class_timetable', 'can_view') ||
 
-                            $this->rbac->hasPrivilege('assign_class_teacher', 'can_view') ||
+                                        $this->rbac->hasPrivilege('teachers_timetable', 'can_view') ||
 
-                            $this->rbac->hasPrivilege('promote_student', 'can_view') ||
+                                        $this->rbac->hasPrivilege('assign_class_teacher', 'can_view') ||
 
-                            $this->rbac->hasPrivilege('subject_group', 'can_view') ||
+                                        $this->rbac->hasPrivilege('promote_student', 'can_view') ||
 
-                            $this->rbac->hasPrivilege('section', 'can_view') ||
+                                        $this->rbac->hasPrivilege('subject_group', 'can_view') ||
 
-                            $this->rbac->hasPrivilege('subject', 'can_view') ||
+                                        $this->rbac->hasPrivilege('section', 'can_view') ||
 
-                            $this->rbac->hasPrivilege('class', 'can_view') ||
+                                        $this->rbac->hasPrivilege('subject', 'can_view') ||
 
-                            $this->rbac->hasPrivilege('section', 'can_view')
+                                        $this->rbac->hasPrivilege('class', 'can_view') ||
 
-                        )) { ?>
+                                        $this->rbac->hasPrivilege('section', 'can_view')
+
+                                    )) { ?>
 
                     <li class="treeview <?php echo set_Topmenu('Academics'); ?>">
 
@@ -969,11 +972,11 @@
 
                             <?php
 
-                            }
+                                        }
 
 
 
-                            if ($this->rbac->hasPrivilege('teachers_time_table', 'can_view')) {
+                                        if ($this->rbac->hasPrivilege('teachers_time_table', 'can_view')) {
 
                             ?>
 
@@ -981,11 +984,11 @@
 
                             <?php
 
-                            }
+                                        }
 
 
 
-                            if ($this->rbac->hasPrivilege('assign_class_teacher', 'can_view')) {
+                                        if ($this->rbac->hasPrivilege('assign_class_teacher', 'can_view')) {
 
                             ?>
 
@@ -993,11 +996,11 @@
 
                             <?php
 
-                            }
+                                        }
 
 
 
-                            if ($this->rbac->hasPrivilege('promote_student', 'can_view')) {
+                                        if ($this->rbac->hasPrivilege('promote_student', 'can_view')) {
 
                             ?>
 
@@ -1007,9 +1010,9 @@
 
                             <?php
 
-                            }
+                                        }
 
-                            if ($this->rbac->hasPrivilege('subject_group', 'can_view')) {
+                                        if ($this->rbac->hasPrivilege('subject_group', 'can_view')) {
 
                             ?>
 
@@ -1017,9 +1020,9 @@
 
                             <?php
 
-                            }
+                                        }
 
-                            if ($this->rbac->hasPrivilege('subject', 'can_view')) {
+                                        if ($this->rbac->hasPrivilege('subject', 'can_view')) {
 
                             ?>
 
@@ -1027,11 +1030,11 @@
 
                             <?php
 
-                            }
+                                        }
 
 
 
-                            if ($this->rbac->hasPrivilege('class', 'can_view')) {
+                                        if ($this->rbac->hasPrivilege('class', 'can_view')) {
 
                             ?>
 
@@ -1039,11 +1042,11 @@
 
                             <?php
 
-                            }
+                                        }
 
 
 
-                            if ($this->rbac->hasPrivilege('section', 'can_view')) {
+                                        if ($this->rbac->hasPrivilege('section', 'can_view')) {
 
                             ?>
 
@@ -1051,7 +1054,7 @@
 
                             <?php
 
-                            }
+                                        }
 
                             ?>
 
@@ -1063,28 +1066,28 @@
 
                     <?php
 
-                        }
-                    } ?><?php
+                                    }
+                                } ?><?php
 
-                                        if ($this->module_lib->hasActive('human_resource')) {
+                                    if ($this->module_lib->hasActive('human_resource')) {
 
-                                            if (($this->rbac->hasPrivilege('staff', 'can_view') ||
+                                        if (($this->rbac->hasPrivilege('staff', 'can_view') ||
 
-                                                $this->rbac->hasPrivilege('approve_leave_request', 'can_view') ||
+                                            $this->rbac->hasPrivilege('approve_leave_request', 'can_view') ||
 
-                                                $this->rbac->hasPrivilege('apply_leave', 'can_view') ||
+                                            $this->rbac->hasPrivilege('apply_leave', 'can_view') ||
 
-                                                $this->rbac->hasPrivilege('leave_types', 'can_view') ||
+                                            $this->rbac->hasPrivilege('leave_types', 'can_view') ||
 
-                                                $this->rbac->hasPrivilege('teachers_rating', 'can_view') ||
+                                            $this->rbac->hasPrivilege('teachers_rating', 'can_view') ||
 
-                                                $this->rbac->hasPrivilege('department', 'can_view') ||
+                                            $this->rbac->hasPrivilege('department', 'can_view') ||
 
-                                                $this->rbac->hasPrivilege('designation', 'can_view') ||
+                                            $this->rbac->hasPrivilege('designation', 'can_view') ||
 
-                                                $this->rbac->hasPrivilege('disable_staff', 'can_view'))) {
+                                            $this->rbac->hasPrivilege('disable_staff', 'can_view'))) {
 
-                                        ?>
+                                    ?>
 
                     <li class="treeview <?php echo set_Topmenu('HR'); ?>">
 
@@ -1110,7 +1113,7 @@
 
                             <?php
 
-                                                if ($this->rbac->hasPrivilege('staff_attendance', 'can_view')) {
+                                            if ($this->rbac->hasPrivilege('staff_attendance', 'can_view')) {
 
                             ?>
 
@@ -1118,11 +1121,11 @@
 
                             <?php
 
-                                                }
+                                            }
 
 
 
-                                                if ($this->rbac->hasPrivilege('staff_payroll', 'can_view')) {
+                                            if ($this->rbac->hasPrivilege('staff_payroll', 'can_view')) {
 
                             ?>
 
@@ -1134,11 +1137,11 @@
 
                             <?php
 
-                                                }
+                                            }
 
 
 
-                                                if ($this->rbac->hasPrivilege('approve_leave_request', 'can_view')) {
+                                            if ($this->rbac->hasPrivilege('approve_leave_request', 'can_view')) {
 
                             ?>
 
@@ -1148,9 +1151,9 @@
 
                             <?php
 
-                                                }
+                                            }
 
-                                                if ($this->rbac->hasPrivilege('apply_leave', 'can_view')) {
+                                            if ($this->rbac->hasPrivilege('apply_leave', 'can_view')) {
 
                             ?>
 
@@ -1158,9 +1161,9 @@
 
                             <?php
 
-                                                }
+                                            }
 
-                                                if ($this->rbac->hasPrivilege('leave_types', 'can_view')) {
+                                            if ($this->rbac->hasPrivilege('leave_types', 'can_view')) {
 
                             ?>
 
@@ -1172,9 +1175,9 @@
 
                             <?php
 
-                                                }
+                                            }
 
-                                                if ($this->rbac->hasPrivilege('teachers_rating', 'can_view')) {
+                                            if ($this->rbac->hasPrivilege('teachers_rating', 'can_view')) {
 
                             ?>
 
@@ -1182,11 +1185,11 @@
 
                             <?php
 
-                                                }
+                                            }
 
 
 
-                                                if ($this->rbac->hasPrivilege('department', 'can_view')) {
+                                            if ($this->rbac->hasPrivilege('department', 'can_view')) {
 
                             ?>
 
@@ -1196,9 +1199,9 @@
 
                             <?php
 
-                                                }
+                                            }
 
-                                                if ($this->rbac->hasPrivilege('designation', 'can_view')) {
+                                            if ($this->rbac->hasPrivilege('designation', 'can_view')) {
 
                             ?>
 
@@ -1206,9 +1209,9 @@
 
                             <?php
 
-                                                }
+                                            }
 
-                                                if ($this->rbac->hasPrivilege('disable_staff', 'can_view')) {
+                                            if ($this->rbac->hasPrivilege('disable_staff', 'can_view')) {
 
                             ?>
 
@@ -1224,20 +1227,20 @@
 
                 <?php
 
-                                            }
                                         }
+                                    }
 
 
 
-                                        if ($this->module_lib->hasActive('communicate')) {
+                                    if ($this->module_lib->hasActive('communicate')) {
 
-                                            if (($this->rbac->hasPrivilege('notice_board', 'can_view') ||
+                                        if (($this->rbac->hasPrivilege('notice_board', 'can_view') ||
 
-                                                $this->rbac->hasPrivilege('email', 'can_view') ||
+                                            $this->rbac->hasPrivilege('email', 'can_view') ||
 
-                                                $this->rbac->hasPrivilege('sms', 'can_view') ||
+                                            $this->rbac->hasPrivilege('sms', 'can_view') ||
 
-                                                $this->rbac->hasPrivilege('email_sms_log', 'can_view'))) {
+                                            $this->rbac->hasPrivilege('email_sms_log', 'can_view'))) {
 
                 ?>
 
@@ -1257,7 +1260,7 @@
 
                             <?php
 
-                                                if ($this->rbac->hasPrivilege('notice_board', 'can_view')) {
+                                            if ($this->rbac->hasPrivilege('notice_board', 'can_view')) {
 
                             ?>
 
@@ -1265,11 +1268,11 @@
 
                             <?php
 
-                                                }
+                                            }
 
 
 
-                                                if ($this->rbac->hasPrivilege('email', 'can_view')) {
+                                            if ($this->rbac->hasPrivilege('email', 'can_view')) {
 
                             ?>
 
@@ -1277,9 +1280,9 @@
 
                             <?php
 
-                                                }
+                                            }
 
-                                                if ($this->rbac->hasPrivilege('sms', 'can_view')) {
+                                            if ($this->rbac->hasPrivilege('sms', 'can_view')) {
 
                             ?>
 
@@ -1287,9 +1290,9 @@
 
                             <?php
 
-                                                }
+                                            }
 
-                                                if ($this->rbac->hasPrivilege('email_sms_log', 'can_view')) {
+                                            if ($this->rbac->hasPrivilege('email_sms_log', 'can_view')) {
 
                             ?>
 
@@ -1307,7 +1310,12 @@
 
                     </li>
 
-            <?php  }  } ?>
+            <?php
+
+                                        }
+                                    }
+
+            ?>
 
 
 
@@ -1319,14 +1327,18 @@
 
                     if (($this->rbac->hasPrivilege('online_course', 'can_view')) ||
 
-                        ($this->rbac->hasPrivilege('online_course_offline_payment', 'can_view')) ||
+                        ($this->rbac->hasPrivilege('
+
+online_course_offline_payment', 'can_view')) ||
 
                         ($this->rbac->hasPrivilege('student_course_purchase_report', 'can_view')) ||
 
                         ($this->rbac->hasPrivilege('course_sell_count_report', 'can_view')) ||
 
                         ($this->rbac->hasPrivilege('online_course_setting', 'can_view'))
-                    ) { ?>
+                    ) {
+
+            ?>
 
                         <li class="treeview <?php echo set_Topmenu('onlinecourse'); ?>">
 
@@ -1377,7 +1389,8 @@
                         </li>
 
             <?php }
-                } } ?>
+                }
+            } ?>
 
 
 
@@ -1387,7 +1400,9 @@
 
                 if ($this->module_lib->hasActive('zoom_live_classes')) {
 
-                    if (($this->rbac->hasPrivilege('setting', 'can_view')) || ($this->rbac->hasPrivilege('live_classes', 'can_view')) || ($this->rbac->hasPrivilege('live_meeting', 'can_view'))) { ?>
+                    if (($this->rbac->hasPrivilege('setting', 'can_view')) || ($this->rbac->hasPrivilege('live_classes', 'can_view')) || ($this->rbac->hasPrivilege('live_meeting', 'can_view'))) {
+
+            ?>
 
                         <li class="treeview <?php echo set_Topmenu('conference'); ?>">
 
@@ -1448,7 +1463,15 @@
 
                         </li>
 
-            <?php } } } ?>
+            <?php
+
+                    }
+                }
+            }
+
+            ?>
+
+
 
             <?php
 
@@ -1456,7 +1479,9 @@
 
                 if ($this->module_lib->hasActive('gmeet_live_classes')) {
 
-                    if (($this->rbac->hasPrivilege('gmeet_live_classes', 'can_view')) || ($this->rbac->hasPrivilege('gmeet_live_meeting', 'can_view')) || ($this->rbac->hasPrivilege('gmeet_live_meeting_report', 'can_view')) || ($this->rbac->hasPrivilege('gmeet_live_classes_report', 'can_view'))) { ?>
+                    if (($this->rbac->hasPrivilege('gmeet_live_classes', 'can_view')) || ($this->rbac->hasPrivilege('gmeet_live_meeting', 'can_view')) || ($this->rbac->hasPrivilege('gmeet_live_meeting_report', 'can_view')) || ($this->rbac->hasPrivilege('gmeet_live_classes_report', 'can_view'))) {
+
+            ?>
 
                         <li class="treeview <?php echo set_Topmenu('gmeet'); ?>">
 
@@ -1502,10 +1527,23 @@
 
 
 
-            <?php } } } ?>
+            <?php
 
-            <?php if ($this->module_lib->hasActive('download_center')) {
-                 if (($this->rbac->hasPrivilege('upload_content', 'can_view'))) {?>
+                    }
+                }
+            }
+
+            ?>
+
+
+
+            <?php
+
+            if ($this->module_lib->hasActive('download_center')) {
+
+                if (($this->rbac->hasPrivilege('upload_content', 'can_view'))) {
+
+            ?>
 
                     <li class="treeview <?php echo set_Topmenu('Download Center'); ?>">
 
@@ -1539,6 +1577,8 @@
 
                 }
             }
+
+
 
             if ($this->module_lib->hasActive('homework')) {
 
@@ -1639,6 +1679,8 @@
 
                 }
             }
+
+
 
             if ($this->module_lib->hasActive('inventory')) {
 
@@ -2054,13 +2096,22 @@
 
                         </ul>
 
-                    </li> <?php } ?>
+                    </li>
+
+            <?php
+
+                }
+            }
+
+            ?>
 
             <?php
 
             if ($this->module_lib->hasActive('alumni')) {
 
-                if (($this->rbac->hasPrivilege('manage_alumni', 'can_view')) || ($this->rbac->hasPrivilege('events', 'can_view'))) { ?>
+                if (($this->rbac->hasPrivilege('manage_alumni', 'can_view')) || ($this->rbac->hasPrivilege('events', 'can_view'))) {
+
+            ?>
 
 
 
@@ -2177,7 +2228,9 @@
 
                     $this->rbac->hasPrivilege('syllabus_status_report', 'can_view') ||
 
-                    $this->rbac->hasPrivilege('teacher_syllabus_status_report', 'can_view'))) {?>
+                    $this->rbac->hasPrivilege('teacher_syllabus_status_report', 'can_view'))) {
+
+            ?>
 
                     <li class="treeview <?php echo set_Topmenu('Reports'); ?>">
 
@@ -2435,4 +2488,5 @@
         </ul>
 
     </section>
+
 </aside>
