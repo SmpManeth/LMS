@@ -37,10 +37,10 @@ class Timetable extends Student_Controller
 
 
 
-    
+
         $class_slots = $this->Course_slots_model->get($student[0]['ielts_course']);
         $student_course_slots = $this->Studentcourseslots_model->getByStudentID($student[0]['id']);
-        
+
         $data['student_course_slots'] = $student_course_slots;
         $data['class_slots'] = $class_slots;
         // echo "<pre>", print_r($data), "</pre>";
@@ -51,5 +51,19 @@ class Timetable extends Student_Controller
         $this->load->view('user/timetable/timetableList', $data);
 
         $this->load->view('layout/student/footer', $data);
+    }
+
+
+
+    public function attendclass($id)
+    {
+
+        $data['id'] = $id;
+        $data['is_attended'] = 1;
+
+        $id = $this->Studentcourseslots_model->add($data);
+
+        echo "<pre>", print_r($id, true), "</pre>";
+        die();
     }
 }

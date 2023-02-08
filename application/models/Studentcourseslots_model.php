@@ -35,44 +35,44 @@ class Studentcourseslots_model extends MY_Model
 
      */
 
-     public function get($name = null)
-     {
- 
- 
- 
-         $this->db->select()->from('course_slots');
- 
-         if ($name != null) {
- 
-             $this->db->where('course_slots.name', $name);
-         } else {
- 
-             $this->db->order_by('course_slots.name');
-         }
- 
-         $query = $this->db->get();
- 
-         if ($name != null) {
- 
-             return $query->result_array();
-         } else {
- 
-             return $query->result_array();
-         }
-     }
- 
-     public function getByStudentID($id = null)
-     {
-         $this->db->select()->from('student_course_slots');
- 
-         if ($id != null) {
- 
-             $this->db->where('student_course_slots.student_id', $id);
-         } 
-         $query = $this->db->get();
-         return $query->result_array();
-     }
-  
+    public function get($name = null)
+    {
+
+
+
+        $this->db->select()->from('course_slots');
+
+        if ($name != null) {
+
+            $this->db->where('course_slots.name', $name);
+        } else {
+
+            $this->db->order_by('course_slots.name');
+        }
+
+        $query = $this->db->get();
+
+        if ($name != null) {
+
+            return $query->result_array();
+        } else {
+
+            return $query->result_array();
+        }
+    }
+
+    public function getByStudentID($id = null)
+    {
+        $this->db->select()->from('student_course_slots');
+
+        if ($id != null) {
+
+            $this->db->where('student_course_slots.student_id', $id);
+        }
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
     /**
 
      * This function will delete the record based on the id
@@ -139,39 +139,48 @@ class Studentcourseslots_model extends MY_Model
     public function add($data)
     {
 
-      
-        $this->db->trans_start(); # Starting Transaction
+        if (isset($data['id'])) {
 
-        $this->db->trans_strict(false); # See Note 01. If you wish can remove as well
+            $this->db->where('id', $data['id']);
 
-        //=======================Code Start===========================
+            $this->db->update('student_course_slots', $data);
 
-        $this->db->insert('student_course_slots', $data);
+            $message   = UPDATE_RECORD_CONSTANT . " On student_course_slots id " . $data['id'];
 
-        $insert_id = $this->db->insert_id();
+            $action    = "Update";
 
-        $message = INSERT_RECORD_CONSTANT . " On student_course_slots id " . $insert_id;
+            $record_id = $insert_id = $data['id'];
 
-        $action = "Insert";
+            $this->log($message, $record_id, $action);
+        } else {
 
-        $record_id = $insert_id;
+            $this->db->trans_start(); # Starting Transaction
 
-       // $this->log($message, $record_id, $action);
+            $this->db->trans_strict(false); # See Note 01. If you wish can remove as well
 
-        //======================Code End==============================
+            //=======================Code Start===========================
+
+            $this->db->insert('student_course_slots', $data);
+
+            $insert_id = $this->db->insert_id();
+
+            $message = INSERT_RECORD_CONSTANT . " On student_course_slots id " . $insert_id;
+
+            $action = "Insert";
+
+            $record_id = $insert_id;
+
+            // $this->log($message, $record_id, $action);
+
+            //======================Code End==============================
 
 
 
-        $this->db->trans_complete(); # Completing transaction
+            $this->db->trans_complete(); # Completing transaction
 
-        /* Optional */
-
-
-
-
-
+            /* Optional */
+        }
         return $insert_id;
-        // }
     }
 
 

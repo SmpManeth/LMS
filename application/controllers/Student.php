@@ -471,10 +471,10 @@ class Student extends Admin_Controller
                 $datanew['id'] = $this->input->post('id');
                 $datanew['is_student'] = 1;
                 $this->Lead_model->add($datanew);
-                
+
                 $insert_id = $this->student_model->add($data_insert, $data_setting);
 
-                
+
 
                 $user_password = $this->role->get_random_password($chars_min = 8, $chars_max = 8, $use_upper_case = false, $include_numbers = true, $include_special_chars = false);
 
@@ -490,9 +490,9 @@ class Student extends Admin_Controller
                     'role'     => 'student',
 
                 );
-              
 
-                $user_id_insert =$this->user_model->add($data_student_login);
+
+                $user_id_insert = $this->user_model->add($data_student_login);
                 // $users =$this->user_model->read_user();
                 // echo"<pre>", print_r($users, true), "</pre>";
                 // die();
@@ -3034,6 +3034,8 @@ class Student extends Admin_Controller
 
     {
 
+        echo ("df");
+        die();
 
 
         $data                 = array();
@@ -3051,5 +3053,16 @@ class Student extends Admin_Controller
         $page                 = $this->load->view('reports/_getStudentByClassSection', $data, true);
 
         echo json_encode(array('status' => 1, 'page' => $page));
+    }
+
+    public function attendclass($ieltsCourseid)
+    {
+        die();
+        $data = array();
+        $data['id'] = $ieltsCourseid;
+        $data['is_attended'] = 1;
+        $id = $this->Studentcourseslots_model->add($data);
+
+        echo json_encode($id);
     }
 }
