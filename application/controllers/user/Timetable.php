@@ -18,8 +18,30 @@ class Timetable extends Student_Controller
     {
 
         parent::__construct();
+        $this->CI          = &get_instance();
+        $this->load->model("Band_Score_model");
         $this->load->model("Course_slots_model");
+        $this->load->model("Student_model");
+        $this->load->model("Section_model");
         $this->load->model("Studentcourseslots_model");
+        $this->load->model("Lead_model");
+        $this->config->load('app-config');
+
+        $this->load->library('smsgateway');
+
+        $this->load->library('mailsmsconf');
+
+        $this->load->library('encoding_lib');
+
+        $this->load->model("classteacher_model");
+
+        $this->load->model(array("timeline_model", "student_edit_field_model"));
+
+        $this->blood_group        = $this->config->item('bloodgroup');
+
+        $this->sch_setting_detail = $this->setting_model->getSetting();
+
+        $this->role;
     }
 
 
@@ -62,8 +84,65 @@ class Timetable extends Student_Controller
         $data['is_attended'] = 1;
 
         $id = $this->Studentcourseslots_model->add($data);
+    }
 
-        echo "<pre>", print_r($id, true), "</pre>";
-        die();
+
+    public function search()
+
+    {   $permissions = array();
+        $admin_session = $this->CI->session->userdata('admin');
+        foreach ($admin_session['roles'] as $key => $role) {
+
+            $permissions            = $key;
+
+           
+        }
+       
+        if ($permissions === 'Super Admin') {
+           
+        }
+        else{
+            access_denied();
+        }
+        $course_slots                = $this->Course_slots_model->get();
+        $data['course_slots'] = $course_slots;
+
+        $this->session->set_userdata('top_menu', 'Student Information');
+
+        $this->session->set_userdata('sub_menu', 'student/search');
+
+        $data['title']           = 'Student Search';
+
+        $data['adm_auto_insert'] = $this->sch_setting_detail->adm_auto_insert;
+
+        $data['sch_setting']     = $this->sch_setting_detail;
+
+        $data['fields']          = $this->customfield_model->get_custom_fields('students', 1);
+
+        $class                   = $this->class_model->get();
+
+        $data['classlist']       = $class;
+
+        $this->form_validation->set_rules('search_text', ' ', 'trim|xss_clean');
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('layout/header', $data);
+
+            $this->load->view('student/studentSearch', $data);
+
+            $this->load->view('layout/footer', $data);
+        } else {
+
+            $data['students'] = $this->Student_model->getDatatableByFullTextSearch($this->input->post('search_text'));
+
+            // echo "<pre>", print_r($data['students']), "</pre>";
+            // die();
+
+            $this->load->view('layout/header', $data);
+
+            $this->load->view('student/studentSearch', $data);
+
+            $this->load->view('layout/footer', $data);
+        }
     }
 }
