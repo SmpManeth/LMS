@@ -140,75 +140,38 @@
 
                     <div class="box-body">
                         <div class="table-responsive">
-                            <table class="tablse classes">
+                            <table class="tablse">
                                 <thead>
                                     <tr>
                                         <th class="text-center">Slot</th>
                                         <th class="text-center">Date</th>
                                         <th class="text-center">Time</th>
-                                        <th class="text-center">Attendance</th>
                                         <th class="text-center">Zoom Link</th>
+                                        <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php foreach ($class_slots as $key => $slot) {
-                                        $exists = false;
-                                        $attended = 0;
-                                        $slotid;
-                                        foreach ($student_course_slots as $key1 => $selectedSlot) {
-                                            if ($slot['id'] == $selectedSlot['course_slot_id']) {
-                                                $exists = true;
-                                                if ($selectedSlot['is_attended']) {
-                                                    $attended = 1;
-                                                }
-                                                $slotid = $selectedSlot['id'];
-                                            }
-                                        }
-                                        if ($exists) {
-                                            if ($slot['type'] == "Mock Test") { ?>
+                                        if ($slot['type'] == "Mock Test") { ?>
+                                            <form action="<?php echo site_url('admin/timetable/timetableupdate/' . $slot['id']) ?>" method="post" accept-charset="utf-8">
+                                                <?php echo $this->customlib->getCSRF(); ?>
                                                 <tr class="table-row">
-
-                                                    <td class="slot"><?php echo $slot['name'] ?></td>
-                                                    <td class="slot"><?php echo $slot['date'] ?></td>
-
-                                                    <td class="slot"><?php echo $slot['time'] ?></td>
-                                                    <?php
-                                                    if ($attended) { ?>
-                                                        <td><a id="<?php echo $slotid ?>" class="finish">Completed</a></td>
-                                                    <?php } else { ?>
-                                                        <td><a id="<?php echo $slotid ?>" class="slota">Attend</a></td>
-                                                    <?php }
-
-                                                    ?>
-
-
-                                                    <td><a class="linka" href="https://<?php echo $slot['link'] ?>" target="_blank">Click to Join</a></td>
+                                                    <td class="slot"><input name="name" type="text" value="<?php echo $slot['name'] ?>"> </td>
+                                                    <td class="slot"><input name="date" type="date" value="<?php echo $slot['date'] ?>"></td>
+                                                    <td class="slot"><input name="time" type="time" value="<?php echo $slot['time'] ?>"></td>
+                                                    <td class="slot"><input name="link" type="text" value="<?php echo $slot['link'] ?>"></td>
+                                                    <td class="save-button"><input class="linka" type="submit" value="Save"></td>
                                                 </tr>
-                                            <?php  }
-                                        } else {
-                                            if ($slot['type'] == "Mock Test") { ?>
-                                                <tr class="table-row">
+                                            </form>
 
-                                                    <td class="slot disabled"><?php echo $slot['name'] ?></td>
-                                                    <td class="slot disabled"><?php echo $slot['date'] ?></td>
-
-                                                    <td class="slot disabled"><?php echo $slot['time'] ?></td>
-
-                                                    <td><a class="slota-disabled disabled">Attend</a></td>
-
-                                                    <td><a class="linka disabled" target="_blank" href="https://<?php echo $slot['link'] ?>">Click to Join</a></td>
-                                                </tr>
                                     <?php  }
-                                        }
                                     } ?>
 
 
                                 </tbody>
                             </table>
-
                         </div>
                     </div>
-
                 </div>
 
                 <div class="box box-warning">
@@ -225,69 +188,32 @@
                                         <th class="text-center">Slot</th>
                                         <th class="text-center">Date</th>
                                         <th class="text-center">Time</th>
-                                        <th class="text-center">Attendance</th>
                                         <th class="text-center">Zoom Link</th>
+                                        <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php foreach ($class_slots as $key => $slot) {
-                                        $exists = false;
-                                        $attended = 0;
-                                        $slotid;
-                                        foreach ($student_course_slots as $key1 => $selectedSlot) {
-                                            if ($slot['id'] == $selectedSlot['course_slot_id']) {
-                                                $exists = true;
-                                                if ($selectedSlot['is_attended']) {
-                                                    $attended = 1;
-                                                }
-                                                $slotid = $selectedSlot['id'];
-                                            }
-                                        }
-                                        if ($exists) {
-                                            if ($slot['type'] == "Grammer Classes") { ?>
+                                        if ($slot['type'] == "Grammer Classes") { ?>
+                                            <form action="<?php echo site_url('admin/timetable/timetableupdate/' . $slot['id']) ?>" method="post" accept-charset="utf-8">
+                                                <?php echo $this->customlib->getCSRF(); ?>
                                                 <tr class="table-row">
-
-                                                    <td class="slot"><?php echo $slot['name'] ?></td>
-                                                    <td class="slot"><?php echo $slot['date'] ?></td>
-
-                                                    <td class="slot"><?php echo $slot['time'] ?></td>
-                                                    <?php
-                                                    if ($attended) { ?>
-                                                        <td><a id="<?php echo $slotid ?>" class="finish">Completed</a></td>
-                                                    <?php } else { ?>
-                                                        <td><a id="<?php echo $slotid ?>" class="slota">Attend</a></td>
-                                                    <?php }
-
-                                                    ?>
-
-
-                                                    <td><a class="linka" href="https://<?php echo $slot['link'] ?>" target="_blank">Click to Join</a></td>
+                                                    <td class="slot"><input name="name" type="text" value="<?php echo $slot['name'] ?>"> </td>
+                                                    <td class="slot"><input name="date" type="date" value="<?php echo $slot['date'] ?>"></td>
+                                                    <td class="slot"><input name="time" type="time" value="<?php echo $slot['time'] ?>"></td>
+                                                    <td class="slot"><input name="link" type="text" value="<?php echo $slot['link'] ?>"></td>
+                                                    <td class="save-button"><input class="linka" type="submit" value="Save"></td>
                                                 </tr>
-                                            <?php  }
-                                        } else {
-                                            if ($slot['type'] == "Grammer Classes") { ?>
-                                                <tr class="table-row">
+                                            </form>
 
-                                                    <td class="slot disabled"><?php echo $slot['name'] ?></td>
-                                                    <td class="slot disabled"><?php echo $slot['date'] ?></td>
-
-                                                    <td class="slot disabled"><?php echo $slot['time'] ?></td>
-
-                                                    <td><a class="slota-disabled disabled">Attend</a></td>
-
-                                                    <td><a class="linka disabled" target="_blank" href="https://<?php echo $slot['link'] ?>">Click to Join</a></td>
-                                                </tr>
                                     <?php  }
-                                        }
                                     } ?>
 
 
                                 </tbody>
                             </table>
-
                         </div>
                     </div>
-
                 </div>
             </div>
 
