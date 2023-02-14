@@ -1,83 +1,28 @@
 <div class="content-wrapper" style="min-height: 946px;">
     <style>
-        .slot {
-            padding: 20px !important;
-            box-shadow: 3px 4px 15px 1px #4640403b;
-            border-radius: 20px;
-            background: #f3f3f330;
-        }
-
-        .slota {
-            display: block;
-            border: 1px solid red;
-            padding: 5px;
-            color: red;
-            border-radius: 5px;
-            text-align: center;
-        }
-
-        .linka {
-            display: block;
-            border: 1px solid #72afd2;
-            padding: 5px;
-            border-radius: 5px;
-            text-align: center;
-            width: 50%;
-            margin: auto;
-        }
-
-        .slota:hover {
-            background: red;
-            color: white;
-            cursor: grab;
-        }
-
-        .disabled {
-            pointer-events: none;
-            color: #d1c7c7;
-            cursor: not-allowed !important;
-            background: #0000001a !important;
-        }
-
-        .slota-disabled {
-            display: block;
-            border: 1px solid #00000047;
-            padding: 5px;
-            color: white;
-            background: #0000001a !important;
-            border-radius: 5px;
-            text-align: center;
-        }
-
-        .slota-disabled:hover {
-            background: #0000001a;
-            color: white;
-            cursor: not-allowed !important;
-        }
-
         .tablse {
             width: 100%;
             max-width: 100%;
             border-collapse: separate;
-            border-spacing: 4em;
+            border-spacing: 1em;
         }
 
-        .finish {
-            display: block;
-            pointer-events: none;
-            border: 1px solid #72afd2;
-            padding: 5px;
-            background-color: #34A853;
-            color: White;
-            border-radius: 5px;
-            text-align: center;
-            cursor: not-allowed !important;
+        .slot input{
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #D35D6E;
+            border-radius: 8px;
+            background-color: #F6ECF0;
         }
 
-        /* .finish:hover{
-            pointer-events: none;
-            color: White;
-        } */
+        .save-button input{
+            width: 100%;
+            padding: 8px;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            background-color: #D35D6E;
+        }
     </style>
     <!-- Content Header (Page header) -->
 
@@ -172,8 +117,8 @@
                                                     <td class="slot"><input name="name" type="text" value="<?php echo $slot['name'] ?>"> </td>
                                                     <td class="slot"><input name="date" type="date" value="<?php echo $slot['date'] ?>"></td>
                                                     <td class="slot"><input name="time" type="time" value="<?php echo $slot['time'] ?>"></td>
-                                                    <td><input name="link" type="text" value="<?php echo $slot['link'] ?>"></td>
-                                                    <td><input class="linka" type="submit" value="Save"></td>
+                                                    <td class="slot"><input name="link" type="text" value="<?php echo $slot['link'] ?>"></td>
+                                                    <td class="save-button"><input class="linka" type="submit" value="Save"></td>
                                                 </tr>
                                             </form>
 
@@ -195,7 +140,7 @@
 
                     <div class="box-body">
                         <div class="table-responsive">
-                            <table class="tablse">
+                            <table class="tablse classes">
                                 <thead>
                                     <tr>
                                         <th class="text-center">Slot</th>
