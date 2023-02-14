@@ -284,7 +284,8 @@ class Timetable extends Admin_Controller
         }
 
 
-
+        $ieltscourses                = $this->Section_model->get();
+        $data['ieltscourses']          = $ieltscourses;
         $this->session->set_userdata('top_menu', 'Academics');
 
         $this->session->set_userdata('sub_menu', 'Academics/timetable');
@@ -456,22 +457,19 @@ class Timetable extends Admin_Controller
 
         $this->load->view('layout/footer', $data);
     }
-public function test(){
-    
-}
+
     public function timetableupdate($id)
     {
 
         $data['id'] = $id;
-        $data['name'] =$this->input->post('name');
-        $data['date'] =$this->input->post('date');
+        $data['name'] = $this->input->post('name');
+        $data['date'] = $this->input->post('date');
 
-        $data['time'] =$this->input->post('time');
-        $data['link'] =$this->input->post('link');
+        $data['time'] = $this->input->post('time');
+        $data['link'] = $this->input->post('link');
 
         $class_slots = $this->Course_slots_model->add($data);
-       $this->classreport();
-
+        $this->classreport();
     }
 
 
