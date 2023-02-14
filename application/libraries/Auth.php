@@ -33,7 +33,7 @@ class Auth
 
     {
 
-        $this->CI       = &get_instance();
+        $this->CI       = get_instance();
 
         $this->messages = array();
 
@@ -173,11 +173,9 @@ class Auth
     public function is_logged_in_user($role = false)
 
     {
-
-
-
+       
         if ($this->CI->session->has_userdata('student')) {
-
+            
             $user = $this->CI->session->userdata('student');
 
             if (!$this->CI->session->has_userdata('current_class')) {
@@ -188,8 +186,6 @@ class Auth
                 }
             }
 
-
-
             if (!$role) {
 
                 redirect('site/userlogin');
@@ -198,7 +194,7 @@ class Auth
 
             $_SESSION['redirect_to_user'] = current_url();
 
-            redirect('site/userlogin');
+            // redirect('site/userlogin');
         }
     }
 

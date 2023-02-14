@@ -156,7 +156,6 @@
             }
 
 
-
             if ($this->module_lib->hasActive('student_information')) {
 
                 if (($this->rbac->hasPrivilege('student', 'can_view') ||
@@ -323,7 +322,6 @@
 
                 }
             }
-
 
 
             if ($this->module_lib->hasActive('lead_information')) {

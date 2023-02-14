@@ -46,8 +46,6 @@ class Rbac
 
         $admin_session = $this->CI->session->userdata('admin');
 
-
-
         foreach ($admin_session['roles'] as $key => $role) {
 
             $permissions            = $this->getPermission($role);
@@ -91,7 +89,6 @@ class Rbac
     public function hasPrivilege($category = null, $permission = null)
 
     {
-
 
 
         $perm             = trim($category) . "-" . trim($permission);
