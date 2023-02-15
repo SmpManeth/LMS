@@ -20,11 +20,11 @@ class Timetable extends Student_Controller
         parent::__construct();
        
         $this->CI          = &get_instance();
-
-        $this->load->model("Course_slots_model");
-        $this->load->model("Student_model");
         echo "<pre>", print_r($student_id, true), "</pre>";
         die();
+        $this->load->model("Course_slots_model");
+        $this->load->model("Student_model");
+       
         $this->load->model("Studentcourseslots_model");
        
         $this->config->load('app-config');
