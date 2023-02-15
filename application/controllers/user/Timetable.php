@@ -42,8 +42,8 @@ class Timetable extends Student_Controller
 
     public function index()
     {
-        echo "<pre>", print_r($student_id, true), "</pre>";
-        die();
+        // echo "<pre>", print_r($student_id, true), "</pre>";
+        // die();
         $this->session->set_userdata('top_menu', 'Time_table');
 
         $student_id = $this->customlib->getStudentSessionUserID();
