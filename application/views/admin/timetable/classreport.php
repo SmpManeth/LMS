@@ -7,7 +7,7 @@
             border-spacing: 1em;
         }
 
-        .slot input{
+        .slot input {
             width: 100%;
             padding: 8px;
             border: 1px solid #D35D6E;
@@ -15,7 +15,7 @@
             background-color: #F6ECF0;
         }
 
-        .save-button input{
+        .save-button input {
             width: 100%;
             padding: 8px;
             border: none;
@@ -105,7 +105,7 @@
                                         <th class="text-center">Date</th>
                                         <th class="text-center">Time</th>
                                         <th class="text-center">Zoom Link</th>
-                                        <th class="text-center">Action</th>
+                                        <th class="text-center" colspan="2">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -114,11 +114,14 @@
                                             <form action="<?php echo site_url('admin/timetable/timetableupdate/' . $slot['id']) ?>" method="post" accept-charset="utf-8">
                                                 <?php echo $this->customlib->getCSRF(); ?>
                                                 <tr class="table-row">
+                                                   
                                                     <td class="slot"><input name="name" type="text" value="<?php echo $slot['name'] ?>"> </td>
                                                     <td class="slot"><input name="date" type="date" value="<?php echo $slot['date'] ?>"></td>
                                                     <td class="slot"><input name="time" type="time" value="<?php echo $slot['time'] ?>"></td>
                                                     <td class="slot"><input name="link" type="text" value="<?php echo $slot['link'] ?>"></td>
-                                                    <td class="save-button"><input class="linka" type="submit" value="Save"></td>
+                                                    <td class="save-button"><input class="linka" type="submit" name="save" value="Save"></td>
+                                                    <td hidden><input name="id" type="text" value="<?php echo $slot['id'] ?>"> </td>
+                                                    <td class="save-button"><input class="linka" type="submit" name="delete" value="Delete"></td>
                                                 </tr>
                                             </form>
 
@@ -147,7 +150,7 @@
                                         <th class="text-center">Date</th>
                                         <th class="text-center">Time</th>
                                         <th class="text-center">Zoom Link</th>
-                                        <th class="text-center">Action</th>
+                                        <th class="text-center" colspan="2">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -161,6 +164,8 @@
                                                     <td class="slot"><input name="time" type="time" value="<?php echo $slot['time'] ?>"></td>
                                                     <td class="slot"><input name="link" type="text" value="<?php echo $slot['link'] ?>"></td>
                                                     <td class="save-button"><input class="linka" type="submit" value="Save"></td>
+                                                    <td hidden><input name="id" type="text" value="<?php echo $slot['id'] ?>"> </td>
+                                                    <td class="save-button"><input class="linka" type="submit" name="delete" value="Delete"></td>
                                                 </tr>
                                             </form>
 
@@ -189,7 +194,7 @@
                                         <th class="text-center">Date</th>
                                         <th class="text-center">Time</th>
                                         <th class="text-center">Zoom Link</th>
-                                        <th class="text-center">Action</th>
+                                        <th class="text-center" colspan="2">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -203,6 +208,8 @@
                                                     <td class="slot"><input name="time" type="time" value="<?php echo $slot['time'] ?>"></td>
                                                     <td class="slot"><input name="link" type="text" value="<?php echo $slot['link'] ?>"></td>
                                                     <td class="save-button"><input class="linka" type="submit" value="Save"></td>
+                                                    <td hidden><input name="id" type="text" value="<?php echo $slot['id'] ?>"> </td>
+                                                    <td class="save-button"><input class="linka" type="submit" name="delete" value="Delete"></td>
                                                 </tr>
                                             </form>
 

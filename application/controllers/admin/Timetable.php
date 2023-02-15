@@ -324,25 +324,25 @@ class Timetable extends Admin_Controller
 
         $data['feecategorylist'] = $feecategory;
 
-        $this->form_validation->set_rules('class_id', $this->lang->line('class'), 'trim|required|xss_clean');
+        $this->form_validation->set_rules('class_id', " ", 'trim|required|xss_clean');
 
-        $this->form_validation->set_rules('section_id', $this->lang->line('section'), 'trim|required|xss_clean');
+        $this->form_validation->set_rules('type', " ", 'trim|required|xss_clean');
 
-        $this->form_validation->set_rules('subject_group_id', $this->lang->line('group'), 'trim|required|xss_clean');
+        $this->form_validation->set_rules('name', " ", 'trim|required|xss_clean');
 
         $class_id         = $this->input->post('class_id');
 
-        $section_id       = $this->input->post('section_id');
+        $type       = $this->input->post('type');
 
-        $subject_group_id = $this->input->post('subject_group_id');
+        $name = $this->input->post('name');
 
 
 
-        $data['class_id']         = $class_id;
+        $datainsert['course_id']         = $class_id;
 
-        $data['section_id']       = $section_id;
+        $datainsert['type']       = $type;
 
-        $data['subject_group_id'] = $subject_group_id;
+        $datainsert['name'] = $name;
 
 
 
@@ -356,15 +356,10 @@ class Timetable extends Admin_Controller
         } else {
 
 
+            // echo "<pre>", print_r($datainsert, true), "</pre>";
+            // die();
 
-            $getDaysnameList         = $this->customlib->getDaysname();
-
-            $data['getDaysnameList'] = $getDaysnameList;
-
-            $subject                 = $this->subjectgroup_model->getGroupsubjects($subject_group_id);
-
-            $data['subject']         = $subject;
-
+            $this->Course_slots_model->add($datainsert);
             $this->load->view('layout/header', $data);
 
             $this->load->view('admin/timetable/timetableCreate', $data);
@@ -460,15 +455,26 @@ class Timetable extends Admin_Controller
 
     public function timetableupdate($id)
     {
+        
 
-        $data['id'] = $id;
-        $data['name'] = $this->input->post('name');
-        $data['date'] = $this->input->post('date');
-
-        $data['time'] = $this->input->post('time');
-        $data['link'] = $this->input->post('link');
-
-        $class_slots = $this->Course_slots_model->add($data);
+        if ($this->input->post('delete')) {
+            $data['id'] = $this->input->post('id');  
+           
+            $this->Course_slots_model->remove($data['id']);
+        
+        }
+        else{
+            
+            $data['id'] = $id;
+            $data['name'] = $this->input->post('name');
+            $data['date'] = $this->input->post('date');
+    
+            $data['time'] = $this->input->post('time');
+            $data['link'] = $this->input->post('link');
+    
+            $class_slots = $this->Course_slots_model->add($data);
+        }
+       
         $this->classreport();
     }
 
