@@ -217,12 +217,80 @@
                                             </div>
 
                                             <!-- Course Slots  -->
-                                            <div class="col-md-5">
+                                            <!-- <div class="col-md-5">
                                                 <label for="course_slots">Course Slots</label>
                                                 <div class="form-group ">
                                                     <div id="class-slots" class="" style="margin: 5px;">
 
                                                     </div>
+                                                </div>
+                                            </div> -->
+                                        </div>
+                                        <style>
+                                            .mock-slots-container {
+                                                margin: 5px;
+                                            }
+
+                                            .slot-item {
+                                                width: 150px;
+                                                float: left;
+                                                margin-right: 20px;
+                                            }
+
+                                            .slot-item label {
+                                                display: block;
+                                                margin-bottom: 5px;
+                                            }
+
+                                            .course_slots_div-label {
+                                                font-weight: 600;
+                                            }
+
+                                            hr {
+                                                border: 1px solid #c6c6c6;
+                                                font-size: 5px;
+                                            }
+                                        </style>
+
+                                        <!-- Course Slots  -->
+                                        <div class="row">
+                                            <div class="box-body">
+                                                <div class="col-md-4 course_slots_div">
+                                                    <label class="course_slots_div-label" for="course_slots">Ielts Slots</label>
+                                                    <div class="form-group ">
+                                                        <div id="class-slots-ielts" class="mock-slots-container" style="margin: 5px;">
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                            <hr>
+                                            <div class="box-body">
+
+                                                <div class="col-md-5 course_slots_div">
+                                                    <label class="course_slots_div-label" for="course_slots">Mock Slots</label>
+                                                    <div class="form-group ">
+                                                        <div id="class-slotss-mock" class="mock-slots-container">
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                            <hr>
+                                            <div class="box-body">
+
+                                                <div class="col-md-5 course_slots_div">
+                                                    <label class="course_slots_div-label" for="course_slots">General Slots</label>
+                                                    <div class="form-group ">
+                                                        <div id="class-slotss-general" class="mock-slots-container" style="margin: 5px;">
+
+                                                        </div>
+                                                    </div>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -233,7 +301,6 @@
                                 <div class="box-footer">
 
                                     <button type="submit" class="btn btn-info pull-right"><?php echo $this->lang->line('save'); ?></button>
-                                    <button class="btn btn-info pull-left">Assign Time Slots</button>
 
                                 </div>
 
@@ -254,21 +321,47 @@
 
         var studentid = $("#studentid").val();
         var AllselectedSlots;
+
+        var SelectedDisplayInputs = [];
+        var SelectedDisplayInputsmock = [];
+        var SelectedDisplayInputsGrammer = [];
+
         $("#ielts-courses").change(function() {
 
             $("#class-slots").empty();
 
             var ieltsCourseid = $(this).val();
-           
+
             $.ajax({
-                url: `http://lms.ieltsatcia.com/student/getcourseslotdata/${ieltsCourseid}`,
+                 url: `http://lms.ieltsatcia.com/student/getcourseslotdata/${ieltsCourseid}`,
+                //url: `http://localhost/LMS/student/getcourseslotdata/${ieltsCourseid}`,
                 type: "GET",
                 success: function(classSlots) {
                     classSlots = JSON.parse(classSlots);
-                    console.log(classSlots);
                     classSlots.forEach(Slot => {
-                        $("#class-slots").append(`<div style="width:150px; float:center;"><label for="class-slot-${Slot.id}">${Slot.name} </label><input type="checkbox" name="ielts_course_slot[]" id="class-slot-${Slot.name}" value="${Slot.id}"></div>`);
+                        // $("#class-slots").append(`<div style="width:150px; float:center;"><label for="class-slot-${Slot.id}">${Slot.name} </label><input type="checkbox" name="ielts_course_slot[]" id="class-slot-${Slot.name}" value="${Slot.id}"></div>`);
+                       
+                        if (Slot.type === "IELTS Classes") {
+                           
+                                SelectedDisplayInputs.push(`<div class="slot-item"><label for="class-slot-${Slot.id}">${Slot.name} </label><input type="checkbox" name="ielts_course_slot[]" id="class-slot-${Slot.name}" value="${Slot.id}"></div>`);
+                          
+                        }
+                        if (Slot.type === "Mock Test") {
+                         
+                             
+                                SelectedDisplayInputsmock.push(`<div class="slot-item"><label for="class-slot-${Slot.id}">${Slot.name} </label><input type="checkbox" name="ielts_course_slot[]" id="class-slot-${Slot.name}" value="${Slot.id}"></div>`);
+                           
+                        }
+                        if (Slot.type === "Grammer Classes") {
+                           
+                                SelectedDisplayInputsGrammer.push(`<div class="slot-item"><label for="class-slot-${Slot.id}">${Slot.name} </label><input type="checkbox" name="ielts_course_slot[]" id="class-slot-${Slot.name}" value="${Slot.id}"></div>`);
+                           
+                        }
+
                     });
+                    $("#class-slots-ielts").append(SelectedDisplayInputs);
+                    $("#class-slotss-mock").append(SelectedDisplayInputsmock);
+                    $("#class-slotss-general").append(SelectedDisplayInputsGrammer);
                 }
             });
 
