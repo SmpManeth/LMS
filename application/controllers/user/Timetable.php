@@ -55,7 +55,8 @@ class Timetable extends Student_Controller
 
         $student = $this->student_model->get($student_id);
 
-
+        echo "<pre>", print_r($student_id,true), "</pre>";
+        die();
 
 
 
@@ -89,19 +90,16 @@ class Timetable extends Student_Controller
 
     public function search()
 
-    {   $permissions = array();
+    {
+        $permissions = array();
         $admin_session = $this->CI->session->userdata('admin');
         foreach ($admin_session['roles'] as $key => $role) {
 
             $permissions            = $key;
+        }
 
-           
-        }
-       
         if ($permissions === 'Super Admin') {
-           
-        }
-        else{
+        } else {
             access_denied();
         }
         $course_slots                = $this->Course_slots_model->get();
