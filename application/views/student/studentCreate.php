@@ -261,7 +261,7 @@
             var ieltsCourseid = $(this).val();
            
             $.ajax({
-                url: `http://localhost/LMS/student/getcourseslotdata/${ieltsCourseid}`,
+                url: `http://lms.ieltsatcia.com/student/getcourseslotdata/${ieltsCourseid}`,
                 type: "GET",
                 success: function(classSlots) {
                     classSlots = JSON.parse(classSlots);

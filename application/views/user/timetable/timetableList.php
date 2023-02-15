@@ -350,7 +350,7 @@
             var id = $(this)[0]['id'];
             console.log(id);
             $.ajax({
-                url: `http://localhost/LMS/user/timetable/attendclass/${id}`,
+                url: `http://lms.ieltsatcia.com/user/timetable/attendclass/${id}`,
                 type: "GET",
                 success: function(selectedSlotss) {
                     location.reload();

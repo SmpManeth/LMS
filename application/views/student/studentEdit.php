@@ -240,11 +240,11 @@
             var ieltsCourseid = $(this).val();
 
             $.ajax({
-                url: `http://localhost/LMS/student/getcourseslotdata/${ieltsCourseid}`,
+                url: `http://lms.ieltsatcia.com/student/getcourseslotdata/${ieltsCourseid}`,
                 type: "GET",
                 success: function(classSlots) {
                     $.ajax({
-                        url: `http://localhost/LMS/student/getcourseslotdataofStudents/${studentid}`,
+                        url: `http://lms.ieltsatcia.com/student/getcourseslotdataofStudents/${studentid}`,
                         type: "GET",
                         success: function(selectedSlotss) {
                             AllselectedSlots = JSON.parse(selectedSlotss)
