@@ -16,7 +16,8 @@ class Timetable extends Student_Controller
 
     public function __construct()
     {
-
+        echo "<pre>", print_r($student_id, true), "</pre>";
+        die();
         parent::__construct();
         $this->CI          = &get_instance();
 
@@ -42,8 +43,7 @@ class Timetable extends Student_Controller
 
     public function index()
     {
-        // echo "<pre>", print_r($student_id, true), "</pre>";
-        // die();
+
         $this->session->set_userdata('top_menu', 'Time_table');
 
         $student_id = $this->customlib->getStudentSessionUserID();
