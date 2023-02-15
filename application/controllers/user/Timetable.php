@@ -18,15 +18,15 @@ class Timetable extends Student_Controller
     {
        
         parent::__construct();
-        echo "<pre>", print_r($student_id, true), "</pre>";
-        die();
+       
         $this->CI          = &get_instance();
 
         $this->load->model("Course_slots_model");
         $this->load->model("Student_model");
 
         $this->load->model("Studentcourseslots_model");
-
+        echo "<pre>", print_r($student_id, true), "</pre>";
+        die();
         $this->config->load('app-config');
 
         $this->load->library('smsgateway');
