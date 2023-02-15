@@ -3057,7 +3057,7 @@ class Student extends Admin_Controller
 
     public function attendclass($ieltsCourseid)
     {
-        die();
+       
         $data = array();
         $data['id'] = $ieltsCourseid;
         $data['is_attended'] = 1;

@@ -348,19 +348,19 @@
 
 
 
-                <!-- <ul class="sessionul fixedmenu">
+                <ul class="sessionul fixedmenu">
 
 
-
+<!-- 
                     <li class="removehover accurrent">
 
                         <a data-toggle="modal" data-target="#user_sessionModal"><span><?php echo $this->lang->line('current_session') . ": " . $this->setting_model->getCurrentSessionName(); ?></span></a>
 
-                    </li>
+                    </li> -->
 
-                </ul> -->
+                </ul>
 
-                <!-- <ul class="sidebar-menu verttop38" id="sibe-box"> -->
+                <ul class="sidebar-menu verttop38" id="sibe-box">
 
 
 
@@ -686,7 +686,7 @@
 
 
 
-                <!-- </ul> -->
+                </ul>
 
             </section>
 
