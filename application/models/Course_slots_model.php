@@ -10,9 +10,6 @@ if (!defined('BASEPATH'))
 
 class Course_slots_model extends MY_Model
 {
-
-
-
     public function __construct()
     {
 
