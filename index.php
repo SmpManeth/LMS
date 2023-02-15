@@ -180,7 +180,7 @@ switch (ENVIRONMENT)
 
 		ini_set('display_errors', 0);
 
-		if (version_compare(PHP_VERSION, '5.3', '<='))
+		if (version_compare(PHP_VERSION, '5.3', '>='))
 
 		{
 
@@ -202,7 +202,7 @@ switch (ENVIRONMENT)
 
 	default:
 
-		header('HTTP/1.1 5050 Service Unavailable.', TRUE, 503);
+		header('HTTP/1.1 503 Service Unavailable.', TRUE, 503);
 
 		echo 'The application environment is not set correctly.';
 
