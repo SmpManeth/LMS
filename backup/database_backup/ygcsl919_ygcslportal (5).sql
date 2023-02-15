@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 31, 2023 at 08:43 AM
+-- Generation Time: Feb 15, 2023 at 04:29 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 7.4.30
 
@@ -339,20 +339,30 @@ CREATE TABLE `classes` (
 --
 
 INSERT INTO `classes` (`id`, `class`, `is_active`, `created_at`, `updated_at`) VALUES
-(16, 'test', 'no', '2023-01-19 14:14:21', NULL),
-(19, 'A', 'no', '2023-01-21 09:32:53', NULL),
-(20, 'G', 'no', '2023-01-21 09:32:53', NULL),
-(21, 'U', 'no', '2023-01-21 09:32:53', NULL),
-(22, 'LAi', 'no', '2023-01-21 09:32:53', NULL),
-(23, 'LBi', 'no', '2023-01-21 09:32:53', NULL),
-(24, 'CD', 'no', '2023-01-21 09:32:53', NULL),
-(25, 'C80', 'no', '2023-01-21 09:32:53', NULL),
-(26, 'AG', 'no', '2023-01-21 09:32:53', NULL),
-(27, 'GG', 'no', '2023-01-21 09:32:53', NULL),
-(28, 'L', 'no', '2023-01-21 09:32:53', NULL),
-(29, 'R', 'no', '2023-01-21 09:32:53', NULL),
-(30, 'W', 'no', '2023-01-21 09:32:53', NULL),
-(31, 'S', 'no', '2023-01-21 09:32:53', NULL);
+(70, 'EI', 'no', '2023-02-07 01:12:03', NULL),
+(71, 'GI', 'no', '2023-02-07 01:12:03', NULL),
+(72, 'MG', 'no', '2023-02-07 01:12:03', NULL),
+(73, 'II', 'no', '2023-02-07 01:12:03', NULL),
+(74, 'OL', 'no', '2023-02-07 01:12:03', NULL),
+(75, 'OR', 'no', '2023-02-07 01:12:03', NULL),
+(76, 'OW', 'no', '2023-02-07 01:12:03', NULL),
+(77, 'OS', 'no', '2023-02-07 01:12:03', NULL),
+(78, 'OEI', 'no', '2023-02-07 01:12:03', NULL),
+(79, 'OGI', 'no', '2023-02-07 01:12:03', NULL),
+(80, 'OMG', 'no', '2023-02-07 01:12:03', NULL),
+(81, 'OII', 'no', '2023-02-07 01:12:03', NULL),
+(82, 'OOL', 'no', '2023-02-07 01:12:03', NULL),
+(83, 'OOR', 'no', '2023-02-07 01:12:03', NULL),
+(84, 'OOW', 'no', '2023-02-07 01:12:03', NULL),
+(85, 'OOS', 'no', '2023-02-07 01:12:03', NULL),
+(86, 'UEI', 'no', '2023-02-07 01:12:03', NULL),
+(87, 'UGI', 'no', '2023-02-07 01:12:03', NULL),
+(88, 'UMG', 'no', '2023-02-07 01:12:03', NULL),
+(89, 'UII', 'no', '2023-02-07 01:12:03', NULL),
+(90, 'UOL', 'no', '2023-02-07 01:12:03', NULL),
+(91, 'UOR', 'no', '2023-02-07 01:12:03', NULL),
+(92, 'UOW', 'no', '2023-02-07 01:12:03', NULL),
+(93, 'UOS', 'no', '2023-02-07 01:12:03', NULL);
 
 -- --------------------------------------------------------
 
@@ -374,63 +384,31 @@ CREATE TABLE `class_sections` (
 --
 
 INSERT INTO `class_sections` (`id`, `class_id`, `section_id`, `is_active`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 'no', '2021-08-01 18:16:05', NULL),
-(2, 1, 2, 'no', '2021-08-01 18:16:05', NULL),
-(3, 1, 3, 'no', '2021-08-01 18:16:05', NULL),
-(4, 1, 4, 'no', '2021-08-01 18:16:05', NULL),
-(5, 1, 5, 'no', '2021-08-01 18:16:05', NULL),
-(6, 1, 6, 'no', '2021-08-01 18:16:05', NULL),
-(7, 2, 1, 'no', '2021-08-01 18:16:23', NULL),
-(8, 2, 2, 'no', '2021-08-01 18:16:23', NULL),
-(9, 2, 3, 'no', '2021-08-01 18:16:23', NULL),
-(10, 2, 4, 'no', '2021-08-01 18:16:23', NULL),
-(11, 2, 5, 'no', '2021-08-01 18:16:23', NULL),
-(12, 2, 6, 'no', '2021-08-01 18:16:23', NULL),
-(13, 3, 1, 'no', '2021-08-01 18:16:40', NULL),
-(14, 3, 2, 'no', '2021-08-01 18:16:40', NULL),
-(15, 3, 3, 'no', '2021-08-01 18:16:40', NULL),
-(16, 3, 4, 'no', '2021-08-01 18:16:40', NULL),
-(17, 3, 5, 'no', '2021-08-01 18:16:40', NULL),
-(18, 3, 6, 'no', '2021-08-01 18:16:40', NULL),
-(19, 4, 1, 'no', '2021-08-01 18:16:55', NULL),
-(20, 4, 2, 'no', '2021-08-01 18:16:55', NULL),
-(21, 4, 3, 'no', '2021-08-01 18:16:55', NULL),
-(22, 4, 4, 'no', '2021-08-01 18:16:55', NULL),
-(23, 4, 5, 'no', '2021-08-01 18:16:55', NULL),
-(24, 4, 6, 'no', '2021-08-01 18:16:55', NULL),
-(25, 5, 1, 'no', '2021-08-01 18:17:08', NULL),
-(26, 5, 2, 'no', '2021-08-01 18:17:08', NULL),
-(27, 5, 3, 'no', '2021-08-01 18:17:08', NULL),
-(28, 5, 4, 'no', '2021-08-01 18:17:08', NULL),
-(29, 5, 5, 'no', '2021-08-01 18:17:08', NULL),
-(30, 5, 6, 'no', '2021-08-01 18:17:08', NULL),
-(31, 6, 1, 'no', '2021-08-01 18:17:22', NULL),
-(32, 6, 2, 'no', '2021-08-01 18:17:22', NULL),
-(33, 6, 3, 'no', '2021-08-01 18:17:22', NULL),
-(34, 6, 4, 'no', '2021-08-01 18:17:22', NULL),
-(35, 6, 5, 'no', '2021-08-01 18:17:22', NULL),
-(36, 6, 6, 'no', '2021-08-01 18:17:22', NULL),
-(37, 7, 1, 'no', '2021-08-01 18:17:39', NULL),
-(38, 7, 2, 'no', '2021-08-01 18:17:39', NULL),
-(39, 7, 3, 'no', '2021-08-01 18:17:39', NULL),
-(40, 8, 1, 'no', '2021-08-01 18:17:47', NULL),
-(41, 8, 2, 'no', '2021-08-01 18:17:47', NULL),
-(42, 8, 3, 'no', '2021-08-01 18:17:47', NULL),
-(43, 9, 1, 'no', '2021-08-01 18:18:00', NULL),
-(44, 9, 2, 'no', '2021-08-01 18:18:00', NULL),
-(45, 9, 3, 'no', '2021-08-01 18:18:00', NULL),
-(46, 9, 4, 'no', '2021-08-01 18:18:00', NULL),
-(47, 9, 5, 'no', '2021-08-01 18:18:00', NULL),
-(48, 10, 1, 'no', '2021-08-01 18:18:07', NULL),
-(49, 10, 2, 'no', '2021-08-01 18:18:07', NULL),
-(50, 10, 3, 'no', '2021-08-01 18:18:07', NULL),
-(52, 2, 7, 'no', '2021-08-29 19:32:21', NULL),
-(53, 2, 8, 'no', '2021-08-29 19:32:21', NULL),
-(54, 2, 9, 'no', '2021-08-29 19:32:57', NULL),
-(55, 2, 10, 'no', '2021-08-29 19:32:57', NULL),
-(68, 2, 11, 'no', '2022-01-21 05:53:21', NULL),
-(69, 2, 12, 'no', '2022-01-21 05:53:21', NULL),
-(70, 16, 1, 'no', '2023-01-19 14:14:21', NULL);
+(73, 33, 1, 'no', '2023-02-07 01:08:32', NULL),
+(74, 93, 24, 'no', '2023-02-07 01:13:23', NULL),
+(75, 92, 23, 'no', '2023-02-07 01:13:42', NULL),
+(76, 91, 22, 'no', '2023-02-07 01:13:51', NULL),
+(77, 90, 21, 'no', '2023-02-07 01:14:00', NULL),
+(78, 89, 20, 'no', '2023-02-07 01:14:09', NULL),
+(79, 88, 19, 'no', '2023-02-07 01:14:18', NULL),
+(80, 87, 18, 'no', '2023-02-07 01:14:34', NULL),
+(81, 86, 17, 'no', '2023-02-07 01:14:51', NULL),
+(82, 85, 16, 'no', '2023-02-07 01:15:08', NULL),
+(83, 84, 14, 'no', '2023-02-07 01:15:16', NULL),
+(84, 83, 15, 'no', '2023-02-07 01:15:26', NULL),
+(85, 82, 13, 'no', '2023-02-07 01:15:35', NULL),
+(86, 81, 12, 'no', '2023-02-07 01:15:47', NULL),
+(87, 80, 11, 'no', '2023-02-07 01:16:03', NULL),
+(88, 79, 10, 'no', '2023-02-07 01:16:13', NULL),
+(89, 78, 9, 'no', '2023-02-07 01:16:29', NULL),
+(90, 77, 7, 'no', '2023-02-07 01:16:41', NULL),
+(91, 76, 6, 'no', '2023-02-07 01:16:49', NULL),
+(92, 75, 8, 'no', '2023-02-07 01:16:56', NULL),
+(93, 74, 5, 'no', '2023-02-07 01:17:04', NULL),
+(95, 73, 4, 'no', '2023-02-07 01:17:29', NULL),
+(96, 72, 3, 'no', '2023-02-07 01:17:35', NULL),
+(97, 71, 2, 'no', '2023-02-07 01:19:18', NULL),
+(98, 70, 1, 'no', '2023-02-07 01:19:25', NULL);
 
 -- --------------------------------------------------------
 
@@ -532,6 +510,73 @@ CREATE TABLE `content_for` (
   `user_id` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `course_slots`
+--
+
+CREATE TABLE `course_slots` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `type` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `date` date DEFAULT NULL,
+  `time` time DEFAULT NULL,
+  `link` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `course_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `course_slots`
+--
+
+INSERT INTO `course_slots` (`id`, `name`, `type`, `date`, `time`, `link`, `course_id`, `created_at`) VALUES
+(27, 'Slot One new', 'IELTS Classes', '2023-02-06', '06:09:00', 'maneth', '1', '2023-02-14 12:13:23'),
+(28, 'Slot Two', 'IELTS Classes', '2023-02-08', '22:20:33', 'www.join.me.free', '1', '2023-02-07 13:06:27'),
+(29, 'Slot Three', 'IELTS Classes', '2023-02-08', '22:20:33', 'www.join.me.free', '1', '2023-02-07 13:06:30'),
+(30, 'Slot Four', 'IELTS Classes', '2023-02-08', '22:20:33', 'www.join.me.free', '1', '2023-02-07 13:06:34'),
+(31, 'Slot Five', 'IELTS Classes', '2023-02-08', '22:20:33', 'www.join.me.free', '1', '2023-02-07 13:06:37'),
+(32, 'Slot Six', 'IELTS Classes', NULL, NULL, NULL, '1', '2023-02-07 11:32:25'),
+(33, 'Slot Seven', 'IELTS Classes', NULL, NULL, NULL, '1', '2023-02-07 11:32:25'),
+(34, 'Slot Eight', 'IELTS Classes', NULL, NULL, NULL, '1', '2023-02-07 11:32:25'),
+(35, 'Slot Nine', 'IELTS Classes', NULL, NULL, NULL, '1', '2023-02-07 11:32:25'),
+(36, 'Slot ten', 'IELTS Classes', NULL, NULL, NULL, '1', '2023-02-07 11:32:25'),
+(37, 'Slot Eleven', 'IELTS Classes', NULL, NULL, NULL, '1', '2023-02-07 11:32:25'),
+(38, 'Slot Twelwe', 'IELTS Classes', NULL, NULL, NULL, '1', '2023-02-07 11:32:25'),
+(39, 'Slot One', 'Mock Test', NULL, NULL, NULL, '1', '2023-02-07 11:32:25'),
+(40, 'Slot Two', 'Mock Test', NULL, NULL, NULL, '1', '2023-02-07 11:32:25'),
+(42, 'Slot Two', 'IELTS Classes', NULL, NULL, NULL, '2', '2023-02-07 11:32:25'),
+(43, 'Slot Three', 'IELTS Classes', NULL, NULL, NULL, '2', '2023-02-07 11:32:25'),
+(44, 'Slot Four', 'IELTS Classes', NULL, NULL, NULL, '2', '2023-02-07 11:32:25'),
+(45, 'Slot Five', 'IELTS Classes', NULL, NULL, NULL, '2', '2023-02-07 11:32:25'),
+(46, 'Slot Six', 'IELTS Classes', NULL, NULL, NULL, '2', '2023-02-07 11:32:25'),
+(47, 'Slot Seven', 'IELTS Classes', NULL, NULL, NULL, '2', '2023-02-07 11:32:25'),
+(48, 'Slot Eight', 'IELTS Classes', NULL, NULL, NULL, '2', '2023-02-07 11:32:25'),
+(49, 'Slot Nine', 'IELTS Classes', NULL, NULL, NULL, '2', '2023-02-07 11:32:25'),
+(50, 'Slot ten', 'IELTS Classes', NULL, NULL, NULL, '2', '2023-02-07 11:32:25'),
+(53, 'Slot One', 'Mock Test', NULL, NULL, NULL, '2', '2023-02-07 11:32:25'),
+(54, 'Slot Two', 'Mock Test', NULL, NULL, NULL, '2', '2023-02-07 11:32:25'),
+(55, 'Slot Three', 'Mock Test', NULL, NULL, NULL, '2', '2023-02-07 11:32:25'),
+(56, 'Slot One', 'Grammer Classes', NULL, NULL, NULL, '2', '2023-02-07 11:40:06'),
+(57, 'Slot Two', 'Grammer Classes', NULL, NULL, NULL, '2', '2023-02-07 11:41:29'),
+(58, 'Slot Three', 'Grammer Classes', NULL, NULL, NULL, '2', '2023-02-07 11:41:29'),
+(59, 'Slot Four', 'Grammer Classes', NULL, NULL, NULL, '2', '2023-02-07 11:41:29'),
+(60, 'Slot Five', 'Grammer Classes', NULL, NULL, NULL, '2', '2023-02-07 11:41:29'),
+(61, 'Slot Six', 'Grammer Classes', NULL, NULL, NULL, '2', '2023-02-07 11:41:29'),
+(62, 'Slot Seven', 'Grammer Classes', NULL, NULL, NULL, '2', '2023-02-07 11:41:29'),
+(63, 'Slot Eight', 'Grammer Classes', NULL, NULL, NULL, '2', '2023-02-07 11:41:29'),
+(64, 'Slot Nine', 'Grammer Classes', NULL, NULL, NULL, '2', '2023-02-07 11:41:30'),
+(65, 'Slot Ten', 'Grammer Classes', NULL, NULL, NULL, '2', '2023-02-07 11:41:30'),
+(66, 'Slot Eleven', 'Grammer Classes', NULL, NULL, NULL, '2', '2023-02-07 11:41:30'),
+(67, 'Slot Twelwe', 'Grammer Classes', NULL, NULL, NULL, '2', '2023-02-07 11:41:30'),
+(68, 'Slot Thirteen', 'Grammer Classes', NULL, NULL, NULL, '2', '2023-02-07 11:41:30'),
+(69, 'Slot Fourteen', 'Grammer Classes', NULL, NULL, NULL, '2', '2023-02-07 11:41:30'),
+(70, 'Slot Fifteen', 'Grammer Classes', NULL, NULL, NULL, '2', '2023-02-07 11:41:30'),
+(72, 'new Grammer Slot', 'Grammer Classes', NULL, NULL, NULL, '3', '2023-02-14 23:53:35'),
+(73, 'new Mock Slot', 'Mock Test', NULL, NULL, NULL, '3', '2023-02-14 23:53:52'),
+(74, 'new Slot ielts', 'IELTS Classes', NULL, NULL, NULL, '3', '2023-02-15 01:46:31');
 
 -- --------------------------------------------------------
 
@@ -2083,8 +2128,8 @@ CREATE TABLE `leads` (
 --
 
 INSERT INTO `leads` (`id`, `student_reg_no`, `bandscore`, `first_name`, `last_name`, `phone`, `email`, `address`, `occupation`, `ielts_course`, `expected_band_score`, `coursecode`, `created_at`, `User_id`, `is_student`) VALUES
-(39, '2301A200001', '20', 'Maneth', 'Pathirana', '0761535453', 'smpmaneth@gmail.com', 'Sisira,Attudawa,Palatuwa', 'Developer', 'Academic', '90', 'A', '2023-01-24 08:59:21', 18, 1),
-(41, '2301A200002', '20', 'Isuru', 'Diluminda', '1921681003', 'isuru@gmail.com', 'Sisira,Attudawa,Palatuawa ,Matara', 'kjdhf', 'UKVI IELTS', '50', 'A', '2023-01-24 12:47:58', 18, 1);
+(1, 'LD2302EI400001', '40', 'Maneth', 'Pathirana', '0761535453', 'smpmaneth@gmail.com', 'Sisira,Attudawa', 'sagh', 'Express IELTS Course', '12', 'EI', '2023-02-07 03:42:17', 18, 1),
+(2, 'LD2302II200002', '20', 'xb', 'cxbczxb', '+94755725', 'smpmaneth@gmail.com', 'Sisira,Attudawa', 'l;hjlhbl', 'Express IELTS Course', '41', 'II', '2023-02-07 03:40:26', 18, 0);
 
 -- --------------------------------------------------------
 
@@ -2152,6 +2197,7 @@ CREATE TABLE `logs` (
 --
 
 INSERT INTO `logs` (`id`, `message`, `record_id`, `user_id`, `action`, `ip_address`, `platform`, `agent`, `time`, `created_at`) VALUES
+(0, 'Record updated On students id 1005', '1005', 18, 'Update', '::1', 'Windows 10', 'Chrome 109.0.0.0', '2023-02-05 18:54:32', NULL),
 (1, 'New Record inserted On  income head   id 1', '1', 18, 'Insert', '124.43.67.10', 'Windows 10', 'Chrome 104.0.5112.81', '2022-08-17 16:19:55', NULL),
 (2, 'Record updated On  disable Staff id 10', '10', 2, 'Update', '175.157.33.25', 'Windows 10', 'Chrome 104.0.0.0', '2022-08-17 19:40:46', NULL),
 (3, 'New Record inserted On students id 925', '925', 18, 'Insert', '::1', 'Windows 10', 'Chrome 109.0.0.0', '2023-01-18 09:51:13', NULL),
@@ -2465,7 +2511,52 @@ INSERT INTO `logs` (`id`, `message`, `record_id`, `user_id`, `action`, `ip_addre
 (314, 'New Record inserted On students id 1003', '1003', 18, 'Insert', '::1', 'Windows 10', 'Chrome 109.0.0.0', '2023-01-31 06:52:06', NULL),
 (315, 'New Record inserted On users id 1922', '1922', 18, 'Insert', '::1', 'Windows 10', 'Chrome 109.0.0.0', '2023-01-31 06:52:06', NULL),
 (316, 'New Record inserted On students id 1004', '1004', 18, 'Insert', '::1', 'Windows 10', 'Chrome 109.0.0.0', '2023-01-31 06:52:13', NULL),
-(317, 'New Record inserted On users id 1923', '1923', 18, 'Insert', '::1', 'Windows 10', 'Chrome 109.0.0.0', '2023-01-31 06:52:13', NULL);
+(317, 'New Record inserted On users id 1923', '1923', 18, 'Insert', '::1', 'Windows 10', 'Chrome 109.0.0.0', '2023-01-31 06:52:13', NULL),
+(318, 'New Record inserted On students id 42', '42', 18, 'Insert', '::1', 'Windows 10', 'Chrome 109.0.0.0', '2023-02-03 01:56:21', NULL),
+(319, 'Record updated On Lead id 42', '42', 18, 'Update', '::1', 'Windows 10', 'Chrome 109.0.0.0', '2023-02-03 01:56:34', NULL),
+(320, 'Record updated On Lead id 42', '42', 18, 'Update', '::1', 'Windows 10', 'Chrome 109.0.0.0', '2023-02-03 01:58:09', NULL),
+(321, 'Record updated On Lead id 42', '42', 18, 'Update', '::1', 'Windows 10', 'Chrome 109.0.0.0', '2023-02-03 01:58:31', NULL),
+(322, 'New Record inserted On students id 1005', '1005', 18, 'Insert', '::1', 'Windows 10', 'Chrome 109.0.0.0', '2023-02-03 01:59:12', NULL),
+(323, 'New Record inserted On users id 1924', '1924', 18, 'Insert', '::1', 'Windows 10', 'Chrome 109.0.0.0', '2023-02-03 01:59:12', NULL),
+(324, 'New Record inserted On students id 43', '43', 18, 'Insert', '::1', 'Windows 10', 'Chrome 109.0.0.0', '2023-02-03 02:05:41', NULL),
+(325, 'New Record inserted On students id 44', '44', 18, 'Insert', '::1', 'Windows 10', 'Chrome 109.0.0.0', '2023-02-03 02:22:37', NULL),
+(326, 'New Record inserted On students id 45', '45', 18, 'Insert', '::1', 'Windows 10', 'Chrome 109.0.0.0', '2023-02-03 02:25:49', NULL),
+(327, 'Record updated On Lead id 45', '45', 18, 'Update', '::1', 'Windows 10', 'Chrome 109.0.0.0', '2023-02-03 02:25:58', NULL),
+(328, 'New Record inserted On students id 46', '46', 18, 'Insert', '::1', 'Windows 10', 'Chrome 109.0.0.0', '2023-02-03 02:32:30', NULL),
+(329, 'New Record inserted On students id 47', '47', 18, 'Insert', '::1', 'Windows 10', 'Chrome 109.0.0.0', '2023-02-03 02:33:04', NULL),
+(330, 'Record updated On Lead id 43', '43', 18, 'Update', '::1', 'Windows 10', 'Chrome 109.0.0.0', '2023-02-03 04:33:47', NULL),
+(332, 'Record updated On Lead id 43', '43', 18, 'Update', '::1', 'Windows 10', 'Chrome 109.0.0.0', '2023-02-03 04:35:06', NULL),
+(333, 'Record updated On Lead id 43', '43', 18, 'Update', '::1', 'Windows 10', 'Chrome 109.0.0.0', '2023-02-03 06:58:45', NULL),
+(334, 'Record updated On Lead id 43', '43', 18, 'Update', '::1', 'Windows 10', 'Chrome 109.0.0.0', '2023-02-03 06:59:09', NULL),
+(335, 'New Record inserted On students id 1006', '1006', 18, 'Insert', '::1', 'Windows 10', 'Chrome 109.0.0.0', '2023-02-03 07:02:50', NULL),
+(336, 'New Record inserted On users id 1925', '1925', 18, 'Insert', '::1', 'Windows 10', 'Chrome 109.0.0.0', '2023-02-03 07:02:50', NULL),
+(337, 'Record updated On Lead id 43', '43', 18, 'Update', '::1', 'Windows 10', 'Chrome 109.0.0.0', '2023-02-03 07:09:46', NULL),
+(338, 'New Record inserted On students id 1007', '1007', 18, 'Insert', '::1', 'Windows 10', 'Chrome 109.0.0.0', '2023-02-03 07:09:46', NULL),
+(339, 'New Record inserted On users id 1926', '1926', 18, 'Insert', '::1', 'Windows 10', 'Chrome 109.0.0.0', '2023-02-03 07:09:47', NULL),
+(340, 'Record updated On Lead id 43', '43', 18, 'Update', '::1', 'Windows 10', 'Chrome 109.0.0.0', '2023-02-03 08:07:36', NULL),
+(341, 'New Record inserted On students id 1008', '1008', 18, 'Insert', '::1', 'Windows 10', 'Chrome 109.0.0.0', '2023-02-03 08:07:36', NULL),
+(342, 'New Record inserted On users id 1927', '1927', 18, 'Insert', '::1', 'Windows 10', 'Chrome 109.0.0.0', '2023-02-03 08:07:36', NULL),
+(343, 'Record updated On Lead id 43', '43', 18, 'Update', '::1', 'Windows 10', 'Chrome 109.0.0.0', '2023-02-03 08:09:12', NULL),
+(344, 'New Record inserted On students id 1009', '1009', 18, 'Insert', '::1', 'Windows 10', 'Chrome 109.0.0.0', '2023-02-03 08:09:12', NULL),
+(345, 'New Record inserted On users id 1928', '1928', 18, 'Insert', '::1', 'Windows 10', 'Chrome 109.0.0.0', '2023-02-03 08:09:12', NULL),
+(346, 'New Record inserted On students id 48', '48', 18, 'Insert', '::1', 'Windows 10', 'Chrome 109.0.0.0', '2023-02-03 08:52:09', NULL),
+(347, 'Record updated On Lead id 48', '48', 18, 'Update', '::1', 'Windows 10', 'Chrome 109.0.0.0', '2023-02-03 08:52:43', NULL),
+(348, 'New Record inserted On students id 1010', '1010', 18, 'Insert', '::1', 'Windows 10', 'Chrome 109.0.0.0', '2023-02-03 08:52:43', NULL),
+(349, 'New Record inserted On users id 1929', '1929', 18, 'Insert', '::1', 'Windows 10', 'Chrome 109.0.0.0', '2023-02-03 08:52:43', NULL),
+(350, 'Record updated On Lead id 1010', '1010', 18, 'Update', '::1', 'Windows 10', 'Chrome 109.0.0.0', '2023-02-03 09:08:07', NULL),
+(351, 'New Record inserted On students id 1011', '1011', 18, 'Insert', '::1', 'Windows 10', 'Chrome 109.0.0.0', '2023-02-03 09:08:07', NULL),
+(352, 'New Record inserted On users id 1930', '1930', 18, 'Insert', '::1', 'Windows 10', 'Chrome 109.0.0.0', '2023-02-03 09:08:07', NULL),
+(353, 'Record updated On students id 1011', '1011', 18, 'Update', '::1', 'Windows 10', 'Chrome 109.0.0.0', '2023-02-03 09:22:00', NULL),
+(354, 'Record updated On students id 1011', '1011', 18, 'Update', '::1', 'Windows 10', 'Chrome 109.0.0.0', '2023-02-03 09:22:14', NULL),
+(355, 'Record updated On Lead id ', '', 18, 'Update', '::1', 'Windows 10', 'Chrome 109.0.0.0', '2023-02-03 09:24:27', NULL),
+(356, 'New Record inserted On students id 1012', '1012', 18, 'Insert', '::1', 'Windows 10', 'Chrome 109.0.0.0', '2023-02-03 09:24:27', NULL),
+(357, 'New Record inserted On users id 1931', '1931', 18, 'Insert', '::1', 'Windows 10', 'Chrome 109.0.0.0', '2023-02-03 09:24:27', NULL),
+(358, 'Record updated On students id 1012', '1012', 18, 'Update', '::1', 'Windows 10', 'Chrome 109.0.0.0', '2023-02-03 09:24:41', NULL),
+(359, 'Record updated On students id 1012', '1012', 18, 'Update', '::1', 'Windows 10', 'Chrome 109.0.0.0', '2023-02-03 09:24:41', NULL),
+(360, 'Record updated On Lead id ', '', 18, 'Update', '::1', 'Windows 10', 'Chrome 109.0.0.0', '2023-02-03 09:25:34', NULL),
+(361, 'New Record inserted On students id 1013', '1013', 18, 'Insert', '::1', 'Windows 10', 'Chrome 109.0.0.0', '2023-02-03 09:25:34', NULL),
+(362, 'New Record inserted On users id 1932', '1932', 18, 'Insert', '::1', 'Windows 10', 'Chrome 109.0.0.0', '2023-02-03 09:25:34', NULL),
+(363, 'Record updated On students id 1013', '1013', 18, 'Update', '::1', 'Windows 10', 'Chrome 109.0.0.0', '2023-02-03 09:46:48', NULL);
 
 -- --------------------------------------------------------
 
@@ -3137,7 +3228,7 @@ INSERT INTO `permission_group` (`id`, `name`, `short_code`, `is_active`, `system
 (14, 'Reports', 'reports', 0, 1, '2023-01-18 14:46:11'),
 (15, 'System Settings', 'system_settings', 1, 1, '2018-06-27 03:40:28'),
 (16, 'Front CMS', 'front_cms', 0, 0, '2021-07-31 18:06:36'),
-(17, 'Front Office', 'front_office', 0, 0, '2022-02-09 06:12:00'),
+(17, 'Front Office', 'front_office', 0, 0, '2023-02-08 01:29:53'),
 (18, 'Human Resource', 'human_resource', 0, 1, '2023-01-18 14:46:23'),
 (19, 'Homework', 'homework', 0, 0, '2022-05-06 07:47:53'),
 (20, 'Certificate', 'certificate', 0, 0, '2022-02-09 06:12:10'),
@@ -3150,7 +3241,8 @@ INSERT INTO `permission_group` (`id`, `name`, `short_code`, `is_active`, `system
 (28, 'Alumni', 'alumni', 0, 0, '2021-07-31 18:06:40'),
 (29, 'Lesson Plan', 'lesson_plan', 0, 0, '2022-05-06 07:47:33'),
 (30, 'Deal Information', 'deal_information', 1, 1, '2019-03-15 09:30:22'),
-(31, 'Lead Information', 'lead_information', 1, 0, '2023-01-21 05:38:25');
+(31, 'Lead Information', 'lead_information', 1, 0, '2023-01-21 05:38:25'),
+(32, 'Student Time Table', 'student_time_table', 1, 0, '2023-02-08 10:20:32');
 
 -- --------------------------------------------------------
 
@@ -3174,21 +3266,21 @@ CREATE TABLE `permission_student` (
 --
 
 INSERT INTO `permission_student` (`id`, `name`, `short_code`, `system`, `student`, `parent`, `group_id`, `created_at`) VALUES
-(1, 'Fees', 'fees', 0, 1, 0, 2, '2021-09-20 11:02:01'),
+(1, 'Fees', 'fees', 0, 0, 0, 2, '2023-02-07 08:32:20'),
 (2, 'Class Timetable', 'class_timetable', 1, 1, 1, 7, '2020-05-30 19:57:50'),
 (3, 'Homework', 'homework', 0, 0, 0, 19, '2022-05-06 07:47:53'),
-(4, 'Download Center', 'download_center', 0, 1, 0, 8, '2022-06-11 05:20:27'),
-(5, 'Attendance', 'attendance', 0, 1, 0, 5, '2022-06-11 05:20:29'),
-(7, 'Examinations', 'examinations', 0, 1, 0, 6, '2022-06-11 05:21:00'),
-(8, 'Notice Board', 'notice_board', 0, 1, 0, 13, '2022-06-11 05:20:55'),
+(4, 'Download Center', 'download_center', 0, 0, 0, 8, '2023-02-07 08:32:24'),
+(5, 'Attendance', 'attendance', 0, 0, 0, 5, '2023-02-07 08:32:43'),
+(7, 'Examinations', 'examinations', 0, 0, 0, 6, '2023-02-07 08:32:47'),
+(8, 'Notice Board', 'notice_board', 0, 0, 0, 13, '2023-02-07 08:32:51'),
 (11, 'Library', 'library', 0, 0, 0, 9, '2021-07-31 18:06:54'),
 (12, 'Transport Routes', 'transport_routes', 0, 0, 0, 11, '2021-07-31 18:07:09'),
 (13, 'Hostel Rooms', 'hostel_rooms', 0, 0, 0, 12, '2021-07-31 18:07:02'),
 (14, 'Calendar To Do List', 'calendar_to_do_list', 0, 0, 0, 21, '2021-08-30 08:03:15'),
-(15, 'Online Examination', 'online_examination', 0, 1, 0, 23, '2022-06-11 05:21:06'),
+(15, 'Online Examination', 'online_examination', 0, 0, 0, 23, '2023-02-07 08:32:55'),
 (16, 'Teachers Rating', 'teachers_rating', 0, 0, 0, 0, '2021-08-02 12:25:07'),
 (17, 'Chat', 'chat', 0, 0, 0, 25, '2021-08-02 12:24:44'),
-(18, 'Multi Class', 'multi_class', 1, 1, 1, 26, '2022-03-04 03:07:56'),
+(18, 'Multi Class', 'multi_class', 1, 0, 1, 26, '2023-02-07 08:33:00'),
 (19, 'Lesson Plan', 'lesson_plan', 0, 0, 0, 29, '2022-05-06 07:47:33'),
 (20, 'Syllabus Status', 'syllabus_status', 0, 0, 0, 29, '2022-05-06 07:47:33'),
 (23, 'Apply Leave', 'apply_leave', 0, 0, 0, 0, '2021-07-31 18:09:17');
@@ -4128,19 +4220,31 @@ CREATE TABLE `sections` (
 --
 
 INSERT INTO `sections` (`id`, `section`, `is_active`, `created_at`, `updated_at`) VALUES
-(1, 'Academic', '', '2023-01-21 10:22:53', NULL),
-(2, 'General', 'no', '2023-01-21 10:23:09', NULL),
-(3, 'UKVI IELTS', 'no', '2023-01-21 10:23:18', NULL),
-(4, 'Life Skill A1', 'no', '2023-01-21 10:23:27', NULL),
-(5, 'Life Skill B1', 'no', '2023-01-21 10:23:43', NULL),
-(6, 'Computer Delivered', 'no', '2023-01-21 10:23:54', NULL),
-(7, 'Canada 8 Package', 'no', '2023-01-21 10:24:14', NULL),
-(8, 'Academic Guaranteed', 'no', '2023-01-21 10:24:24', NULL),
-(9, 'General Guaranteed', 'no', '2023-01-21 10:24:32', NULL),
-(10, 'Listening Only', 'no', '2023-01-21 10:24:40', NULL),
-(11, 'Reading Only', 'no', '2023-01-21 10:24:50', NULL),
-(12, 'Writing Only', 'no', '2023-01-21 10:24:56', NULL),
-(13, 'Speaking Only', 'no', '2023-01-21 10:25:03', NULL);
+(1, 'Express IELTS Course', '', '2023-02-07 00:47:03', NULL),
+(2, 'Grammar + IELTS Course', 'no', '2023-02-07 00:47:24', NULL),
+(3, 'Moneyback Guaranteed IELTS', 'no', '2023-02-07 00:47:37', NULL),
+(4, 'Individual IELTS Course', 'no', '2023-02-07 00:47:44', NULL),
+(5, 'One Module IELTS Listening', 'no', '2023-02-07 00:52:58', NULL),
+(6, 'One Module IELTS Writing', 'no', '2023-02-07 00:47:59', NULL),
+(7, 'One Module IELTS Speaking', 'no', '2023-02-07 00:48:03', NULL),
+(8, 'One Module IELTS Reading', 'no', '2023-02-07 00:53:29', NULL),
+(9, 'ONLINE - Express IELTS Course', 'no', '2023-02-07 00:53:49', NULL),
+(10, 'ONLINE - Grammar + IELTS Course', 'no', '2023-02-07 00:54:05', NULL),
+(11, 'ONLINE - Moneyback Guaranteed IELTS', 'no', '2023-02-07 00:54:14', NULL),
+(12, 'ONLINE - Individual IELTS Course', 'no', '2023-02-07 00:54:18', NULL),
+(13, 'ONLINE – One Module Course Listening', 'no', '2023-02-07 00:55:20', NULL),
+(14, 'ONLINE – One Module Course Writing', 'no', '2023-02-07 00:57:53', NULL),
+(15, 'ONLINE – One Module Course Reading', 'no', '2023-02-07 00:58:30', NULL),
+(16, 'ONLINE – One Module Course Speaking', 'no', '2023-02-07 01:00:33', NULL),
+(17, 'UK-VI - Express IELTS Course', 'no', '2023-02-07 01:00:33', NULL),
+(18, 'UK-VI - Grammar + IELTS Course', 'no', '2023-02-07 01:00:33', NULL),
+(19, 'UK-VI - Moneyback Guaranteed IELTS', 'no', '2023-02-07 01:00:33', NULL),
+(20, 'UK-VI - Individual IELTS Course', 'no', '2023-02-07 01:00:33', NULL),
+(21, 'UK-VI – One Module Course Listening', 'no', '2023-02-07 01:00:33', NULL),
+(22, 'UK-VI – One Module Course Reading', 'no', '2023-02-07 01:00:33', NULL),
+(23, 'UK-VI – One Module Course Writing', 'no', '2023-02-07 01:00:33', NULL),
+(24, 'UK-VI – One Module Course Speaking', 'no', '2023-02-07 01:00:33', NULL),
+(25, 'Life Skills Course', 'no', '2023-02-07 01:00:34', NULL);
 
 -- --------------------------------------------------------
 
@@ -4587,14 +4691,14 @@ CREATE TABLE `staff_timeline` (
 
 CREATE TABLE `students` (
   `id` int(11) NOT NULL,
-  `admission_no` varchar(100) DEFAULT NULL,
-  `firstname` varchar(100) DEFAULT NULL,
-  `lastname` varchar(100) DEFAULT NULL,
-  `mobileno` varchar(100) DEFAULT NULL,
+  `student_reg_no` varchar(100) DEFAULT NULL,
+  `first_name` varchar(100) DEFAULT NULL,
+  `last_name` varchar(100) DEFAULT NULL,
+  `phone` varchar(100) DEFAULT NULL,
   `bandscore` varchar(255) DEFAULT NULL,
   `email` varchar(100) DEFAULT NULL,
   `dob` date DEFAULT NULL,
-  `current_address` text DEFAULT NULL,
+  `address` varchar(100) DEFAULT NULL,
   `occupation` varchar(255) DEFAULT NULL,
   `ielts_course` varchar(255) DEFAULT NULL,
   `expected_band_score` varchar(255) DEFAULT NULL,
@@ -4610,73 +4714,8 @@ CREATE TABLE `students` (
 -- Dumping data for table `students`
 --
 
-INSERT INTO `students` (`id`, `admission_no`, `firstname`, `lastname`, `mobileno`, `bandscore`, `email`, `dob`, `current_address`, `occupation`, `ielts_course`, `expected_band_score`, `coursecode`, `passportNo`, `purpose`, `User_id`, `is_student`, `created_at`) VALUES
-(927, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-01-24 13:32:19'),
-(940, '2301A200001', 'Maneth', 'Pathirana', '0761535453', '45', 'smpmaneth@gmail.com', '0000-00-00', 'Sisira,Attudawa,Palatuwa', 'Developer', 'UKVI IELTS', '90', 'G', '', '', '18', 1, '2023-01-31 00:35:49'),
-(941, '2301A200002', 'Isuru', 'Diluminda', '1921681003', '40', 'smpmaneth@gmail.com', '0000-00-00', 'Sisira,Attudawa,Palatuawa ,Matara', 'kjdhf', 'General', '50', 'A', '', '', '18', 1, '2023-01-31 00:40:16'),
-(942, '2301A200002', 'Isuru', 'Diluminda', '1921681003', '40', 'smpmaneth@gmail.com', '0000-00-00', 'Sisira,Attudawa,Palatuawa ,Matara', 'kjdhf', 'General', '50', 'A', '', '', '18', 1, '2023-01-31 00:41:24'),
-(943, '2301A200002', 'Isuru', 'Diluminda', '1921681003', '40', 'smpmaneth@gmail.com', '0000-00-00', 'Sisira,Attudawa,Palatuawa ,Matara', 'kjdhf', 'General', '50', 'A', '', '', '18', 1, '2023-01-31 00:41:56'),
-(944, '2301A200002', 'Isuru', 'Diluminda', '1921681003', '45', 'smpmaneth@gmail.com', '0000-00-00', 'Sisira,Attudawa,Palatuawa ,Matara', 'kjdhf', 'General', '50', 'G', '', '', '18', 1, '2023-01-31 00:45:30'),
-(945, '2301A200002', 'Isuru', 'Diluminda', '1921681003', '45', 'smpmaneth@gmail.com', '0000-00-00', 'Sisira,Attudawa,Palatuawa ,Matara', 'kjdhf', 'General', '50', 'G', '', '', '18', 1, '2023-01-31 00:46:49'),
-(946, '2301A200002', 'Isuru', 'Diluminda', '1921681003', '50', 'smpmaneth@gmail.com', '0000-00-00', 'Sisira,Attudawa,Palatuawa ,Matara', 'kjdhf', 'UKVI IELTS', '50', 'A', '', '', '18', 1, '2023-01-31 00:49:48'),
-(947, '2301A200002', 'Isuru', 'Diluminda', '1921681003', '50', 'smpmaneth@gmail.com', '0000-00-00', 'Sisira,Attudawa,Palatuawa ,Matara', 'kjdhf', 'UKVI IELTS', '50', 'A', '', '', '18', 1, '2023-01-31 00:58:12'),
-(948, '2301A200002', 'Isuru', 'Diluminda', '1921681003', '50', 'smpmaneth@gmail.com', '0000-00-00', 'Sisira,Attudawa,Palatuawa ,Matara', 'kjdhf', 'UKVI IELTS', '50', 'A', '', '', '18', 1, '2023-01-31 00:59:10'),
-(949, '2301A200002', 'Isuru', 'Diluminda', '1921681003', '50', 'smpmaneth@gmail.com', '0000-00-00', 'Sisira,Attudawa,Palatuawa ,Matara', 'kjdhf', 'UKVI IELTS', '50', 'A', '', '', '18', 1, '2023-01-31 00:59:47'),
-(950, '2301A200002', 'Isuru', 'Diluminda', '1921681003', '50', 'smpmaneth@gmail.com', '0000-00-00', 'Sisira,Attudawa,Palatuawa ,Matara', 'kjdhf', 'UKVI IELTS', '50', 'A', '', '', '18', 1, '2023-01-31 01:00:45'),
-(951, '2301A200002', 'Isuru', 'Diluminda', '1921681003', '50', 'smpmaneth@gmail.com', '0000-00-00', 'Sisira,Attudawa,Palatuawa ,Matara', 'kjdhf', 'UKVI IELTS', '50', 'A', '', '', '18', 1, '2023-01-31 01:00:52'),
-(952, '2301A200002', 'Isuru', 'Diluminda', '1921681003', '50', 'smpmaneth@gmail.com', '0000-00-00', 'Sisira,Attudawa,Palatuawa ,Matara', 'kjdhf', 'UKVI IELTS', '50', 'A', '', '', '18', 1, '2023-01-31 01:01:03'),
-(953, '2301A200002', 'Isuru', 'Diluminda', '1921681003', '50', 'smpmaneth@gmail.com', '0000-00-00', 'Sisira,Attudawa,Palatuawa ,Matara', 'kjdhf', 'UKVI IELTS', '50', 'A', '', '', '18', 1, '2023-01-31 01:01:28'),
-(954, '2301A200002', 'Isuru', 'Diluminda', '1921681003', '45', 'smpmaneth@gmail.com', '0000-00-00', 'Sisira,Attudawa,Palatuawa ,Matara', 'kjdhf', 'UKVI IELTS', '50', 'G', '', '', '18', 1, '2023-01-31 01:07:33'),
-(955, '2301A200002', 'Isuru', 'Diluminda', '1921681003', '45', 'smpmaneth@gmail.com', '0000-00-00', 'Sisira,Attudawa,Palatuawa ,Matara', 'kjdhf', 'UKVI IELTS', '50', 'G', '', '', '18', 1, '2023-01-31 01:14:12'),
-(956, '2301A200002', 'Isuru', 'Diluminda', '1921681003', '45', 'smpmaneth@gmail.com', '0000-00-00', 'Sisira,Attudawa,Palatuawa ,Matara', 'kjdhf', 'UKVI IELTS', '50', 'G', '', '', '18', 1, '2023-01-31 01:14:28'),
-(957, '2301A200002', 'Isuru', 'Diluminda', '1921681003', '45', 'smpmaneth@gmail.com', '0000-00-00', 'Sisira,Attudawa,Palatuawa ,Matara', 'kjdhf', 'UKVI IELTS', '50', 'G', '', '', '18', 1, '2023-01-31 01:14:43'),
-(958, '2301A200002', 'Isuru', 'Diluminda', '1921681003', '45', 'smpmaneth@gmail.com', '0000-00-00', 'Sisira,Attudawa,Palatuawa ,Matara', 'kjdhf', 'UKVI IELTS', '50', 'G', '', '', '18', 1, '2023-01-31 01:14:50'),
-(959, '2301A200002', 'Isuru', 'Diluminda', '1921681003', '45', 'smpmaneth@gmail.com', '0000-00-00', 'Sisira,Attudawa,Palatuawa ,Matara', 'kjdhf', 'UKVI IELTS', '50', 'G', '', '', '18', 1, '2023-01-31 01:15:36'),
-(960, '2301A200002', 'Isuru', 'Diluminda', '1921681003', '45', 'smpmaneth@gmail.com', '0000-00-00', 'Sisira,Attudawa,Palatuawa ,Matara', 'kjdhf', 'UKVI IELTS', '50', 'G', '', '', '18', 1, '2023-01-31 01:16:27'),
-(961, '2301A200002', 'Isuru', 'Diluminda', '1921681003', '45', 'smpmaneth@gmail.com', '0000-00-00', 'Sisira,Attudawa,Palatuawa ,Matara', 'kjdhf', 'UKVI IELTS', '50', 'G', '', '', '18', 1, '2023-01-31 01:17:14'),
-(962, '2301A200002', 'Isuru', 'Diluminda', '1921681003', '45', 'smpmaneth@gmail.com', '0000-00-00', 'Sisira,Attudawa,Palatuawa ,Matara', 'kjdhf', 'UKVI IELTS', '50', 'G', '', '', '18', 1, '2023-01-31 01:17:56'),
-(963, '2301A200002', 'Isuru', 'Diluminda', '1921681003', '45', 'smpmaneth@gmail.com', '0000-00-00', 'Sisira,Attudawa,Palatuawa ,Matara', 'kjdhf', 'UKVI IELTS', '50', 'G', '', '', '18', 1, '2023-01-31 01:18:13'),
-(964, '2301A200002', 'Isuru', 'Diluminda', '1921681003', '45', 'smpmaneth@gmail.com', '0000-00-00', 'Sisira,Attudawa,Palatuawa ,Matara', 'kjdhf', 'UKVI IELTS', '50', 'G', '', '', '18', 1, '2023-01-31 01:18:21'),
-(965, '2301A200002', 'Isuru', 'Diluminda', '1921681003', '45', 'smpmaneth@gmail.com', '0000-00-00', 'Sisira,Attudawa,Palatuawa ,Matara', 'kjdhf', 'UKVI IELTS', '50', 'G', '', '', '18', 1, '2023-01-31 01:18:40'),
-(966, '2301A200002', 'Isuru', 'Diluminda', '1921681003', '45', 'smpmaneth@gmail.com', '0000-00-00', 'Sisira,Attudawa,Palatuawa ,Matara', 'kjdhf', 'UKVI IELTS', '50', 'G', '', '', '18', 1, '2023-01-31 01:19:40'),
-(967, '2301A200002', 'Isuru', 'Diluminda', '1921681003', '45', 'smpmaneth@gmail.com', '0000-00-00', 'Sisira,Attudawa,Palatuawa ,Matara', 'kjdhf', 'UKVI IELTS', '50', 'G', '', '', '18', 1, '2023-01-31 01:19:51'),
-(968, '2301A200002', 'Isuru', 'Diluminda', '1921681003', '45', 'smpmaneth@gmail.com', '0000-00-00', 'Sisira,Attudawa,Palatuawa ,Matara', 'kjdhf', 'UKVI IELTS', '50', 'G', '', '', '18', 1, '2023-01-31 01:20:03'),
-(969, '2301A200002', 'Isuru', 'Diluminda', '1921681003', '45', 'smpmaneth@gmail.com', '0000-00-00', 'Sisira,Attudawa,Palatuawa ,Matara', 'kjdhf', 'UKVI IELTS', '50', 'G', '', '', '18', 1, '2023-01-31 01:20:24'),
-(970, '2301A200002', 'Isuru', 'Diluminda', '1921681003', '45', 'smpmaneth@gmail.com', '0000-00-00', 'Sisira,Attudawa,Palatuawa ,Matara', 'kjdhf', 'UKVI IELTS', '50', 'G', '', '', '18', 1, '2023-01-31 01:20:36'),
-(971, '2301A200002', 'Isuru', 'Diluminda', '1921681003', '45', 'smpmaneth@gmail.com', '0000-00-00', 'Sisira,Attudawa,Palatuawa ,Matara', 'kjdhf', 'UKVI IELTS', '50', 'G', '', '', '18', 1, '2023-01-31 01:20:50'),
-(972, '2301A200002', 'Isuru', 'Diluminda', '1921681003', '45', 'smpmaneth@gmail.com', '0000-00-00', 'Sisira,Attudawa,Palatuawa ,Matara', 'kjdhf', 'UKVI IELTS', '50', 'G', '', '', '18', 1, '2023-01-31 01:22:32'),
-(973, '2301A200002', 'Isuru', 'Diluminda', '1921681003', '45', 'smpmaneth@gmail.com', '0000-00-00', 'Sisira,Attudawa,Palatuawa ,Matara', 'kjdhf', 'UKVI IELTS', '50', 'G', '', '', '18', 1, '2023-01-31 01:22:41'),
-(974, '2301A200002', 'Isuru', 'Diluminda', '1921681003', '45', 'smpmaneth@gmail.com', '0000-00-00', 'Sisira,Attudawa,Palatuawa ,Matara', 'kjdhf', 'UKVI IELTS', '50', 'G', '', '', '18', 1, '2023-01-31 01:23:00'),
-(975, '2301A200002', 'Isuru', 'Diluminda', '1921681003', '45', 'smpmaneth@gmail.com', '0000-00-00', 'Sisira,Attudawa,Palatuawa ,Matara', 'kjdhf', 'UKVI IELTS', '50', 'G', '', '', '18', 1, '2023-01-31 01:23:11'),
-(976, '2301A200002', 'Isuru', 'Diluminda', '1921681003', '45', 'smpmaneth@gmail.com', '0000-00-00', 'Sisira,Attudawa,Palatuawa ,Matara', 'kjdhf', 'UKVI IELTS', '50', 'G', '', '', '18', 1, '2023-01-31 01:23:46'),
-(977, '2301A200002', 'Isuru', 'Diluminda', '1921681003', '45', 'smpmaneth@gmail.com', '0000-00-00', 'Sisira,Attudawa,Palatuawa ,Matara', 'kjdhf', 'UKVI IELTS', '50', 'G', '', '', '18', 1, '2023-01-31 01:23:59'),
-(978, '2301A200002', 'Isuru', 'Diluminda', '1921681003', '45', 'smpmaneth@gmail.com', '0000-00-00', 'Sisira,Attudawa,Palatuawa ,Matara', 'kjdhf', 'UKVI IELTS', '50', 'G', '', '', '18', 1, '2023-01-31 01:24:08'),
-(979, '2301A200002', 'Isuru', 'Diluminda', '1921681003', '45', 'smpmaneth@gmail.com', '0000-00-00', 'Sisira,Attudawa,Palatuawa ,Matara', 'kjdhf', 'UKVI IELTS', '50', 'G', '', '', '18', 1, '2023-01-31 01:25:33'),
-(980, '2301A200002', 'Isuru', 'Diluminda', '1921681003', '45', 'smpmaneth@gmail.com', '0000-00-00', 'Sisira,Attudawa,Palatuawa ,Matara', 'kjdhf', 'UKVI IELTS', '50', 'G', '', '', '18', 1, '2023-01-31 01:26:14'),
-(981, '2301A200002', 'Isuru', 'Diluminda', '1921681003', '45', 'smpmaneth@gmail.com', '0000-00-00', 'Sisira,Attudawa,Palatuawa ,Matara', 'kjdhf', 'UKVI IELTS', '50', 'G', '', '', '18', 1, '2023-01-31 01:26:26'),
-(982, '2301A200002', 'Isuru', 'Diluminda', '1921681003', '45', 'smpmaneth@gmail.com', '0000-00-00', 'Sisira,Attudawa,Palatuawa ,Matara', 'kjdhf', 'UKVI IELTS', '50', 'G', '', '', '18', 1, '2023-01-31 01:26:30'),
-(983, '2301A200002', 'Isuru', 'Diluminda', '1921681003', '45', 'smpmaneth@gmail.com', '0000-00-00', 'Sisira,Attudawa,Palatuawa ,Matara', 'kjdhf', 'UKVI IELTS', '50', 'G', '', '', '18', 1, '2023-01-31 01:26:33'),
-(984, '2301A200002', 'Isuru', 'Diluminda', '1921681003', '45', 'smpmaneth@gmail.com', '0000-00-00', 'Sisira,Attudawa,Palatuawa ,Matara', 'kjdhf', 'UKVI IELTS', '50', 'G', '', '', '18', 1, '2023-01-31 01:26:37'),
-(985, '2301A200002', 'Isuru', 'Diluminda', '1921681003', '45', 'smpmaneth@gmail.com', '0000-00-00', 'Sisira,Attudawa,Palatuawa ,Matara', 'kjdhf', 'UKVI IELTS', '50', 'G', '', '', '18', 1, '2023-01-31 01:27:31'),
-(986, '2301A200002', 'Isuru', 'Diluminda', '1921681003', '45', 'smpmaneth@gmail.com', '0000-00-00', 'Sisira,Attudawa,Palatuawa ,Matara', 'kjdhf', 'UKVI IELTS', '50', 'G', '', '', '18', 1, '2023-01-31 01:28:28'),
-(987, '2301A200002', 'Isuru', 'Diluminda', '1921681003', '45', 'smpmaneth@gmail.com', '0000-00-00', 'Sisira,Attudawa,Palatuawa ,Matara', 'kjdhf', 'UKVI IELTS', '50', 'G', '', '', '18', 1, '2023-01-31 01:28:39'),
-(988, '2301A200002', 'Isuru', 'Diluminda', '1921681003', '45', 'smpmaneth@gmail.com', '0000-00-00', 'Sisira,Attudawa,Palatuawa ,Matara', 'kjdhf', 'UKVI IELTS', '50', 'G', '', '', '18', 1, '2023-01-31 01:28:50'),
-(989, '2301A200002', 'Isuru', 'Diluminda', '1921681003', '45', 'smpmaneth@gmail.com', '0000-00-00', 'Sisira,Attudawa,Palatuawa ,Matara', 'kjdhf', 'UKVI IELTS', '50', 'G', '', '', '18', 1, '2023-01-31 01:29:13'),
-(990, '2301A200002', 'Isuru', 'Diluminda', '1921681003', '45', 'smpmaneth@gmail.com', '0000-00-00', 'Sisira,Attudawa,Palatuawa ,Matara', 'kjdhf', 'UKVI IELTS', '50', 'G', '', '', '18', 1, '2023-01-31 01:29:27'),
-(991, '2301A200002', 'Isuru', 'Diluminda', '1921681003', '45', 'smpmaneth@gmail.com', '0000-00-00', 'Sisira,Attudawa,Palatuawa ,Matara', 'kjdhf', 'UKVI IELTS', '50', 'G', '', '', '18', 1, '2023-01-31 01:33:12'),
-(992, '2301A200002', 'Isuru', 'Diluminda', '1921681003', '45', 'smpmaneth@gmail.com', '0000-00-00', 'Sisira,Attudawa,Palatuawa ,Matara', 'kjdhf', 'UKVI IELTS', '50', 'G', '', '', '18', 1, '2023-01-31 01:35:10'),
-(993, '2301A200002', 'Isuru', 'Diluminda', '1921681003', '45', 'smpmaneth@gmail.com', '0000-00-00', 'Sisira,Attudawa,Palatuawa ,Matara', 'kjdhf', 'UKVI IELTS', '50', 'G', '', '', '18', 1, '2023-01-31 01:35:44'),
-(994, '2301A200002', 'Isuru', 'Diluminda', '1921681003', '45', 'smpmaneth@gmail.com', '0000-00-00', 'Sisira,Attudawa,Palatuawa ,Matara', 'kjdhf', 'UKVI IELTS', '50', 'G', '', '', '18', 1, '2023-01-31 01:36:31'),
-(995, '2301A200002', 'Isuru', 'Diluminda', '1921681003', '45', 'smpmaneth@gmail.com', '0000-00-00', 'Sisira,Attudawa,Palatuawa ,Matara', 'kjdhf', 'UKVI IELTS', '50', 'G', '', '', '18', 1, '2023-01-31 01:56:50'),
-(996, '2301A200002', 'bxvbxvb', 'admin', '+94761535453', '50', 'smpmaneth@gmail.com', '0000-00-00', 'Sisira,Attudawa,Palatuwa', 'kjdhf', 'General', '50', 'A', '', '', '18', 1, '2023-01-31 01:57:18'),
-(997, '2301A200001', 'Maneth', 'Pathirana', '0761535453', '20', 'smpmaneth@gmail.com', '2001-07-22', 'Sisira,Attudawa,Palatuwa', 'Developer', 'Academic', '90', 'A', '20001245789635', 'for fun', '18', 1, '2023-01-31 06:49:00'),
-(998, '2301A200001', 'Maneth', 'Pathirana', '0761535453', '20', 'smpmaneth@gmail.com', '2001-07-22', 'Sisira,Attudawa,Palatuwa', 'Developer', 'Academic', '90', 'A', '20001245789635', 'for fun', '18', 1, '2023-01-31 06:51:19'),
-(999, '2301A200001', 'Maneth', 'Pathirana', '0761535453', '20', 'smpmaneth@gmail.com', '2001-07-22', 'Sisira,Attudawa,Palatuwa', 'Developer', 'Academic', '90', 'A', '20001245789635', 'for fun', '18', 1, '2023-01-31 06:51:28'),
-(1000, '2301A200001', 'Maneth', 'Pathirana', '0761535453', '20', 'smpmaneth@gmail.com', '2001-07-22', 'Sisira,Attudawa,Palatuwa', 'Developer', 'Academic', '90', 'A', '20001245789635', 'for fun', '18', 1, '2023-01-31 06:51:39'),
-(1001, '2301A200001', 'Maneth', 'Pathirana', '0761535453', '20', 'smpmaneth@gmail.com', '2001-07-22', 'Sisira,Attudawa,Palatuwa', 'Developer', 'Academic', '90', 'A', '20001245789635', 'for fun', '18', 1, '2023-01-31 06:51:46'),
-(1002, '2301A200001', 'Maneth', 'Pathirana', '0761535453', '20', 'smpmaneth@gmail.com', '2001-07-22', 'Sisira,Attudawa,Palatuwa', 'Developer', 'Academic', '90', 'A', '20001245789635', 'for fun', '18', 1, '2023-01-31 06:51:58'),
-(1003, '2301A200001', 'Maneth', 'Pathirana', '0761535453', '20', 'smpmaneth@gmail.com', '2001-07-22', 'Sisira,Attudawa,Palatuwa', 'Developer', 'Academic', '90', 'A', '20001245789635', 'for fun', '18', 1, '2023-01-31 06:52:06'),
-(1004, '2301A200001', 'Maneth', 'Pathirana', '0761535453', '20', 'smpmaneth@gmail.com', '2001-07-22', 'Sisira,Attudawa,Palatuwa', 'Developer', 'Academic', '90', 'A', '20001245789635', 'for fun', '18', 1, '2023-01-31 06:52:13');
+INSERT INTO `students` (`id`, `student_reg_no`, `first_name`, `last_name`, `phone`, `bandscore`, `email`, `dob`, `address`, `occupation`, `ielts_course`, `expected_band_score`, `coursecode`, `passportNo`, `purpose`, `User_id`, `is_student`, `created_at`) VALUES
+(74, '2302EI400001', 'Maneth', 'Pathirana', '0761535453', '40', 'smpmaneth@gmail.com', '2023-01-30', 'Sisira,Attudawa', 'sagh', '1', '12', 'EI', '200120403150', 'just for fun', '18', 1, '2023-02-07 03:42:17');
 
 -- --------------------------------------------------------
 
@@ -4769,6 +4808,29 @@ INSERT INTO `student_attendences` (`id`, `student_session_id`, `biometric_attend
 (45, 677, 0, '2022-03-06', 1, '', NULL, 'no', '2022-03-06 03:22:08', NULL),
 (46, 651, 0, '2022-03-06', 3, 'test', NULL, 'no', '2022-03-06 03:23:02', NULL),
 (47, 657, 0, '2022-03-06', 1, '', NULL, 'no', '2022-03-06 03:22:08', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `student_course_slots`
+--
+
+CREATE TABLE `student_course_slots` (
+  `id` int(11) NOT NULL,
+  `student_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `course_slot_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `is_attended` tinyint(4) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `student_course_slots`
+--
+
+INSERT INTO `student_course_slots` (`id`, `student_id`, `course_slot_id`, `is_attended`, `created_at`) VALUES
+(30, '74', '27', 1, '2023-02-08 09:33:01'),
+(31, '74', '28', 1, '2023-02-08 09:23:55'),
+(32, '74', '29', 1, '2023-02-08 09:25:09');
 
 -- --------------------------------------------------------
 
@@ -5937,6 +5999,7 @@ CREATE TABLE `userlog` (
 --
 
 INSERT INTO `userlog` (`id`, `user`, `role`, `class_section_id`, `ipaddress`, `user_agent`, `login_datetime`) VALUES
+(0, 'smpmaneth@gmail.com', 'Super Admin', NULL, '::1', 'Chrome 109.0.0.0, Windows 10', '2023-02-05 16:54:48'),
 (1, 'ygcampus2020@gmail.com', 'Admin', NULL, '175.157.134.196', 'Chrome 103.0.0.0, Windows 10', '2022-07-12 18:34:38'),
 (2, 'jayanga.kandearachchi@gmail.com', 'Super Admin', NULL, '112.134.194.214', 'Chrome 103.0.0.0, Windows 10', '2022-07-12 20:54:29'),
 (3, 'ygcampus2020@gmail.com', 'Admin', NULL, '111.223.160.186', 'Chrome 103.0.0.0, Windows 10', '2022-07-19 18:03:58'),
@@ -5972,7 +6035,10 @@ INSERT INTO `userlog` (`id`, `user`, `role`, `class_section_id`, `ipaddress`, `u
 (33, 'smpmaneth@gmail.com', 'Super Admin', NULL, '::1', 'Chrome 109.0.0.0, Windows 10', '2023-01-27 04:42:48'),
 (34, 'smpmaneth@gmail.com', 'Super Admin', NULL, '::1', 'Chrome 109.0.0.0, Windows 10', '2023-01-31 00:12:10'),
 (35, 'smpmaneth@gmail.com', 'Super Admin', NULL, '::1', 'Chrome 109.0.0.0, Windows 10', '2023-01-31 00:28:02'),
-(36, 'smpmaneth@gmail.com', 'Super Admin', NULL, '::1', 'Chrome 109.0.0.0, Windows 10', '2023-01-31 05:43:15');
+(36, 'smpmaneth@gmail.com', 'Super Admin', NULL, '::1', 'Chrome 109.0.0.0, Windows 10', '2023-01-31 05:43:15'),
+(37, 'smpmaneth@gmail.com', 'Super Admin', NULL, '::1', 'Chrome 109.0.0.0, Windows 10', '2023-02-03 00:53:45'),
+(38, 'smpmaneth@gmail.com', 'Super Admin', NULL, '::1', 'Chrome 109.0.0.0, Windows 10', '2023-02-03 06:58:19'),
+(39, 'smpmaneth@gmail.com', 'Super Admin', NULL, '::1', 'Chrome 109.0.0.0, Windows 10', '2023-02-03 12:06:29');
 
 -- --------------------------------------------------------
 
@@ -5982,13 +6048,13 @@ INSERT INTO `userlog` (`id`, `user`, `role`, `class_section_id`, `ipaddress`, `u
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
-  `user_id` int(10) NOT NULL,
+  `user_id` varchar(255) NOT NULL,
   `username` varchar(50) DEFAULT NULL,
   `password` varchar(50) DEFAULT NULL,
   `childs` text NOT NULL,
   `role` varchar(30) NOT NULL,
   `verification_code` varchar(200) NOT NULL,
-  `lang_id` int(11) NOT NULL,
+  `lang_id` varchar(255) NOT NULL,
   `is_active` varchar(255) DEFAULT 'yes',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` date DEFAULT NULL
@@ -5999,69 +6065,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `user_id`, `username`, `password`, `childs`, `role`, `verification_code`, `lang_id`, `is_active`, `created_at`, `updated_at`) VALUES
-(1861, 940, '2301A200001', 'zsc7vnwb', '', 'student', '', 0, 'yes', '2023-01-31 00:35:49', NULL),
-(1862, 941, '2301A200002', 'b4zw8m8s', '', 'student', '', 0, 'yes', '2023-01-31 00:40:16', NULL),
-(1863, 942, '2301A200002', 'nw9sah7v', '', 'student', '', 0, 'yes', '2023-01-31 00:41:24', NULL),
-(1864, 943, '2301A200002', 'kdmc30vi', '', 'student', '', 0, 'yes', '2023-01-31 00:41:56', NULL),
-(1865, 944, '2301A200002', 'u3sspkx7', '', 'student', '', 0, 'yes', '2023-01-31 00:45:30', NULL),
-(1866, 945, '2301A200002', 'zgvlnt8k', '', 'student', '', 0, 'yes', '2023-01-31 00:46:49', NULL),
-(1867, 946, '2301A200002', 'x8nibldm', '', 'student', '', 0, 'yes', '2023-01-31 00:49:48', NULL),
-(1868, 947, '2301A200002', 'us28uhj9', '', 'student', '', 0, 'yes', '2023-01-31 00:58:12', NULL),
-(1869, 948, '2301A200002', '6ch6bkm4', '', 'student', '', 0, 'yes', '2023-01-31 00:59:10', NULL),
-(1870, 949, '2301A200002', '87mo6kt1', '', 'student', '', 0, 'yes', '2023-01-31 00:59:47', NULL),
-(1871, 950, '2301A200002', 'izchj4cq', '', 'student', '', 0, 'yes', '2023-01-31 01:00:45', NULL),
-(1872, 951, '2301A200002', 'ptuarmil', '', 'student', '', 0, 'yes', '2023-01-31 01:00:52', NULL),
-(1873, 952, '2301A200002', 'a1fbvncf', '', 'student', '', 0, 'yes', '2023-01-31 01:01:03', NULL),
-(1874, 953, '2301A200002', 'ux9arszg', '', 'student', '', 0, 'yes', '2023-01-31 01:01:28', NULL),
-(1875, 954, '2301A200002', 'pi213060', '', 'student', '', 0, 'yes', '2023-01-31 01:07:34', NULL),
-(1876, 955, '2301A200002', 'cp0dxatz', '', 'student', '', 0, 'yes', '2023-01-31 01:14:12', NULL),
-(1877, 956, '2301A200002', 'f80uplfg', '', 'student', '', 0, 'yes', '2023-01-31 01:14:28', NULL),
-(1878, 957, '2301A200002', '37hcnyly', '', 'student', '', 0, 'yes', '2023-01-31 01:14:43', NULL),
-(1879, 958, '2301A200002', '2te41vai', '', 'student', '', 0, 'yes', '2023-01-31 01:14:50', NULL),
-(1880, 959, '2301A200002', 'y0fq0hf1', '', 'student', '', 0, 'yes', '2023-01-31 01:15:36', NULL),
-(1881, 960, '2301A200002', 'i2q3ixc4', '', 'student', '', 0, 'yes', '2023-01-31 01:16:27', NULL),
-(1882, 961, '2301A200002', 'gwt6a1t3', '', 'student', '', 0, 'yes', '2023-01-31 01:17:14', NULL),
-(1883, 962, '2301A200002', 'fiykgw7g', '', 'student', '', 0, 'yes', '2023-01-31 01:17:56', NULL),
-(1884, 963, '2301A200002', 'c2x7uvqh', '', 'student', '', 0, 'yes', '2023-01-31 01:18:13', NULL),
-(1885, 964, '2301A200002', 'p2f1j95l', '', 'student', '', 0, 'yes', '2023-01-31 01:18:21', NULL),
-(1886, 965, '2301A200002', 'rwm4r0gu', '', 'student', '', 0, 'yes', '2023-01-31 01:18:40', NULL),
-(1887, 966, '2301A200002', 'q3qpohh2', '', 'student', '', 0, 'yes', '2023-01-31 01:19:40', NULL),
-(1888, 967, '2301A200002', '0mpzhd93', '', 'student', '', 0, 'yes', '2023-01-31 01:19:51', NULL),
-(1889, 968, '2301A200002', 'wbu3o9nh', '', 'student', '', 0, 'yes', '2023-01-31 01:20:03', NULL),
-(1890, 969, '2301A200002', 'nid0ko18', '', 'student', '', 0, 'yes', '2023-01-31 01:20:24', NULL),
-(1891, 970, '2301A200002', 'f7b5tef1', '', 'student', '', 0, 'yes', '2023-01-31 01:20:36', NULL),
-(1892, 971, '2301A200002', 'tt5wphnr', '', 'student', '', 0, 'yes', '2023-01-31 01:20:50', NULL),
-(1893, 972, '2301A200002', 'jjmgz5nz', '', 'student', '', 0, 'yes', '2023-01-31 01:22:32', NULL),
-(1894, 973, '2301A200002', 'mzrhuae8', '', 'student', '', 0, 'yes', '2023-01-31 01:22:41', NULL),
-(1895, 974, '2301A200002', 'xj7et6oz', '', 'student', '', 0, 'yes', '2023-01-31 01:23:00', NULL),
-(1896, 975, '2301A200002', 'uqz3vda9', '', 'student', '', 0, 'yes', '2023-01-31 01:23:11', NULL),
-(1897, 976, '2301A200002', 'jvu5eu94', '', 'student', '', 0, 'yes', '2023-01-31 01:23:46', NULL),
-(1898, 977, '2301A200002', '214p66jn', '', 'student', '', 0, 'yes', '2023-01-31 01:23:59', NULL),
-(1899, 978, '2301A200002', '7vipeln8', '', 'student', '', 0, 'yes', '2023-01-31 01:24:08', NULL),
-(1900, 979, '2301A200002', 'l3qi5mg3', '', 'student', '', 0, 'yes', '2023-01-31 01:25:33', NULL),
-(1901, 980, '2301A200002', 'zihw7cb0', '', 'student', '', 0, 'yes', '2023-01-31 01:26:14', NULL),
-(1902, 981, '2301A200002', 'p7ccbzqc', '', 'student', '', 0, 'yes', '2023-01-31 01:26:26', NULL),
-(1903, 982, '2301A200002', 'txfclvdf', '', 'student', '', 0, 'yes', '2023-01-31 01:26:30', NULL),
-(1904, 983, '2301A200002', 'e1ezdsrg', '', 'student', '', 0, 'yes', '2023-01-31 01:26:33', NULL),
-(1905, 984, '2301A200002', '8dh01mef', '', 'student', '', 0, 'yes', '2023-01-31 01:26:37', NULL),
-(1906, 985, '2301A200002', 'yl4dymmx', '', 'student', '', 0, 'yes', '2023-01-31 01:27:31', NULL),
-(1907, 986, '2301A200002', 'xsldc7zp', '', 'student', '', 0, 'yes', '2023-01-31 01:28:29', NULL),
-(1908, 987, '2301A200002', 'br8z60tp', '', 'student', '', 0, 'yes', '2023-01-31 01:28:39', NULL),
-(1909, 988, '2301A200002', '6wuedj3p', '', 'student', '', 0, 'yes', '2023-01-31 01:28:51', NULL),
-(1910, 989, '2301A200002', 'dqn9gmrz', '', 'student', '', 0, 'yes', '2023-01-31 01:29:13', NULL),
-(1911, 990, '2301A200002', 'zoovoad1', '', 'student', '', 0, 'yes', '2023-01-31 01:29:27', NULL),
-(1912, 991, '2301A200002', 'gamoydx2', '', 'student', '', 0, 'yes', '2023-01-31 01:33:12', NULL),
-(1913, 992, '2301A200002', 'lzd1nko9', '', 'student', '', 0, 'yes', '2023-01-31 01:35:10', NULL),
-(1914, 993, '2301A200002', 'db9m53un', '', 'student', '', 0, 'yes', '2023-01-31 01:35:44', NULL),
-(1915, 994, '2301A200002', 'oo6jesb8', '', 'student', '', 0, 'yes', '2023-01-31 01:36:31', NULL),
-(1916, 995, '2301A200002', '7izq9v3w', '', 'student', '', 0, 'yes', '2023-01-31 01:56:50', NULL),
-(1917, 996, '2301A200002', '7hm4kzbl', '', 'student', '', 0, 'yes', '2023-01-31 01:57:18', NULL),
-(1918, 997, '2301A200001', 'awrk7czw', '', 'student', '', 0, 'yes', '2023-01-31 06:49:00', NULL),
-(1919, 1000, '2301A200001', '2hgcyltn', '', 'student', '', 0, 'yes', '2023-01-31 06:51:39', NULL),
-(1920, 1001, '2301A200001', 'burar1ng', '', 'student', '', 0, 'yes', '2023-01-31 06:51:46', NULL),
-(1921, 1002, '2301A200001', 'inca5u5g', '', 'student', '', 0, 'yes', '2023-01-31 06:51:58', NULL),
-(1922, 1003, '2301A200001', 'w77c2xe9', '', 'student', '', 0, 'yes', '2023-01-31 06:52:06', NULL),
-(1923, 1004, '2301A200001', 'elma2f7w', '', 'student', '', 0, 'yes', '2023-01-31 06:52:13', NULL);
+(9, '1', '001', '001', '', 'student', '', '4', 'yes', '2023-02-07 02:36:59', NULL),
+(37, '74', '2302EI400001', '55brqf6y', '', 'student', '', '4', 'yes', '2023-02-07 03:42:17', NULL);
 
 -- --------------------------------------------------------
 
@@ -6281,6 +6286,12 @@ ALTER TABLE `content_for`
   ADD PRIMARY KEY (`id`),
   ADD KEY `content_id` (`content_id`),
   ADD KEY `user_id` (`user_id`);
+
+--
+-- Indexes for table `course_slots`
+--
+ALTER TABLE `course_slots`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `custom_fields`
@@ -7004,6 +7015,12 @@ ALTER TABLE `student_attendences`
   ADD KEY `attendence_type_id` (`attendence_type_id`);
 
 --
+-- Indexes for table `student_course_slots`
+--
+ALTER TABLE `student_course_slots`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `student_doc`
 --
 ALTER TABLE `student_doc`
@@ -7299,13 +7316,13 @@ ALTER TABLE `chat_users`
 -- AUTO_INCREMENT for table `classes`
 --
 ALTER TABLE `classes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
 
 --
 -- AUTO_INCREMENT for table `class_sections`
 --
 ALTER TABLE `class_sections`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
 
 --
 -- AUTO_INCREMENT for table `class_teacher`
@@ -7336,6 +7353,12 @@ ALTER TABLE `contents`
 --
 ALTER TABLE `content_for`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `course_slots`
+--
+ALTER TABLE `course_slots`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT for table `custom_fields`
@@ -7428,1066 +7451,34 @@ ALTER TABLE `exam_group_exam_connections`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `exam_group_exam_results`
---
-ALTER TABLE `exam_group_exam_results`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `exam_group_students`
---
-ALTER TABLE `exam_group_students`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `exam_results`
---
-ALTER TABLE `exam_results`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `exam_schedules`
---
-ALTER TABLE `exam_schedules`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `expenses`
---
-ALTER TABLE `expenses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `expense_head`
---
-ALTER TABLE `expense_head`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `feecategory`
---
-ALTER TABLE `feecategory`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `feemasters`
---
-ALTER TABLE `feemasters`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `fees_discounts`
---
-ALTER TABLE `fees_discounts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT for table `fees_reminder`
---
-ALTER TABLE `fees_reminder`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `feetype`
---
-ALTER TABLE `feetype`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
-
---
--- AUTO_INCREMENT for table `fee_groups`
---
-ALTER TABLE `fee_groups`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
-
---
--- AUTO_INCREMENT for table `fee_groups_feetype`
---
-ALTER TABLE `fee_groups_feetype`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
-
---
--- AUTO_INCREMENT for table `fee_receipt_no`
---
-ALTER TABLE `fee_receipt_no`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `fee_session_groups`
---
-ALTER TABLE `fee_session_groups`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
-
---
--- AUTO_INCREMENT for table `filetypes`
---
-ALTER TABLE `filetypes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `follow_up`
---
-ALTER TABLE `follow_up`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `front_cms_media_gallery`
---
-ALTER TABLE `front_cms_media_gallery`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `front_cms_menus`
---
-ALTER TABLE `front_cms_menus`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `front_cms_menu_items`
---
-ALTER TABLE `front_cms_menu_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `front_cms_pages`
---
-ALTER TABLE `front_cms_pages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `front_cms_page_contents`
---
-ALTER TABLE `front_cms_page_contents`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `front_cms_programs`
---
-ALTER TABLE `front_cms_programs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `front_cms_program_photos`
---
-ALTER TABLE `front_cms_program_photos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `front_cms_settings`
---
-ALTER TABLE `front_cms_settings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `general_calls`
---
-ALTER TABLE `general_calls`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `grades`
---
-ALTER TABLE `grades`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `homework`
---
-ALTER TABLE `homework`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `homework_evaluation`
---
-ALTER TABLE `homework_evaluation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `hostel`
---
-ALTER TABLE `hostel`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `hostel_rooms`
---
-ALTER TABLE `hostel_rooms`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `id_card`
---
-ALTER TABLE `id_card`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `income`
---
-ALTER TABLE `income`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `income_head`
---
-ALTER TABLE `income_head`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `item`
---
-ALTER TABLE `item`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `item_category`
---
-ALTER TABLE `item_category`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `item_issue`
---
-ALTER TABLE `item_issue`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `item_stock`
---
-ALTER TABLE `item_stock`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `item_store`
---
-ALTER TABLE `item_store`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `item_supplier`
---
-ALTER TABLE `item_supplier`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `languages`
---
-ALTER TABLE `languages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
-
---
 -- AUTO_INCREMENT for table `leads`
 --
 ALTER TABLE `leads`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
-
---
--- AUTO_INCREMENT for table `leave_types`
---
-ALTER TABLE `leave_types`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `lesson`
---
-ALTER TABLE `lesson`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `libarary_members`
---
-ALTER TABLE `libarary_members`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `logs`
---
-ALTER TABLE `logs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=318;
-
---
--- AUTO_INCREMENT for table `messages`
---
-ALTER TABLE `messages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT for table `multi_class_students`
---
-ALTER TABLE `multi_class_students`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `notification_roles`
---
-ALTER TABLE `notification_roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `notification_setting`
---
-ALTER TABLE `notification_setting`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
---
--- AUTO_INCREMENT for table `onlineexam`
---
-ALTER TABLE `onlineexam`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `onlineexam_attempts`
---
-ALTER TABLE `onlineexam_attempts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `onlineexam_questions`
---
-ALTER TABLE `onlineexam_questions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `onlineexam_students`
---
-ALTER TABLE `onlineexam_students`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `onlineexam_student_results`
---
-ALTER TABLE `onlineexam_student_results`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `online_admissions`
---
-ALTER TABLE `online_admissions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `online_admission_fields`
---
-ALTER TABLE `online_admission_fields`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
-
---
--- AUTO_INCREMENT for table `online_admission_payment`
---
-ALTER TABLE `online_admission_payment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `payment_settings`
---
-ALTER TABLE `payment_settings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `payslip_allowance`
---
-ALTER TABLE `payslip_allowance`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `permission_category`
---
-ALTER TABLE `permission_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=250;
-
---
--- AUTO_INCREMENT for table `permission_group`
---
-ALTER TABLE `permission_group`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
-
---
--- AUTO_INCREMENT for table `permission_student`
---
-ALTER TABLE `permission_student`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
-
---
--- AUTO_INCREMENT for table `print_headerfooter`
---
-ALTER TABLE `print_headerfooter`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `questions`
---
-ALTER TABLE `questions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `question_answers`
---
-ALTER TABLE `question_answers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `question_options`
---
-ALTER TABLE `question_options`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `read_notification`
---
-ALTER TABLE `read_notification`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `reference`
---
-ALTER TABLE `reference`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `roles`
---
-ALTER TABLE `roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT for table `roles_permissions`
---
-ALTER TABLE `roles_permissions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1682;
-
---
--- AUTO_INCREMENT for table `room_types`
---
-ALTER TABLE `room_types`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `school_houses`
---
-ALTER TABLE `school_houses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `sections`
 --
 ALTER TABLE `sections`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
---
--- AUTO_INCREMENT for table `send_notification`
---
-ALTER TABLE `send_notification`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `sessions`
---
-ALTER TABLE `sessions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
-
---
--- AUTO_INCREMENT for table `sms_config`
---
-ALTER TABLE `sms_config`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `source`
---
-ALTER TABLE `source`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT for table `staff`
---
-ALTER TABLE `staff`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
-
---
--- AUTO_INCREMENT for table `staff_attendance`
---
-ALTER TABLE `staff_attendance`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `staff_attendance_type`
---
-ALTER TABLE `staff_attendance_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `staff_designation`
---
-ALTER TABLE `staff_designation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
---
--- AUTO_INCREMENT for table `staff_id_card`
---
-ALTER TABLE `staff_id_card`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `staff_leave_details`
---
-ALTER TABLE `staff_leave_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `staff_leave_request`
---
-ALTER TABLE `staff_leave_request`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `staff_payroll`
---
-ALTER TABLE `staff_payroll`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `staff_payslip`
---
-ALTER TABLE `staff_payslip`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `staff_rating`
---
-ALTER TABLE `staff_rating`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `staff_roles`
---
-ALTER TABLE `staff_roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
-
---
--- AUTO_INCREMENT for table `staff_timeline`
---
-ALTER TABLE `staff_timeline`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1005;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
--- AUTO_INCREMENT for table `student_applyleave`
+-- AUTO_INCREMENT for table `student_course_slots`
 --
-ALTER TABLE `student_applyleave`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `student_attendences`
---
-ALTER TABLE `student_attendences`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
-
---
--- AUTO_INCREMENT for table `student_doc`
---
-ALTER TABLE `student_doc`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
-
---
--- AUTO_INCREMENT for table `student_edit_fields`
---
-ALTER TABLE `student_edit_fields`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `student_fees`
---
-ALTER TABLE `student_fees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `student_fees_deposite`
---
-ALTER TABLE `student_fees_deposite`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
-
---
--- AUTO_INCREMENT for table `student_fees_discounts`
---
-ALTER TABLE `student_fees_discounts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
-
---
--- AUTO_INCREMENT for table `student_fees_master`
---
-ALTER TABLE `student_fees_master`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=539;
-
---
--- AUTO_INCREMENT for table `student_session`
---
-ALTER TABLE `student_session`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=960;
-
---
--- AUTO_INCREMENT for table `student_sibling`
---
-ALTER TABLE `student_sibling`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `student_subject_attendances`
---
-ALTER TABLE `student_subject_attendances`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `student_timeline`
---
-ALTER TABLE `student_timeline`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `subjects`
---
-ALTER TABLE `subjects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `subject_groups`
---
-ALTER TABLE `subject_groups`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `subject_group_class_sections`
---
-ALTER TABLE `subject_group_class_sections`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `subject_group_subjects`
---
-ALTER TABLE `subject_group_subjects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `subject_syllabus`
---
-ALTER TABLE `subject_syllabus`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `subject_timetable`
---
-ALTER TABLE `subject_timetable`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `submit_assignment`
---
-ALTER TABLE `submit_assignment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `teacher_subjects`
---
-ALTER TABLE `teacher_subjects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `template_admitcards`
---
-ALTER TABLE `template_admitcards`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `template_marksheets`
---
-ALTER TABLE `template_marksheets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `timetables`
---
-ALTER TABLE `timetables`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `topic`
---
-ALTER TABLE `topic`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `transport_route`
---
-ALTER TABLE `transport_route`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `userlog`
---
-ALTER TABLE `userlog`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+ALTER TABLE `student_course_slots`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1924;
-
---
--- AUTO_INCREMENT for table `users_authentication`
---
-ALTER TABLE `users_authentication`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `vehicles`
---
-ALTER TABLE `vehicles`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `vehicle_routes`
---
-ALTER TABLE `vehicle_routes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `visitors_book`
---
-ALTER TABLE `visitors_book`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `visitors_purpose`
---
-ALTER TABLE `visitors_purpose`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `alumni_students`
---
-ALTER TABLE `alumni_students`
-  ADD CONSTRAINT `alumni_students_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `chat_connections`
---
-ALTER TABLE `chat_connections`
-  ADD CONSTRAINT `chat_connections_ibfk_1` FOREIGN KEY (`chat_user_one`) REFERENCES `chat_users` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `chat_connections_ibfk_2` FOREIGN KEY (`chat_user_two`) REFERENCES `chat_users` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `chat_messages`
---
-ALTER TABLE `chat_messages`
-  ADD CONSTRAINT `chat_messages_ibfk_1` FOREIGN KEY (`chat_user_id`) REFERENCES `chat_users` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `chat_messages_ibfk_2` FOREIGN KEY (`chat_connection_id`) REFERENCES `chat_connections` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `chat_users`
---
-ALTER TABLE `chat_users`
-  ADD CONSTRAINT `chat_users_ibfk_1` FOREIGN KEY (`staff_id`) REFERENCES `staff` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `chat_users_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `chat_users_ibfk_3` FOREIGN KEY (`create_staff_id`) REFERENCES `staff` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `chat_users_ibfk_4` FOREIGN KEY (`create_student_id`) REFERENCES `students` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `content_for`
---
-ALTER TABLE `content_for`
-  ADD CONSTRAINT `content_for_ibfk_1` FOREIGN KEY (`content_id`) REFERENCES `contents` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `content_for_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `custom_field_values`
---
-ALTER TABLE `custom_field_values`
-  ADD CONSTRAINT `custom_field_values_ibfk_1` FOREIGN KEY (`custom_field_id`) REFERENCES `custom_fields` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `exam_group_class_batch_exams`
---
-ALTER TABLE `exam_group_class_batch_exams`
-  ADD CONSTRAINT `exam_group_class_batch_exams_ibfk_1` FOREIGN KEY (`exam_group_id`) REFERENCES `exam_groups` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `exam_group_class_batch_exam_students`
---
-ALTER TABLE `exam_group_class_batch_exam_students`
-  ADD CONSTRAINT `exam_group_class_batch_exam_students_ibfk_1` FOREIGN KEY (`exam_group_class_batch_exam_id`) REFERENCES `exam_group_class_batch_exams` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `exam_group_class_batch_exam_students_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `exam_group_class_batch_exam_students_ibfk_3` FOREIGN KEY (`student_session_id`) REFERENCES `student_session` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `exam_group_class_batch_exam_subjects`
---
-ALTER TABLE `exam_group_class_batch_exam_subjects`
-  ADD CONSTRAINT `exam_group_class_batch_exam_subjects_ibfk_1` FOREIGN KEY (`exam_group_class_batch_exams_id`) REFERENCES `exam_group_class_batch_exams` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `exam_group_class_batch_exam_subjects_ibfk_2` FOREIGN KEY (`subject_id`) REFERENCES `subjects` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `exam_group_exam_connections`
---
-ALTER TABLE `exam_group_exam_connections`
-  ADD CONSTRAINT `exam_group_exam_connections_ibfk_1` FOREIGN KEY (`exam_group_id`) REFERENCES `exam_groups` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `exam_group_exam_connections_ibfk_2` FOREIGN KEY (`exam_group_class_batch_exams_id`) REFERENCES `exam_group_class_batch_exams` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `exam_group_exam_results`
---
-ALTER TABLE `exam_group_exam_results`
-  ADD CONSTRAINT `exam_group_exam_results_ibfk_1` FOREIGN KEY (`exam_group_class_batch_exam_subject_id`) REFERENCES `exam_group_class_batch_exam_subjects` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `exam_group_exam_results_ibfk_2` FOREIGN KEY (`exam_group_student_id`) REFERENCES `exam_group_students` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `exam_group_exam_results_ibfk_3` FOREIGN KEY (`exam_group_class_batch_exam_student_id`) REFERENCES `exam_group_class_batch_exam_students` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `exam_group_students`
---
-ALTER TABLE `exam_group_students`
-  ADD CONSTRAINT `exam_group_students_ibfk_1` FOREIGN KEY (`exam_group_id`) REFERENCES `exam_groups` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `exam_group_students_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `fees_discounts`
---
-ALTER TABLE `fees_discounts`
-  ADD CONSTRAINT `fees_discounts_ibfk_1` FOREIGN KEY (`session_id`) REFERENCES `sessions` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `fee_groups_feetype`
---
-ALTER TABLE `fee_groups_feetype`
-  ADD CONSTRAINT `fee_groups_feetype_ibfk_1` FOREIGN KEY (`fee_session_group_id`) REFERENCES `fee_session_groups` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fee_groups_feetype_ibfk_2` FOREIGN KEY (`fee_groups_id`) REFERENCES `fee_groups` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fee_groups_feetype_ibfk_3` FOREIGN KEY (`feetype_id`) REFERENCES `feetype` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fee_groups_feetype_ibfk_4` FOREIGN KEY (`session_id`) REFERENCES `sessions` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `fee_session_groups`
---
-ALTER TABLE `fee_session_groups`
-  ADD CONSTRAINT `fee_session_groups_ibfk_1` FOREIGN KEY (`fee_groups_id`) REFERENCES `fee_groups` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fee_session_groups_ibfk_2` FOREIGN KEY (`session_id`) REFERENCES `sessions` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `front_cms_page_contents`
---
-ALTER TABLE `front_cms_page_contents`
-  ADD CONSTRAINT `front_cms_page_contents_ibfk_1` FOREIGN KEY (`page_id`) REFERENCES `front_cms_pages` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `front_cms_program_photos`
---
-ALTER TABLE `front_cms_program_photos`
-  ADD CONSTRAINT `front_cms_program_photos_ibfk_1` FOREIGN KEY (`program_id`) REFERENCES `front_cms_programs` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `homework`
---
-ALTER TABLE `homework`
-  ADD CONSTRAINT `homework_ibfk_1` FOREIGN KEY (`subject_group_subject_id`) REFERENCES `subject_group_subjects` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `item_issue`
---
-ALTER TABLE `item_issue`
-  ADD CONSTRAINT `item_issue_ibfk_1` FOREIGN KEY (`item_id`) REFERENCES `item` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `item_issue_ibfk_2` FOREIGN KEY (`item_category_id`) REFERENCES `item_category` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `item_stock`
---
-ALTER TABLE `item_stock`
-  ADD CONSTRAINT `item_stock_ibfk_1` FOREIGN KEY (`item_id`) REFERENCES `item` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `item_stock_ibfk_2` FOREIGN KEY (`supplier_id`) REFERENCES `item_supplier` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `item_stock_ibfk_3` FOREIGN KEY (`store_id`) REFERENCES `item_store` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `lesson`
---
-ALTER TABLE `lesson`
-  ADD CONSTRAINT `lesson_ibfk_1` FOREIGN KEY (`session_id`) REFERENCES `sessions` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `lesson_ibfk_2` FOREIGN KEY (`subject_group_subject_id`) REFERENCES `subject_group_subjects` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `lesson_ibfk_3` FOREIGN KEY (`subject_group_class_sections_id`) REFERENCES `subject_group_class_sections` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `multi_class_students`
---
-ALTER TABLE `multi_class_students`
-  ADD CONSTRAINT `multi_class_students_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `multi_class_students_ibfk_2` FOREIGN KEY (`student_session_id`) REFERENCES `student_session` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `notification_roles`
---
-ALTER TABLE `notification_roles`
-  ADD CONSTRAINT `notification_roles_ibfk_1` FOREIGN KEY (`send_notification_id`) REFERENCES `send_notification` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `notification_roles_ibfk_2` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `onlineexam`
---
-ALTER TABLE `onlineexam`
-  ADD CONSTRAINT `onlineexam_ibfk_1` FOREIGN KEY (`session_id`) REFERENCES `sessions` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `onlineexam_attempts`
---
-ALTER TABLE `onlineexam_attempts`
-  ADD CONSTRAINT `onlineexam_attempts_ibfk_1` FOREIGN KEY (`onlineexam_student_id`) REFERENCES `onlineexam_students` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `onlineexam_questions`
---
-ALTER TABLE `onlineexam_questions`
-  ADD CONSTRAINT `onlineexam_questions_ibfk_1` FOREIGN KEY (`onlineexam_id`) REFERENCES `onlineexam` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `onlineexam_questions_ibfk_2` FOREIGN KEY (`question_id`) REFERENCES `questions` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `onlineexam_questions_ibfk_3` FOREIGN KEY (`session_id`) REFERENCES `sessions` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `onlineexam_students`
---
-ALTER TABLE `onlineexam_students`
-  ADD CONSTRAINT `onlineexam_students_ibfk_1` FOREIGN KEY (`onlineexam_id`) REFERENCES `onlineexam` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `onlineexam_students_ibfk_2` FOREIGN KEY (`student_session_id`) REFERENCES `student_session` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `onlineexam_student_results`
---
-ALTER TABLE `onlineexam_student_results`
-  ADD CONSTRAINT `onlineexam_student_results_ibfk_1` FOREIGN KEY (`onlineexam_student_id`) REFERENCES `onlineexam_students` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `onlineexam_student_results_ibfk_2` FOREIGN KEY (`onlineexam_question_id`) REFERENCES `onlineexam_questions` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `online_admissions`
---
-ALTER TABLE `online_admissions`
-  ADD CONSTRAINT `online_admissions_ibfk_1` FOREIGN KEY (`class_section_id`) REFERENCES `class_sections` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `questions`
---
-ALTER TABLE `questions`
-  ADD CONSTRAINT `questions_ibfk_1` FOREIGN KEY (`subject_id`) REFERENCES `subjects` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `staff_attendance`
---
-ALTER TABLE `staff_attendance`
-  ADD CONSTRAINT `FK_staff_attendance_staff` FOREIGN KEY (`staff_id`) REFERENCES `staff` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `FK_staff_attendance_staff_attendance_type` FOREIGN KEY (`staff_attendance_type_id`) REFERENCES `staff_attendance_type` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `staff_leave_details`
---
-ALTER TABLE `staff_leave_details`
-  ADD CONSTRAINT `FK_staff_leave_details_leave_types` FOREIGN KEY (`leave_type_id`) REFERENCES `leave_types` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `FK_staff_leave_details_staff` FOREIGN KEY (`staff_id`) REFERENCES `staff` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `staff_leave_request`
---
-ALTER TABLE `staff_leave_request`
-  ADD CONSTRAINT `FK_staff_leave_request_leave_types` FOREIGN KEY (`leave_type_id`) REFERENCES `leave_types` (`id`),
-  ADD CONSTRAINT `FK_staff_leave_request_staff` FOREIGN KEY (`staff_id`) REFERENCES `staff` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `staff_payslip`
---
-ALTER TABLE `staff_payslip`
-  ADD CONSTRAINT `FK_staff_payslip_staff` FOREIGN KEY (`staff_id`) REFERENCES `staff` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `staff_rating`
---
-ALTER TABLE `staff_rating`
-  ADD CONSTRAINT `FK_staff_rating_staff` FOREIGN KEY (`staff_id`) REFERENCES `staff` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `staff_roles`
---
-ALTER TABLE `staff_roles`
-  ADD CONSTRAINT `FK_staff_roles_roles` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `FK_staff_roles_staff` FOREIGN KEY (`staff_id`) REFERENCES `staff` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `staff_timeline`
---
-ALTER TABLE `staff_timeline`
-  ADD CONSTRAINT `FK_staff_timeline_staff` FOREIGN KEY (`staff_id`) REFERENCES `staff` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `student_session`
---
-ALTER TABLE `student_session`
-  ADD CONSTRAINT `student_session_ibfk_1` FOREIGN KEY (`session_id`) REFERENCES `sessions` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `student_session_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `student_session_ibfk_3` FOREIGN KEY (`class_id`) REFERENCES `classes` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `student_session_ibfk_4` FOREIGN KEY (`section_id`) REFERENCES `sections` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `student_subject_attendances`
---
-ALTER TABLE `student_subject_attendances`
-  ADD CONSTRAINT `student_subject_attendances_ibfk_1` FOREIGN KEY (`attendence_type_id`) REFERENCES `attendence_type` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `student_subject_attendances_ibfk_2` FOREIGN KEY (`student_session_id`) REFERENCES `student_session` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `student_subject_attendances_ibfk_3` FOREIGN KEY (`subject_timetable_id`) REFERENCES `subject_timetable` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `subject_groups`
---
-ALTER TABLE `subject_groups`
-  ADD CONSTRAINT `subject_groups_ibfk_1` FOREIGN KEY (`session_id`) REFERENCES `sessions` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `subject_group_class_sections`
---
-ALTER TABLE `subject_group_class_sections`
-  ADD CONSTRAINT `subject_group_class_sections_ibfk_1` FOREIGN KEY (`class_section_id`) REFERENCES `class_sections` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `subject_group_class_sections_ibfk_2` FOREIGN KEY (`subject_group_id`) REFERENCES `subject_groups` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `subject_group_class_sections_ibfk_3` FOREIGN KEY (`session_id`) REFERENCES `sessions` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `subject_group_subjects`
---
-ALTER TABLE `subject_group_subjects`
-  ADD CONSTRAINT `subject_group_subjects_ibfk_1` FOREIGN KEY (`subject_group_id`) REFERENCES `subject_groups` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `subject_group_subjects_ibfk_2` FOREIGN KEY (`session_id`) REFERENCES `sessions` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `subject_group_subjects_ibfk_3` FOREIGN KEY (`subject_id`) REFERENCES `subjects` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `subject_syllabus`
---
-ALTER TABLE `subject_syllabus`
-  ADD CONSTRAINT `subject_syllabus_ibfk_1` FOREIGN KEY (`topic_id`) REFERENCES `topic` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `subject_syllabus_ibfk_2` FOREIGN KEY (`session_id`) REFERENCES `sessions` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `subject_syllabus_ibfk_3` FOREIGN KEY (`created_by`) REFERENCES `staff` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `subject_syllabus_ibfk_4` FOREIGN KEY (`created_for`) REFERENCES `staff` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `subject_timetable`
---
-ALTER TABLE `subject_timetable`
-  ADD CONSTRAINT `subject_timetable_ibfk_1` FOREIGN KEY (`class_id`) REFERENCES `classes` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `subject_timetable_ibfk_2` FOREIGN KEY (`section_id`) REFERENCES `sections` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `subject_timetable_ibfk_3` FOREIGN KEY (`subject_group_id`) REFERENCES `subject_groups` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `subject_timetable_ibfk_4` FOREIGN KEY (`subject_group_subject_id`) REFERENCES `subject_group_subjects` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `subject_timetable_ibfk_5` FOREIGN KEY (`staff_id`) REFERENCES `staff` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `subject_timetable_ibfk_6` FOREIGN KEY (`session_id`) REFERENCES `sessions` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `topic`
---
-ALTER TABLE `topic`
-  ADD CONSTRAINT `topic_ibfk_1` FOREIGN KEY (`session_id`) REFERENCES `sessions` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `topic_ibfk_2` FOREIGN KEY (`lesson_id`) REFERENCES `lesson` (`id`) ON DELETE CASCADE;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
