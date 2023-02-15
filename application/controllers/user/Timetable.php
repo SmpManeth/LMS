@@ -16,9 +16,10 @@ class Timetable extends Student_Controller
 
     public function __construct()
     {
+       
+        parent::__construct();
         echo "<pre>", print_r($student_id, true), "</pre>";
         die();
-        parent::__construct();
         $this->CI          = &get_instance();
 
         $this->load->model("Course_slots_model");
