@@ -213,17 +213,19 @@
                                                     display: block;
                                                     margin-bottom: 5px;
                                                 }
-                                                .course_slots_div-label{
+
+                                                .course_slots_div-label {
                                                     font-weight: 600;
                                                 }
-                                                hr{
-                                                    border: 1px solid #c6c6c6 ;
+
+                                                hr {
+                                                    border: 1px solid #c6c6c6;
                                                     font-size: 5px;
                                                 }
                                             </style>
                                         </div>
 
-                                         <!-- Course Slots  -->
+                                        <!-- Course Slots  -->
                                         <div class="row">
                                             <div class="box-body">
                                                 <div class="col-md-4 course_slots_div">
