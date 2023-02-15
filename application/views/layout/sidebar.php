@@ -222,7 +222,6 @@
 
 
 
-                                <li class="<?php echo set_Submenu('onlinestudent'); ?>"><a href="<?php echo site_url('admin/onlinestudent'); ?>"><i class="fa fa-angle-double-right"></i> <?php echo $this->lang->line('online') . " " . $this->lang->line('admission'); ?></a></li>
 
 
 
@@ -237,7 +236,6 @@
 
                             ?>
 
-                            <li class="<?php echo set_Submenu('student/disablestudentslist'); ?>"><a href="<?php echo base_url(); ?>student/disablestudentslist"><i class="fa fa-angle-double-right"></i> <?php echo $this->lang->line('disabled_students'); ?></a></li>
 
                             <?php
 
@@ -249,7 +247,6 @@
 
                             ?>
 
-                                <li class="<?php echo set_Submenu('student/multiclass'); ?>"><a href="<?php echo base_url(); ?>student/multiclass"><i class="fa fa-angle-double-right"></i> <?php echo $this->lang->line('multiclass') . " " . $this->lang->line('student'); ?></a></li>
 
                             <?php
 
@@ -260,7 +257,6 @@
 
                             ?>
 
-                            <li class="<?php echo set_Submenu('bulkdelete'); ?>"><a href="<?php echo site_url('student/bulkdelete'); ?>"><i class="fa fa-angle-double-right"></i> <?php echo $this->lang->line('bulk') . " " . $this->lang->line('delete'); ?></a>
 
                             </li>
 
@@ -276,7 +272,6 @@
 
 
 
-                            <li class="<?php echo set_Submenu('category/index'); ?>"><a href="<?php echo base_url(); ?>category"><i class="fa fa-angle-double-right"></i> <?php echo $this->lang->line('student_categories'); ?></a></li>
 
 
 
@@ -290,7 +285,6 @@
 
                         ?>
 
-                            <li class="<?php echo set_Submenu('admin/schoolhouse'); ?>"><a href="<?php echo base_url(); ?>admin/schoolhouse"><i class="fa fa-angle-double-right"></i> <?php echo $this->lang->line('house'); ?></a></li>
 
                         <?php
 
@@ -302,7 +296,6 @@
 
                         ?>
 
-                            <li class="<?php echo set_Submenu('student/disable_reason'); ?>"><a href="<?php echo base_url(); ?>admin/disable_reason"><i class="fa fa-angle-double-right"></i> <?php echo $this->lang->line('disable') . " " . $this->lang->line('reason'); ?></a></li>
 
                         <?php
 
@@ -887,8 +880,7 @@
 
                         if ($this->module_lib->hasActive('lesson_plan')) {
 
-                            if (($this->rbac->hasPrivilege('manage_lesson_plan', 'can_view')) || ($this->rbac->hasPrivilege('manage_syllabus_status', 'can_view')) || ($this->rbac->hasPrivilege('lesson', 'can_view')) || ($this->rbac->hasPrivilege('topic', 'can_view'))) 
-                            { ?>
+                            if (($this->rbac->hasPrivilege('manage_lesson_plan', 'can_view')) || ($this->rbac->hasPrivilege('manage_syllabus_status', 'can_view')) || ($this->rbac->hasPrivilege('lesson', 'can_view')) || ($this->rbac->hasPrivilege('topic', 'can_view'))) { ?>
 
                     <li class="treeview <?php echo set_Topmenu('lessonplan'); ?>">
 
@@ -928,7 +920,7 @@
 
                     </li>
 
-            <?php }
+             <?php }
                         } ?> <?php
 
                                 if ($this->module_lib->hasActive('academics')) {
@@ -975,7 +967,7 @@
 
 
 
-                                       ?>
+                            ?>
 
 
 
@@ -983,18 +975,19 @@
 
                     </li>
 
-                  
 
-            <?php
 
-                                        }
+             <?php
+
                                     }
+                                }
 
-            ?>
+             ?>
 
 
 
-            <?php
+             <?php
+
 
             if ($this->module_lib->hasModule('online_course')) {
 
@@ -1059,13 +1052,13 @@
 
                         </li>
 
-            <?php }
+             <?php }
                 }
-            } ?>
+             } ?>
 
 
 
-            <?php
+             <?php
 
             if ($this->module_lib->hasModule('zoom_live_classes')) {
 

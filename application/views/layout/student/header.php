@@ -228,21 +228,7 @@
 
                         <div class="navbar-custom-menu">
 
-                            <div class="langdiv">
 
-                                <select class="languageselectpicker" onchange="set_languages(this.value)" type="text" id="languageSwitcher" class="form-control search-form search-form3 langselect">
-
-
-
-                                    <?php $this->load->view('student/languageSwitcher') ?>
-
-
-
-                                </select>
-
-
-
-                            </div>
 
                             <ul class="nav navbar-nav headertopmenu">
 
@@ -250,132 +236,16 @@
 
 
 
-                                if ($this->studentmodule_lib->hasActive('multi_class')) {
-
-                                ?>
-
-                                    <li class="cal15"><a href="#" data-toggle="modal" data-target="#classSwitchModal"><i class="fa fa-exchange" aria-hidden="true"></i></a></li>
-
-                                <?php
-
-
-
-                                }
-
-                                ?>
-
-
-
-
-
-                                <?php if ($this->studentmodule_lib->hasActive('calendar_to_do_list')) { ?>
-
-                                    <li class="cal15"><a href="<?php echo base_url() ?>user/calendar/"><i class="fa fa fa-calendar"></i></a></li>
-
-
-
-                                    <li class="dropdown">
-
-                                        <a href="#" class="dropdown-toggle todoicon" data-toggle="dropdown">
-
-                                            <i class="fa fa-check-square-o"></i>
-
-                                            <?php
-
-                                            $userdata = $this->customlib->getLoggedInUserData();
-
-                                            $count = $this->customlib->countincompleteTask($userdata["id"]);
-
-                                            if ($count > 0) {
-
-                                            ?>
-
-
-
-                                                <span class="todo-indicator"><?php echo $count ?></span>
-
-                                            <?php } ?>
-
-                                        </a>
-
-                                        <ul class="dropdown-menu menuboxshadow">
-
-
-
-                                            <li class="todoview plr10 ssnoti"><?php echo $this->lang->line('today_you_have') . " " . $count . " " . $this->lang->line('pending_task') ?><a href="<?php echo base_url() ?>user/calendar/" class="pull-right pt0"> <?php echo $this->lang->line('view') . " " . $this->lang->line('all'); ?></a></li>
-
-                                            <li>
-
-                                                <ul class="todolist">
-
-                                                    <?php
-
-                                                    $tasklist = $this->customlib->getincompleteTask($userdata["id"]);
-
-                                                    foreach ($tasklist as $key => $value) {
-
-                                                    ?>
-
-                                                        <li>
-                                                            <div class="checkbox">
-
-                                                                <label><input type="checkbox" id="newcheck<?php echo $value["id"] ?>" onclick="markc('<?php echo $value["id"] ?>')" name="eventcheck" value="<?php echo $value["id"]; ?>"><?php echo $value["event_title"] ?></label>
-
-                                                            </div>
-                                                        </li>
-
-                                                    <?php } ?>
-
-
-
-                                                </ul>
-
-                                            </li>
-
-                                        </ul>
-
-                                    </li>
-
-
-
-                                <?php }
-                                if ($this->studentmodule_lib->hasActive('chat')) {
-
-                                ?>
-
-                                    <li class="cal15"><a data-placement="bottom" data-toggle="tooltip" title="" href="<?php echo base_url() ?>user/chat" data-original-title="<?php echo $this->lang->line('chat'); ?>" class="todoicon"><i class="fa fa-whatsapp"></i></a></li>
-
-                                <?php }
-
-
-
-
-
                                 $student_data = $this->customlib->getLoggedInUserData();
 
 
 
-                                $file = $student_data["image"];
+                                // $file = $student_data["image"];
 
 
 
-                                $image = $student_data["image"];
+                                // $image = $student_data["image"];
 
-                                if (!empty($image)) {
-
-
-
-                                    $file = $image;
-                                } else {
-
-                                    if ($student_data['gender'] == 'Female') {
-
-                                        $file = "uploads/student_images/default_female.jpg";
-                                    } else {
-
-                                        $file = "uploads/student_images/default_male.jpg";
-                                    }
-                                }
 
                                 ?>
 
@@ -387,8 +257,8 @@
 
                                         ?>
 
-                                            <img src="<?php echo base_url() . $file; ?>" class="topuser-image" alt="User Image">
-
+                                      
+                                            <img  class="topuser-image" alt="User Image" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAADWUlEQVR4nO2WXUgUURTHx6Sij5eo8EUhql17CmQjP8jYe9dQGWfGisWUIqweKnrMB0PJelL0oTBpYyGEapcsUEJ3RUFtZtPK1zALIj8gH6Iv0zuS6Yk7m6njbrvrjDNb7IE/O8w9d+/vN2cHlmESlahE6VZZWVmbEEKlGOPHGOPXCKEpjDEsxOFw2Jl4LbvdfhwhNLoUWB2EUC8Tj4Uxvv43cJXEG4RQHcY4hYmHQghVRguvyiRC6Jip8Bjjgxjj2VUK0Gn8xBgfMU0AIdSzWvglEqM2m2294fAOhyMjWshyZx40V+XD+3us8hmix2m4AEKoJhrokfssgJ9bFu+1AnX/XTMEev/2pNXQ6qgmMWiGwFikJx0p3sVJjBgugDEm9PBYodXBwRd52gwB0EsAYwwJgVgKPBa24mS2rNcEKk/nEPBaCxmjCrzW8TlPOjRezl8Gc7vcAq5yS1jYUOu3KvJh3psO4LGOGSoAXusKQArnOhNeIOy612q4QKEi0cHOa/0JgY+do/DgsRYYJvBHxFc0rFnAzw0ZDr4owLm1T4BzmSfg5/M0C3Rw2DQBRcJX1KNBoM9UeEWgnd0Nfu7jKn46n6CT28vEQ0E7fxj83OeY4P1sLhNPBV2sBVpzIsO3ZkPcPHl1gYsBaN4B8Gg/wBME0FEYDL2m9+iaizH+j1tMAlGEideCf1GgWJq2pVZ3D2456/0xWL9rJhI87aG9aVVdL/m+qQzTwHlxOlOQ5IAgyZBa1QVJJW7IOV81G0nAfqFylvamVXcD3cuLssgHpg8YBl7gg428RO4IIpmnADSHHo5C0gm3IlF7pSAsPF2jPbQ3t2Vc2RuUIHO8RJqcr2DDmsJzA99TeEl+tnDw0lhqA0G4EjccvXQRntZa4UvjZiX0mt5bWLfW9a/YLwSnITnFyZ1rAl/84tt2QSTDoQ5WIsqQXj8Ayb8nESrJpW7Y1/Bc6Q33PbxEhljp6zZ96QGSeIl0hoVfEtT2ATJrHsCecw2wtaxJCb3OrPEAapuIuF9QQtp15RdEciq6g/UMKdMF3tkCybxE3pkg8PYqwDrNArwk5xkPLwffh4CMNAsIErlploAgkhvaJyDK/aYJSHJAhwnIEyYKTOggQGbMEyAzmgUSlaj/vH4B/ih/Ifxu3R8AAAAASUVORK5CYII=">
                                         <?php
 
                                         } ?>
@@ -411,7 +281,7 @@
 
                                                     ?>
 
-                                                        <img src="<?php echo base_url() . $file; ?>" alt="User Image">
+<img   alt="User Image" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAADWUlEQVR4nO2WXUgUURTHx6Sij5eo8EUhql17CmQjP8jYe9dQGWfGisWUIqweKnrMB0PJelL0oTBpYyGEapcsUEJ3RUFtZtPK1zALIj8gH6Iv0zuS6Yk7m6njbrvrjDNb7IE/O8w9d+/vN2cHlmESlahE6VZZWVmbEEKlGOPHGOPXCKEpjDEsxOFw2Jl4LbvdfhwhNLoUWB2EUC8Tj4Uxvv43cJXEG4RQHcY4hYmHQghVRguvyiRC6Jip8Bjjgxjj2VUK0Gn8xBgfMU0AIdSzWvglEqM2m2294fAOhyMjWshyZx40V+XD+3us8hmix2m4AEKoJhrokfssgJ9bFu+1AnX/XTMEev/2pNXQ6qgmMWiGwFikJx0p3sVJjBgugDEm9PBYodXBwRd52gwB0EsAYwwJgVgKPBa24mS2rNcEKk/nEPBaCxmjCrzW8TlPOjRezl8Gc7vcAq5yS1jYUOu3KvJh3psO4LGOGSoAXusKQArnOhNeIOy612q4QKEi0cHOa/0JgY+do/DgsRYYJvBHxFc0rFnAzw0ZDr4owLm1T4BzmSfg5/M0C3Rw2DQBRcJX1KNBoM9UeEWgnd0Nfu7jKn46n6CT28vEQ0E7fxj83OeY4P1sLhNPBV2sBVpzIsO3ZkPcPHl1gYsBaN4B8Gg/wBME0FEYDL2m9+iaizH+j1tMAlGEideCf1GgWJq2pVZ3D2456/0xWL9rJhI87aG9aVVdL/m+qQzTwHlxOlOQ5IAgyZBa1QVJJW7IOV81G0nAfqFylvamVXcD3cuLssgHpg8YBl7gg428RO4IIpmnADSHHo5C0gm3IlF7pSAsPF2jPbQ3t2Vc2RuUIHO8RJqcr2DDmsJzA99TeEl+tnDw0lhqA0G4EjccvXQRntZa4UvjZiX0mt5bWLfW9a/YLwSnITnFyZ1rAl/84tt2QSTDoQ5WIsqQXj8Ayb8nESrJpW7Y1/Bc6Q33PbxEhljp6zZ96QGSeIl0hoVfEtT2ATJrHsCecw2wtaxJCb3OrPEAapuIuF9QQtp15RdEciq6g/UMKdMF3tkCybxE3pkg8PYqwDrNArwk5xkPLwffh4CMNAsIErlploAgkhvaJyDK/aYJSHJAhwnIEyYKTOggQGbMEyAzmgUSlaj/vH4B/ih/Ifxu3R8AAAAASUVORK5CYII=">
 
                                                     <?php } ?>
 
