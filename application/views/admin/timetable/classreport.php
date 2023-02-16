@@ -222,6 +222,50 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="box box-warning">
+                    <div class="box-header ptbnull">
+                        <h3 class="box-title titlefix">One-to-One Session</h3>
+                        <hr>
+                    </div>
+
+                    <div class="box-body">
+                        <div class="table-responsive">
+                            <table class="tablse">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">Slot</th>
+                                        <th class="text-center">Date</th>
+                                        <th class="text-center">Time</th>
+                                        <th class="text-center">Zoom Link</th>
+                                        <th class="text-center" colspan="2">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($class_slots as $key => $slot) {
+                                        if ($slot['type'] == "One-to-One Session") { ?>
+                                            <form action="<?php echo site_url('admin/timetable/timetableupdate/' . $slot['id']) ?>" method="post" accept-charset="utf-8">
+                                                <?php echo $this->customlib->getCSRF(); ?>
+                                                <tr class="table-row">
+                                                    <td class="slot"><input name="name" type="text" value="<?php echo $slot['name'] ?>"> </td>
+                                                    <td class="slot"><input name="date" type="date" value="<?php echo $slot['date'] ?>"></td>
+                                                    <td class="slot"><input name="time" type="time" value="<?php echo $slot['time'] ?>"></td>
+                                                    <td class="slot"><input name="link" type="text" value="<?php echo $slot['link'] ?>"></td>
+                                                    <td class="save-button"><input class="linka" type="submit" value="Save"></td>
+                                                    <td hidden><input name="id" type="text" value="<?php echo $slot['id'] ?>"> </td>
+                                                    <td class="save-button"><input class="linka" type="submit" name="delete" value="Delete"></td>
+                                                </tr>
+                                            </form>
+
+                                    <?php  }
+                                    } ?>
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
 
     </section>

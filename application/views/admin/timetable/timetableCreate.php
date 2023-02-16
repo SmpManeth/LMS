@@ -158,9 +158,11 @@
                                         <label>Slot Type<small class="req"> *</small></label>
 
                                         <select id="type" name="type" class="form-control">
+                                        <option value="">Select</option>
                                             <option value="Grammer Classes">Grammer Classes</option>
                                             <option value="IELTS Classes">IELTS Classes</option>
                                             <option value="Mock Test">Mock Test</option>
+                                            <option value="One-to-One Session">One-to-One Session</option>
                                         </select>
 
                                         <span class="text-danger"><?php echo form_error('type'); ?></span>

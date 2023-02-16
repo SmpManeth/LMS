@@ -266,6 +266,20 @@
 
                                                 </div>
                                             </div>
+
+                                            <hr>
+                                            <div class="box-body">
+
+                                                <div class="col-md-5 course_slots_div">
+                                                    <label class="course_slots_div-label" for="course_slots">One-to-One Session</label>
+                                                    <div class="form-group ">
+                                                        <div id="class-slotss-One-to-One" class="mock-slots-container" style="margin: 5px;">
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -293,7 +307,11 @@
         var AllselectedSlots;
         $("#ielts-courses").change(function() {
 
-            $("#class-slots").empty();
+           
+            $("#class-slots-ielts").empty();
+            $("#class-slotss-mock").empty();
+            $("#class-slotss-general").empty();
+            $("#class-slotss-One-to-One").empty();
 
             var ieltsCourseid = $(this).val();
 
@@ -306,7 +324,6 @@
                         type: "GET",
                         success: function(selectedSlotss) {
                             AllselectedSlots = JSON.parse(selectedSlotss)
-
                         }
                     });
                     classSlots = JSON.parse(classSlots);
@@ -314,6 +331,9 @@
                     var SelectedDisplayInputs = [];
                     var SelectedDisplayInputsmock = [];
                     var SelectedDisplayInputsGrammer = [];
+                    var SelectedDisplayInputsOnetoOne = [];
+
+
                     var UnSelectedDisplayInputs = [];
 
                     classSlots.forEach(Slot => {
@@ -344,16 +364,21 @@
                                 SelectedDisplayInputsGrammer.push(`<div class="slot-item"><label for="class-slot-${Slot.id}">${Slot.name} </label><input type="checkbox" name="ielts_course_slot[]" id="class-slot-${Slot.name}" value="${Slot.id}"></div>`);
                             }
                         }
-
+                        if (Slot.type === "One-to-One Session") {
+                            if (exists) {
+                                SelectedDisplayInputsOnetoOne.push(`<div class="slot-item"><label for="class-slot-${Slot.id}">${Slot.name} </label><input checked type="checkbox" name="ielts_course_slot[]" id="class-slot-${Slot.name}" value="${Slot.id}"></div>`);
+                            } else {
+                                SelectedDisplayInputsOnetoOne.push(`<div class="slot-item"><label for="class-slot-${Slot.id}">${Slot.name} </label><input type="checkbox" name="ielts_course_slot[]" id="class-slot-${Slot.name}" value="${Slot.id}"></div>`);
+                            }
+                        }
                     });
                     $("#class-slots-ielts").append(SelectedDisplayInputs);
                     $("#class-slotss-mock").append(SelectedDisplayInputsmock);
                     $("#class-slotss-general").append(SelectedDisplayInputsGrammer);
+                    $("#class-slotss-One-to-One").append(SelectedDisplayInputsOnetoOne);
                 }
             });
-
         });
-
     });
 </script>
 <script type="text/javascript" src="<?php echo base_url(); ?>backend/dist/js/savemode.js"></script>

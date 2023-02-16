@@ -293,6 +293,19 @@
 
                                                 </div>
                                             </div>
+                                            <hr>
+                                            <div class="box-body">
+
+                                                <div class="col-md-5 course_slots_div">
+                                                    <label class="course_slots_div-label" for="course_slots">One-to-One Session</label>
+                                                    <div class="form-group ">
+                                                        <div id="class-slotss-One-to-One" class="mock-slots-container" style="margin: 5px;">
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -322,51 +335,56 @@
         var studentid = $("#studentid").val();
         var AllselectedSlots;
 
-        var SelectedDisplayInputs = [];
-        var SelectedDisplayInputsmock = [];
-        var SelectedDisplayInputsGrammer = [];
+
 
         $("#ielts-courses").change(function() {
+            
+            var SelectedDisplayInputs = [];
+            var SelectedDisplayInputsmock = [];
+            var SelectedDisplayInputsGrammer = [];
+            var SelectedDisplayInputsOnetoOne = [];
 
-            $("#class-slots").empty();
+            $("#class-slots-ielts").empty();
+            $("#class-slotss-mock").empty();
+            $("#class-slotss-general").empty();
+            $("#class-slotss-One-to-One").empty();
 
             var ieltsCourseid = $(this).val();
 
             $.ajax({
-                 url: `http://lms.ieltsatcia.com/student/getcourseslotdata/${ieltsCourseid}`,
-                //url: `http://localhost/LMS/student/getcourseslotdata/${ieltsCourseid}`,
+                url: `http://lms.ieltsatcia.com/student/getcourseslotdata/${ieltsCourseid}`,
+                // url: `http://localhost/LMS/student/getcourseslotdata/${ieltsCourseid}`,
                 type: "GET",
                 success: function(classSlots) {
                     classSlots = JSON.parse(classSlots);
                     classSlots.forEach(Slot => {
                         // $("#class-slots").append(`<div style="width:150px; float:center;"><label for="class-slot-${Slot.id}">${Slot.name} </label><input type="checkbox" name="ielts_course_slot[]" id="class-slot-${Slot.name}" value="${Slot.id}"></div>`);
-                       
-                        if (Slot.type === "IELTS Classes") {
-                           
-                                SelectedDisplayInputs.push(`<div class="slot-item"><label for="class-slot-${Slot.id}">${Slot.name} </label><input type="checkbox" name="ielts_course_slot[]" id="class-slot-${Slot.name}" value="${Slot.id}"></div>`);
-                          
-                        }
-                        if (Slot.type === "Mock Test") {
-                         
-                             
-                                SelectedDisplayInputsmock.push(`<div class="slot-item"><label for="class-slot-${Slot.id}">${Slot.name} </label><input type="checkbox" name="ielts_course_slot[]" id="class-slot-${Slot.name}" value="${Slot.id}"></div>`);
-                           
-                        }
-                        if (Slot.type === "Grammer Classes") {
-                           
-                                SelectedDisplayInputsGrammer.push(`<div class="slot-item"><label for="class-slot-${Slot.id}">${Slot.name} </label><input type="checkbox" name="ielts_course_slot[]" id="class-slot-${Slot.name}" value="${Slot.id}"></div>`);
-                           
-                        }
 
+                        if (Slot.type === "IELTS Classes") {
+
+                            SelectedDisplayInputs.push(`<div class="slot-item"><label for="class-slot-${Slot.id}">${Slot.name} </label><input type="checkbox" name="ielts_course_slot[]" id="class-slot-${Slot.name}" value="${Slot.id}"></div>`);
+
+                        } else if (Slot.type === "Mock Test") {
+
+                            SelectedDisplayInputsmock.push(`<div class="slot-item"><label for="class-slot-${Slot.id}">${Slot.name} </label><input type="checkbox" name="ielts_course_slot[]" id="class-slot-${Slot.name}" value="${Slot.id}"></div>`);
+
+                        } else if (Slot.type === "Grammer Classes") {
+
+                            SelectedDisplayInputsGrammer.push(`<div class="slot-item"><label for="class-slot-${Slot.id}">${Slot.name} </label><input type="checkbox" name="ielts_course_slot[]" id="class-slot-${Slot.name}" value="${Slot.id}"></div>`);
+
+                        } else if (Slot.type === "One-to-One Session") {
+
+                            SelectedDisplayInputsOnetoOne.push(`<div class="slot-item"><label for="class-slot-${Slot.id}">${Slot.name} </label><input type="checkbox" name="ielts_course_slot[]" id="class-slot-${Slot.name}" value="${Slot.id}"></div>`);
+
+                        }
                     });
                     $("#class-slots-ielts").append(SelectedDisplayInputs);
                     $("#class-slotss-mock").append(SelectedDisplayInputsmock);
                     $("#class-slotss-general").append(SelectedDisplayInputsGrammer);
+                    $("#class-slotss-One-to-One").append(SelectedDisplayInputsOnetoOne);
                 }
             });
-
         });
-
     });
 </script>
 <script type="text/javascript" src="<?php echo base_url(); ?>backend/dist/js/savemode.js"></script>
