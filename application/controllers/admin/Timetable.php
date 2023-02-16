@@ -275,14 +275,11 @@ class Timetable extends Admin_Controller
 
 
     public function create()
-
     {
-
         if (!$this->rbac->hasPrivilege('class_timetable', 'can_view')) {
 
             access_denied();
         }
-
 
         $ieltscourses                = $this->Section_model->get();
         $data['ieltscourses']          = $ieltscourses;
@@ -293,27 +290,15 @@ class Timetable extends Admin_Controller
 
 
         $session            = $this->setting_model->getCurrentSession();
-
         $data['title']      = 'Exam Schedule';
-
         $data['subject_id'] = "";
-
         $data['class_id']   = "";
-
         $data['section_id'] = "";
-
         $exam               = $this->exam_model->get();
-
         $class              = $this->class_model->get('', $classteacher = 'yes');
-
         $data['examlist']   = $exam;
-
         $data['classlist']  = $class;
-
         $userdata           = $this->customlib->getUserData();
-
-
-
         $staff                   = $this->staff_model->getStaffbyrole(2);
 
         $data['staff']           = $staff;
