@@ -214,7 +214,7 @@ $currency_symbol = $this->customlib->getSchoolCurrencyFormat();
 
                         ?>
 
-                        <img class="profile-user-img img-responsive img-circle" src="<?php echo base_url() . "uploads/saff_images/" . $file ?>" alt="User profile picture">
+                        <img class="profile-user-img img-responsive img-circle" src="<?php echo base_url() . "upoads/saff_images/" . $file ?>" alt="User profile picture">
 
                         <h3 class="profile-username text-center"><?php echo $staff['name'] . " " . $staff['surname']; ?></h3>
 
