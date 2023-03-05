@@ -186,6 +186,8 @@
                                                 <div class="form-group">
                                                     <label for="ielts_course">IELTS Course</label><small class="req"> *</small>
                                                     <select id="ielts-courses" name="ielts_course" class="form-control">
+                                                                <option selected value=" ">Select</option>
+                                                        
                                                         <?php foreach ($ieltscourses as $course) {
                                                             if ($new_student['ielts_course'] == $course['id']) {  ?>
                                                                 <option selected value="<?php echo $course['id'] ?>"><?php echo $course['section'] ?></option>
