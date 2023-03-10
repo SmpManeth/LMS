@@ -186,16 +186,9 @@
                                                 <div class="form-group">
                                                     <label for="ielts_course">IELTS Course</label><small class="req"> *</small>
                                                     <select id="ielts-courses" name="ielts_course" class="form-control">
-                                                                <option selected value=" ">Select</option>
-                                                        
-                                                           <?php foreach ($ieltscourses as $course) {
-                                                            if ($new_student['ielts_course'] == $course['id']) {  ?>
-                                                        <option selected value="<?php echo $course['id'] ?>"><?php echo $course['section'] ?></option>
-                                                               
-                                                            <?php } else { ?>
-                                                                <option value="<?php echo $course['id'] ?>"><?php echo $course['section'] ?></option>
-                                                            <?php  }
-                                                            ?>
+                                                        <option selected value="Select">Select</option>
+                                                        <?php foreach ($ieltscourses as $course) { ?>
+                                                            <option value="<?php echo $course['id'] ?>"><?php echo $course['section'] ?></option>
                                                         <?php } ?>
                                                     </select>
                                                     <span class="text-danger"><?php echo form_error('ielts_course'); ?></span>
@@ -291,7 +284,6 @@
                                 <div class="box-footer">
                                     <button type="submit" class="btn btn-info pull-right"><?php echo $this->lang->line('save'); ?></button>
                                 </div>
-
                     </form>
 
                 </div>
@@ -308,79 +300,87 @@
 
         var studentid = $("#studentid").val();
         var AllselectedSlots;
-        $("#ielts-courses").change(function() {
 
-           
+        var classslotsall;
+
+        $("#ielts-courses").change(function() {
             $("#class-slots-ielts").empty();
             $("#class-slotss-mock").empty();
             $("#class-slotss-general").empty();
             $("#class-slotss-One-to-One").empty();
-
             var ieltsCourseid = $(this).val();
 
             $.ajax({
-                url: `http://lms.ieltsatcia.com/student/getcourseslotdata/${ieltsCourseid}`,
+                url: `http://localhost/LMS/student/getcourseslotdata/${ieltsCourseid}`,
                 type: "GET",
                 success: function(classSlots) {
                     $.ajax({
-                        url: `http://lms.ieltsatcia.com/student/getcourseslotdataofStudents/${studentid}`,
+                        url: `http://localhost/LMS/student/getcourseslotdataofStudents/${studentid}`,
                         type: "GET",
                         success: function(selectedSlotss) {
+                            console.log(selectedSlotss, " vvvv")
                             AllselectedSlots = JSON.parse(selectedSlotss)
+                            console.log(AllselectedSlots);
+                            classslotsall = JSON.parse(classSlots);
+                            var SelectedDisplayInputs = [];
+                            var SelectedDisplayInputsmock = [];
+                            var SelectedDisplayInputsGrammer = [];
+                            var SelectedDisplayInputsOnetoOne = [];
+                            var UnSelectedDisplayInputs = [];
+                            if (classslotsall.length > 0) {
+                                classslotsall.forEach(Slot => {
+
+                                    var exists = false;
+                                    AllselectedSlots.forEach(selectedSlot => {
+
+                                        if (Slot.id == selectedSlot.course_slot_id) {
+                                            exists = true;
+                                        }
+                                    });
+                                    if (Slot.type === "IELTS Classes") {
+                                        if (exists) {
+                                            SelectedDisplayInputs.push(`<div class="slot-item"><label for="class-slot-${Slot.id}">${Slot.name} </label><input checked type="checkbox" name="ielts_course_slot[]" id="class-slot-${Slot.name}" value="${Slot.id}"></div>`);
+                                        } else {
+                                            SelectedDisplayInputs.push(`<div class="slot-item"><label for="class-slot-${Slot.id}">${Slot.name} </label><input type="checkbox" name="ielts_course_slot[]" id="class-slot-${Slot.name}" value="${Slot.id}"></div>`);
+                                        }
+                                    }
+                                    if (Slot.type === "Mock Test") {
+                                        if (exists) {
+                                            SelectedDisplayInputsmock.push(`<div class="slot-item"><label for="class-slot-${Slot.id}">${Slot.name} </label><input checked type="checkbox" name="ielts_course_slot[]" id="class-slot-${Slot.name}" value="${Slot.id}"></div>`);
+                                        } else {
+                                            SelectedDisplayInputsmock.push(`<div class="slot-item"><label for="class-slot-${Slot.id}">${Slot.name} </label><input type="checkbox" name="ielts_course_slot[]" id="class-slot-${Slot.name}" value="${Slot.id}"></div>`);
+                                        }
+                                    }
+                                    if (Slot.type === "Grammer Classes") {
+                                        if (exists) {
+                                            SelectedDisplayInputsGrammer.push(`<div class="slot-item"><label for="class-slot-${Slot.id}">${Slot.name} </label><input checked type="checkbox" name="ielts_course_slot[]" id="class-slot-${Slot.name}" value="${Slot.id}"></div>`);
+                                        } else {
+                                            SelectedDisplayInputsGrammer.push(`<div class="slot-item"><label for="class-slot-${Slot.id}">${Slot.name} </label><input type="checkbox" name="ielts_course_slot[]" id="class-slot-${Slot.name}" value="${Slot.id}"></div>`);
+                                        }
+                                    }
+                                    if (Slot.type === "One-to-One Session") {
+                                        if (exists) {
+                                            SelectedDisplayInputsOnetoOne.push(`<div class="slot-item"><label for="class-slot-${Slot.id}">${Slot.name} </label><input checked type="checkbox" name="ielts_course_slot[]" id="class-slot-${Slot.name}" value="${Slot.id}"></div>`);
+                                        } else {
+                                            SelectedDisplayInputsOnetoOne.push(`<div class="slot-item"><label for="class-slot-${Slot.id}">${Slot.name} </label><input type="checkbox" name="ielts_course_slot[]" id="class-slot-${Slot.name}" value="${Slot.id}"></div>`);
+                                        }
+                                    }
+                                });
+                            }
+
+                            $("#class-slots-ielts").append(SelectedDisplayInputs);
+                            $("#class-slotss-mock").append(SelectedDisplayInputsmock);
+                            $("#class-slotss-general").append(SelectedDisplayInputsGrammer);
+                            $("#class-slotss-One-to-One").append(SelectedDisplayInputsOnetoOne);
+
                         }
                     });
-                    classSlots = JSON.parse(classSlots);
-
-                    var SelectedDisplayInputs = [];
-                    var SelectedDisplayInputsmock = [];
-                    var SelectedDisplayInputsGrammer = [];
-                    var SelectedDisplayInputsOnetoOne = [];
 
 
-                    var UnSelectedDisplayInputs = [];
-
-                    classSlots.forEach(Slot => {
-                        var exists = false;
-                        AllselectedSlots.forEach(selectedSlot => {
-                            if (Slot.id == selectedSlot.course_slot_id) {
-                                exists = true;
-                            }
-                        });
-                        if (Slot.type === "IELTS Classes") {
-                            if (exists) {
-                                SelectedDisplayInputs.push(`<div class="slot-item"><label for="class-slot-${Slot.id}">${Slot.name} </label><input checked type="checkbox" name="ielts_course_slot[]" id="class-slot-${Slot.name}" value="${Slot.id}"></div>`);
-                            } else {
-                                SelectedDisplayInputs.push(`<div class="slot-item"><label for="class-slot-${Slot.id}">${Slot.name} </label><input type="checkbox" name="ielts_course_slot[]" id="class-slot-${Slot.name}" value="${Slot.id}"></div>`);
-                            }
-                        }
-                        if (Slot.type === "Mock Test") {
-                            if (exists) {
-                                SelectedDisplayInputsmock.push(`<div class="slot-item"><label for="class-slot-${Slot.id}">${Slot.name} </label><input checked type="checkbox" name="ielts_course_slot[]" id="class-slot-${Slot.name}" value="${Slot.id}"></div>`);
-                            } else {
-                                SelectedDisplayInputsmock.push(`<div class="slot-item"><label for="class-slot-${Slot.id}">${Slot.name} </label><input type="checkbox" name="ielts_course_slot[]" id="class-slot-${Slot.name}" value="${Slot.id}"></div>`);
-                            }
-                        }
-                        if (Slot.type === "Grammer Classes") {
-                            if (exists) {
-                                SelectedDisplayInputsGrammer.push(`<div class="slot-item"><label for="class-slot-${Slot.id}">${Slot.name} </label><input checked type="checkbox" name="ielts_course_slot[]" id="class-slot-${Slot.name}" value="${Slot.id}"></div>`);
-                            } else {
-                                SelectedDisplayInputsGrammer.push(`<div class="slot-item"><label for="class-slot-${Slot.id}">${Slot.name} </label><input type="checkbox" name="ielts_course_slot[]" id="class-slot-${Slot.name}" value="${Slot.id}"></div>`);
-                            }
-                        }
-                        if (Slot.type === "One-to-One Session") {
-                            if (exists) {
-                                SelectedDisplayInputsOnetoOne.push(`<div class="slot-item"><label for="class-slot-${Slot.id}">${Slot.name} </label><input checked type="checkbox" name="ielts_course_slot[]" id="class-slot-${Slot.name}" value="${Slot.id}"></div>`);
-                            } else {
-                                SelectedDisplayInputsOnetoOne.push(`<div class="slot-item"><label for="class-slot-${Slot.id}">${Slot.name} </label><input type="checkbox" name="ielts_course_slot[]" id="class-slot-${Slot.name}" value="${Slot.id}"></div>`);
-                            }
-                        }
-                    });
-                    $("#class-slots-ielts").append(SelectedDisplayInputs);
-                    $("#class-slotss-mock").append(SelectedDisplayInputsmock);
-                    $("#class-slotss-general").append(SelectedDisplayInputsGrammer);
-                    $("#class-slotss-One-to-One").append(SelectedDisplayInputsOnetoOne);
                 }
             });
+
+
         });
     });
 </script>

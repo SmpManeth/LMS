@@ -32,11 +32,9 @@ class Student extends Admin_Controller
         $this->load->model("Studentcourseslots_model");
         $this->load->model("Lead_model");
         $this->config->load('app-config');
-
         $this->load->library('smsgateway');
-
         $this->load->library('mailsmsconf');
-
+        $this->load->library('email');
         $this->load->library('encoding_lib');
 
         $this->load->model("classteacher_model");
@@ -496,6 +494,38 @@ class Student extends Admin_Controller
                 // $users =$this->user_model->read_user();
                 // echo"<pre>", print_r($users, true), "</pre>";
                 // die();
+                $config = array(
+                    'protocol' => 'smtp',
+                    'smtp_host' => 'smtp.dreamhost.com',
+                    'smtp_port' => '587',
+                    'smtp_user' => 'noreply@ieltsatcia.com',
+                    'smtp_pass' => 'Maneth@12',
+                    'mailtype' => 'html',
+                    'charset' => 'utf-8'
+                );
+
+                $message_to_send = "
+                Dear {$data_insert['first_name']} {$data_insert['last_name']},<br><br>" .
+                "Your new account details are:<br>" .
+                "Username = {$newstudentRegNo}<br>" .
+                "Password = {$user_password}<br>" .
+                "Please keep this information confidential and do not share it with anyone.<br>" .
+                "If you have any questions or concerns, please contact our support team.<br><br><br>" .
+
+                "Best regards,<br>" .
+                "The Support Team";
+
+
+                
+                $this->email->initialize($config);
+
+                $this->email->from('noreply@ieltsatcia.com', 'IELTSCIA');
+                $this->email->to($data_insert['email']);
+                $this->email->subject('User Credentials For the Student LMS');
+                $this->email->message($message_to_send);
+                $this->email->send();
+
+            
                 $sender_details = array('student_id' => $newstudentRegNo, 'contact_no' => $data_insert['phone'], 'email' => $data_insert['email']);
 
                 // $this->mailsmsconf->mailsms('student_admission', $sender_details);
@@ -3057,7 +3087,7 @@ class Student extends Admin_Controller
 
     public function attendclass($ieltsCourseid)
     {
-       
+
         $data = array();
         $data['id'] = $ieltsCourseid;
         $data['is_attended'] = 1;
