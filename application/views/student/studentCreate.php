@@ -352,7 +352,7 @@
             var ieltsCourseid = $(this).val();
 
             $.ajax({
-                url: `http://lms.ieltsatcia.com/student/getcourseslotdata/${ieltsCourseid}`,
+                url: `https://lms.ieltsatcia.com/student/getcourseslotdata/${ieltsCourseid}`,
                 // url: `http://localhost/LMS/student/getcourseslotdata/${ieltsCourseid}`,
                 type: "GET",
                 success: function(classSlots) {
