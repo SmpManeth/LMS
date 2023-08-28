@@ -311,11 +311,11 @@
             var ieltsCourseid = $(this).val();
 
             $.ajax({
-                url: `http://localhost/LMS/student/getcourseslotdata/${ieltsCourseid}`,
+                url: `https://lms.ieltsatcia.com/student/getcourseslotdata/${ieltsCourseid}`,
                 type: "GET",
                 success: function(classSlots) {
                     $.ajax({
-                        url: `http://localhost/LMS/student/getcourseslotdataofStudents/${studentid}`,
+                        url: `https://lms.ieltsatcia.com/student/getcourseslotdataofStudents/${studentid}`,
                         type: "GET",
                         success: function(selectedSlotss) {
                             console.log(selectedSlotss, " vvvv")
