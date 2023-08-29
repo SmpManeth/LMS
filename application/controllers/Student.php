@@ -497,7 +497,7 @@ class Student extends Admin_Controller
                 $config = array(
                     'protocol' => 'smtp',
                     'smtp_host' => 'smtp.dreamhost.com',
-                    'smtp_port' => '587',
+                    'smtp_port' => '465',
                     'smtp_user' => 'noreply@ieltsatcia.com',
                     'smtp_pass' => 'Maneth@12',
                     'mailtype' => 'html',
