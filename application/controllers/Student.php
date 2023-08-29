@@ -501,7 +501,8 @@ class Student extends Admin_Controller
                     'smtp_user' => 'noreply@ieltsatcia.com',
                     'smtp_pass' => 'Maneth@12',
                     'mailtype' => 'html',
-                    'charset' => 'utf-8'
+                    'charset' => 'utf-8',
+                    'smtp_crypto' => 'SSL/TLS'
                 );
                 
                 $message_to_send = "
