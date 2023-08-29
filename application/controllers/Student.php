@@ -497,13 +497,13 @@ class Student extends Admin_Controller
                 $config = array(
                     'protocol' => 'smtp',
                     'smtp_host' => 'smtp.dreamhost.com',
-                    'smtp_port' => '465',
+                    'smtp_port' => '587',
                     'smtp_user' => 'noreply@ieltsatcia.com',
                     'smtp_pass' => 'Maneth@12',
                     'mailtype' => 'html',
                     'charset' => 'utf-8'
                 );
-
+                
                 $message_to_send = "
                 Dear {$data_insert['first_name']} {$data_insert['last_name']},<br><br>" .
                 "Your new account details are:<br>" .
@@ -511,20 +511,23 @@ class Student extends Admin_Controller
                 "Password = {$user_password}<br>" .
                 "Please keep this information confidential and do not share it with anyone.<br>" .
                 "If you have any questions or concerns, please contact our support team.<br><br><br>" .
-
+                
                 "Best regards,<br>" .
                 "The Support Team";
-
-
                 
                 $this->email->initialize($config);
-
+                
                 $this->email->from('noreply@ieltsatcia.com', 'IELTSCIA');
                 $this->email->to($data_insert['email']);
                 $this->email->subject('User Credentials For the Student LMS');
-                $this->email->message($message_to_send);
-                $this->email->send();
-
+                $this->email->message(htmlspecialchars($message_to_send));
+                
+                if ($this->email->send()) {
+                    echo "Email sent successfully.";
+                } else {
+                    echo "Email sending failed. Error: " . $this->email->print_debugger();
+                }
+                
             
                 $sender_details = array('student_id' => $newstudentRegNo, 'contact_no' => $data_insert['phone'], 'email' => $data_insert['email']);
 
