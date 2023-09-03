@@ -558,8 +558,6 @@ class Student extends Admin_Controller
         }
     }
 
-
-
     public function create_doc()
 
     {
@@ -3063,7 +3061,6 @@ class Student extends Admin_Controller
     }
 
 
-
     public function getStudentByClassSection()
 
     {
@@ -3089,6 +3086,7 @@ class Student extends Admin_Controller
         echo json_encode(array('status' => 1, 'page' => $page));
     }
 
+
     public function attendclass($ieltsCourseid)
     {
 
@@ -3099,4 +3097,130 @@ class Student extends Admin_Controller
 
         echo json_encode($id);
     }
+
+
+    // Send email in the specified format
+    private function send_credentials_email($firstname, $lastname, $email, $username, $password)
+    {
+        $config = array(
+            'protocol' => 'smtp',
+            'smtp_host' => 'ssl://smtp.dreamhost.com',
+            'smtp_port' => '465',
+            'smtp_user' => 'no-reply@ieltsatcia.com',
+            'smtp_pass' => 'Maneth@12',
+            'mailtype' => 'html',
+            'charset' => 'utf-8',
+            'smtp_crypto' => 'SSL/TLS'
+        );
+
+        $portal = "https://lms.ieltsatcia.com/site/userlogin";
+
+        // BEGIN - CONTENT OF THE EMAIL
+        $message_to_send = <<<EOT
+        <article>Dear Student,
+
+        We hope this message finds you well. As part of our continuous efforts to enhance your IELTS journey at Cambridge IELTS Academy, we're excited to introduce our new Student Portal – your gateway to a streamlined and convenient experience.
+
+        The Student Portal empowers you to:
+         - View Class Schedule: Easily access your class schedule, ensuring you never miss a session.
+         - Payment History: Keep track of your payment history and stay updated on your financial records.
+         - Zoom Links: Seamlessly join your online classes by clicking on the provided Zoom links.
+
+        And this is just the beginning! We're working on adding more exciting features to the portal to further enrich your learning experience.
+
+        To access the Student Portal, simply use the following credentials:
+
+        Link: $portal
+        Username: $username
+        Password: $password
+
+        Your privacy and security are of utmost importance to us. If you encounter any issues with your login or have any questions, please feel free to reach out to our support team at 0777 222 814 / 0777 222 816 / 0777 222 817.
+
+        Thank you for being a part of the Cambridge IELTS Academy community. We're committed to making your IELTS journey as smooth and productive as possible.
+
+        Best regards,
+        Cambridge IELTS Academy</article>
+        EOT;
+        // END - CONTENT OF THE EMAIL
+
+        $this->email->initialize($config);
+        $this->email->from('noreply@ieltsatcia.com', 'IELTSCIA');
+        $this->email->to($email);
+        $this->email->subject('User Credentials For the Student LMS - Cambridge IELTS Academy');
+        $this->email->message( nl2br($message_to_send));
+        
+        if ($this->email->send()) {
+            echo "Email sent successfully.";
+        } else {
+            echo "Email sending failed. Error: " . $this->email->print_debugger();
+        }
+    }
+
+
+    // Email students their usernames and passwords
+    // This function is mostly pure PHP, not using codeigniter functionality
+    // TODO: refactor
+    public function send_credentials($key = ''){
+
+        // only allow those with add student privillage to send emails
+        if (!$this->rbac->hasPrivilege('student', 'can_add')) {
+            access_denied();
+        }
+
+        // key to prevent this from being executed accidentally
+        if($key != 'rdh4yHv3bdAUoC67'){
+            echo "invalid key";
+            return;
+        }
+
+        try {
+            // database connection
+            $databasename = 'mysql:host=mysql.lms.ieltsatcia.com;dbname=ieltsnew';
+            $username = 'manethpathirana';
+            $password = 'Maneth@12';
+
+            // Create a new PDO instance
+            $pdo = new PDO($databasename, $username, $password);
+
+            // Set the PDO error mode to exception
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            // Query
+            $sql = "
+                SELECT
+                    s.first_name,
+                    s.last_name,
+                    s.email,
+                    u.username,
+                    u.password
+                FROM
+                    students AS s
+                JOIN
+                    users AS u ON s.id = u.user_id;
+            ";
+
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
+
+            // Fetch the results as an associative array
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            foreach($results as $student)
+            {
+                $this->send_credentials_email(
+                    $student['first_name'],
+                    $student['last_name'],
+                    $student['email'],
+                    $student['username'],
+                    $student['password']
+                );
+            }
+
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
+
+        // Close the database connection
+        $pdo = null;
+    }
+
 }
