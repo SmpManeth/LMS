@@ -3159,7 +3159,7 @@ class Student extends Admin_Controller
 
     // Email students their usernames and passwords
     // This function is mostly pure PHP, not using codeigniter functionality
-    // TODO: refactor
+    // TODO: refactor - update: using codeigniter db config
     public function send_credentials($key = ''){
 
         // only allow those with add student privillage to send emails
@@ -3174,18 +3174,8 @@ class Student extends Admin_Controller
         }
 
         try {
-            // database connection
-            $databasename = 'mysql:host=mysql.lms.ieltsatcia.com;dbname=ieltsnew';
-            $username = 'manethpathirana';
-            $password = 'Maneth@12';
 
-            // Create a new PDO instance
-            $pdo = new PDO($databasename, $username, $password);
-
-            // Set the PDO error mode to exception
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-            // Query
+            // Query to get user details joined with student details
             $sql = "
                 SELECT
                     s.first_name,
@@ -3199,11 +3189,10 @@ class Student extends Admin_Controller
                     users AS u ON s.id = u.user_id;
             ";
 
-            $stmt = $pdo->prepare($sql);
-            $stmt->execute();
+            // Execute the query
+            $query = $this->db->query($sql);
+            $results = $query->result_array();
 
-            // Fetch the results as an associative array
-            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
             foreach($results as $student)
             {
                 $this->send_credentials_email(
