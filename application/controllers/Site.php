@@ -621,185 +621,130 @@ class Site extends Public_Controller
     }
 
 
+    public function userlogin(){
 
-    public function userlogin()
-
-    {
-
+        // Check if user is already logged in
         if ($this->auth->user_logged_in()) {
 
             $this->auth->user_redirect();
         }
 
         $data               = array();
-
         $data['title']      = 'Login';
-
         $school             = $this->setting_model->get();
-
         $data['name']       = $school[0]['name'];
-
         $notice_content     = $this->config->item('ci_front_notice_content');
-
         $notices            = $this->cms_program_model->getByCategory($notice_content, array('start' => 0, 'limit' => 5));
-
         $data['notice']     = $notices;
-
         $data['school']     = $school[0];
-
         $is_captcha         = $this->captchalib->is_captcha('userlogin');
-
         $data["is_captcha"] = $is_captcha;
 
-
-
+        // Validations
         if ($is_captcha) {
-
             $this->form_validation->set_rules('captcha', $this->lang->line('captcha'), 'trim|required|callback_check_captcha');
         }
-
         $this->form_validation->set_rules('username', $this->lang->line('username'), 'trim|required|xss_clean');
-
         $this->form_validation->set_rules('password', $this->lang->line('password'), 'trim|required|xss_clean');
 
+
+        // Run validations
         if ($this->form_validation->run() == false) {
-
             $data['captcha_image'] = $this->captchalib->generate_captcha()['image'];
-
             $this->load->view('userlogin', $data);
         } else {
 
+            // Prepare login credentials
             $login_post = array(
-
                 'username' => $this->input->post('username'),
-
                 'password' => $this->input->post('password'),
-
             );
-           
-            $data['captcha_image'] = $this->captchalib->generate_captcha()['image'];
 
+            // Attempt login
             $login_details         = $this->user_model->checkLogin($login_post);
 
-           
-            
+            // $data['captcha_image'] = $this->captchalib->generate_captcha()['image'] ?? '';
+
+            // Check if login was successful
             if (isset($login_details) && !empty($login_details)) {
-               
+
                 $user = $login_details[0];
-               
+
+                // Is user active?
                 if ($user->is_active == "yes") {
 
-                    // if ($user->role == "student") {
+                    // Successfully logged in and the user is active
+                    // Fetch user's information and prepare the session
+                    if ($user->role == "student") {
+                        $user_info = $this->user_model->read_user_information($user->id);
+                    } else if ($user->role == "parent") {
+                        $user_info = $this->user_model->checkLoginParent($login_post);
+                    }
 
-                    //     $result = $this->user_model->read_user_information($user->id);
-                    // } else if ($user->role == "parent") {
-
-                    //     $result = $this->user_model->checkLoginParent($login_post);
-                    // }
+                    $setting_result = $this->setting_model->get();
                     $setting_result = $this->setting_model->get();
 
-            
+                    // Language preference
+                    if ($user_info[0]->lang_id == 0) {
+                        $language = array('lang_id' => 4, 'language' => 'English');
+                    } else {
+                        $language = array('lang_id' => 4, 'language' => 'English');
+                    }
 
-                    if (true) {
+                    // Default user image
+                    // TODO: Allow users to set user image
+                    $image    = "https://cdn-icons-png.flaticon.com/512/456/456212.png";
+                    $default_class = null;  // a "default class" is not specified
+                    $this->customlib->setUserLog($user_info[0]->username, $user_info[0]->role, $default_class);
 
-                        $setting_result = $this->setting_model->get();
+                    $session_data = array(
 
-                        if ($result[0]->lang_id == 0) {
+                        'id'              => $user->id,
+                        'login_username'  => $user->username,
+                        'student_id'      => $user->user_id,
+                        'role'            => $user->role,
+                        'username'        => $user->username,
+                        'date_format'     => $setting_result[0]['date_format'],
+                        'start_week'      => date("w", strtotime($setting_result[0]['start_week'])),
+                        'currency_symbol' => $setting_result[0]['currency_symbol'],
+                        'timezone'        => $setting_result[0]['timezone'],
+                        'sch_name'        => $setting_result[0]['name'],
+                        'language'        => $language,
+                        'is_rtl'          => $setting_result[0]['is_rtl'],
+                        'theme'           => $setting_result[0]['theme'],
+                        'image'           => $image,
+                        'gender'          => " ",   // Gender is hardcoded to be blank - TODO: Fix
 
-                            $language = array('lang_id' => 4, 'language' => 'English');
+                    );
+
+                    if ($session_data['is_rtl'] == "disabled") {
+
+                        $language_result1 = $this->language_model->get($language['lang_id']);
+                        if ($this->customlib->get_rtl_languages($language_result1['short_code'])) {
+
+                            $session_data['is_rtl'] = 'enabled';
                         } else {
 
-                            $language = array('lang_id' => 4, 'language' => 'English');
+                            $session_data['is_rtl'] = 'disabled';
                         }
-
-                        $image    = '';
-                       
-                      if (true) {
-
-                            $image    = "https://cdn-icons-png.flaticon.com/512/456/456212.png";
-
-                            $username =$user->username;
-                           
-                            $defaultclass = " ";
-
-                            $this->customlib->setUserLog($result[0]->username, $result[0]->role, $defaultclass['id']);
-                        }
-                        
-                      
-
-                        $session_data = array(
-
-                            'id'              => $user->id,
-
-                            'login_username'  => $user->username,
-
-                            'student_id'      => $user->user_id,
-
-                            'role'            => $user->role,
-
-                            'username'        => $user->username,
-
-                            'date_format'     => $setting_result[0]['date_format'],
-
-                            'start_week'      => date("w", strtotime($setting_result[0]['start_week'])),
-
-                            'currency_symbol' => $setting_result[0]['currency_symbol'],
-
-                            'timezone'        => $setting_result[0]['timezone'],
-
-                            'sch_name'        => $setting_result[0]['name'],
-
-                            'language'        => $language,
-
-                            'is_rtl'          => $setting_result[0]['is_rtl'],
-
-                            'theme'           => $setting_result[0]['theme'],
-
-                            'image'           =>  $image,
-
-                            'gender'          => " ",
-
-                        );
-                     
-                        if ($session_data['is_rtl'] == "disabled") {
-                            $language_result1 = $this->language_model->get($language['lang_id']);
-
-                            if ($this->customlib->get_rtl_languages($language_result1['short_code'])) {
-
-                                $session_data['is_rtl'] = 'enabled';
-                            } else {
-
-                                $session_data['is_rtl'] = 'disabled';
-                            }
-                        }
-                       
-    
-
-                        $this->session->set_userdata('student', $session_data);
-
-
-                        redirect('user/user/choose');
-                    } else {
-
-                        $data['error_message'] = 'Account Suspended';
-
-                        $this->load->view('userlogin', $data);
                     }
+
+                    $this->session->set_userdata('student', $session_data);
+                    redirect('user/user/choose');
                 } else {
 
+                    // user account is deactivated
                     $data['error_message'] = $this->lang->line('your_account_is_disabled_please_contact_to_administrator');
-
                     $this->load->view('userlogin', $data);
                 }
             } else {
-
+                // Login unsuccessful
                 $data['error_message'] = $this->lang->line('invalid_username_or_password');
-
                 $this->load->view('userlogin', $data);
             }
         }
-    }
 
+    }
 
 
     public function savemulticlass()
