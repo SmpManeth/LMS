@@ -113,13 +113,11 @@ class User_model extends MY_Model
 
         $this->db->where('username', $data['username']);
 
-        $this->db->where('password', ($data['password']));
+        $this->db->where('password', $data['password']);
 
         $this->db->limit(1);
 
         $query = $this->db->get();
-
-
 
         if ($query->num_rows() == 1) {
 
@@ -129,7 +127,6 @@ class User_model extends MY_Model
             return false;
         }
     }
-
 
 
     public function checkLoginParent($data)
@@ -147,7 +144,7 @@ class User_model extends MY_Model
 
         if ($query->num_rows() == 1) {
 
-            return $query->result();
+            return $query->result()[0];
         } else {
 
             return false;
@@ -156,32 +153,30 @@ class User_model extends MY_Model
 
 
 
-    public function read_user_information($users_id)
+    public function read_user_information($user_id)
     {
+        // Query to get student details associated with a user account
+        $sql = "
+            SELECT users.*, languages.language, students.first_name, students.last_name
+            FROM users
+            JOIN students ON students.id = users.user_id
+            LEFT JOIN languages ON languages.id = users.lang_id
+            WHERE users.is_active = 'yes'
+            AND users.id = 40
+            LIMIT 1;
+        ";
 
-        $this->db->select('users.*,languages.language,students.firstname, students.middlename,students.image,students.lastname,students.guardian_name,students.gender');
-
-        $this->db->from('users');
-
-        $this->db->join('students', 'students.id = users.user_id');
-
-        $this->db->join('languages', 'languages.id = users.lang_id', 'left');
-
-        $this->db->where('students.is_active', 'yes');
-
-        $this->db->where('users.id', $users_id);
-
-        $this->db->limit(1);
-
-        $query = $this->db->get();
-
-        if ($query->num_rows() == 1) {
-
-            return $query->result();
-        } else {
-
+        try{
+            $query = $this->db->query($sql);
+            if ($query->num_rows() == 1) {
+                return $query->result();
+            } else {
+                return false;
+            }
+        } catch(Exception $e){
             return false;
         }
+
     }
 
 
