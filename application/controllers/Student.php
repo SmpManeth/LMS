@@ -3148,11 +3148,11 @@ class Student extends Admin_Controller
         $this->email->to($email);
         $this->email->subject('User Credentials For the Student LMS - Cambridge IELTS Academy');
         $this->email->message( nl2br($message_to_send));
-        
+
         if ($this->email->send()) {
-            echo "Email sent successfully.";
+            echo "Email sent to " . $email . " successfully</br>";
         } else {
-            echo "Email sending failed. Error: " . $this->email->print_debugger();
+            echo "Email sending failed. Error: " . $this->email->print_debugger() . "<br>";
         }
     }
 
@@ -3167,10 +3167,11 @@ class Student extends Admin_Controller
             access_denied();
         }
 
-        // key to prevent this from being executed accidentally
-        if($key != 'rdh4yHv3bdAUoC67'){
-            echo "invalid key";
-            return;
+        // Whether to actually send the emails
+        $send_emails = $key == 'rdh4yHv3bdAUoC67';
+
+        if(!$send_emails) {
+            print_r("Invalid key, not actually sending out emails<br>");
         }
 
         try {
@@ -3193,15 +3194,39 @@ class Student extends Admin_Controller
             $query = $this->db->query($sql);
             $results = $query->result_array();
 
+            // Emails already sent to these addresses
+            // TODO - handle this via the database
+            $already_sent = [
+                'johndoe@example.com'
+            ];
+
+            // iterations
+            $i = 0;
             foreach($results as $student)
             {
-                $this->send_credentials_email(
-                    $student['first_name'],
-                    $student['last_name'],
-                    $student['email'],
-                    $student['username'],
-                    $student['password']
-                );
+                // break after 90 iterations
+                if($i >= 90){
+                    echo "Limit reached";
+                    break;
+                }
+
+                // see if we already emailed these people
+                if(in_array($student['email'], $already_sent)){
+                    echo "Skipping " . $student['email'] . "<br>";
+                    continue;
+                }
+                if($send_emails){
+                    $this->send_credentials_email(
+                        $student['first_name'],
+                        $student['last_name'],
+                        $student['email'],
+                        $student['username'],
+                        $student['password']
+                    );
+                } else{
+                    echo "Email would've been sent to " . $student['email'] . "</br>";
+                }
+                $i++;
             }
 
         } catch (PDOException $e) {
