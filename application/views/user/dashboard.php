@@ -134,8 +134,8 @@ $currency_symbol = $this->customlib->getSchoolCurrencyFormat();
                                     <td><?php
 
                                           if (!empty($student['dob'])) {
-
-                                             echo date($this->customlib->getSchoolDateFormat(), $this->customlib->dateyyyymmddTodateformat($student['dob']));
+                                             $date = new DateTime($student['dob']);
+                                             echo date($this->customlib->getSchoolDateFormat(), $date->getTimestamp() );
                                           }
 
                                           ?></td>
