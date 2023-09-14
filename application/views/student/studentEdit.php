@@ -283,6 +283,9 @@
 
                                 <div class="box-footer">
                                     <button type="submit" class="btn btn-info pull-right"><?php echo $this->lang->line('save'); ?></button>
+                                    <a href="<?php echo base_url(); ?>student/invoice/<?php echo $id ?>">    
+                                        <button type="button" class="btn btn-info pull-left">Add Invoice</button>
+                                    </a>
                                 </div>
                     </form>
 

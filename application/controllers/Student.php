@@ -1649,6 +1649,8 @@ class Student extends Admin_Controller
         $this->form_validation->set_rules('search_text', ' ', 'trim|xss_clean');
 
         if ($this->form_validation->run() == false) {
+            $data['students'] = $this->Student_model->getDatatableByFullTextSearch('');
+
             $this->load->view('layout/header', $data);
 
             $this->load->view('student/studentSearch', $data);
@@ -1657,9 +1659,6 @@ class Student extends Admin_Controller
         } else {
 
             $data['students'] = $this->Student_model->getDatatableByFullTextSearch($this->input->post('search_text'));
-
-            // echo "<pre>", print_r($data['students']), "</pre>";
-            // die();
 
             $this->load->view('layout/header', $data);
 
@@ -3235,6 +3234,25 @@ class Student extends Admin_Controller
 
         // Close the database connection
         $pdo = null;
+    }
+
+    public function invoice($id){
+
+        $student = $this->student_model->get($id);
+
+        // check if student exists
+        if(!$student){
+            redirect('/student/search');
+        }
+
+        // Title
+        $data['title'] = 'Student Invoice';
+        $data['student'] = $student[0];
+
+        // Load views
+        $this->load->view('layout/header', $data);
+        $this->load->view('student/studentInvoice', $data);
+        $this->load->view('layout/footer', $data);
     }
 
 }
