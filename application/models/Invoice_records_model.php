@@ -68,6 +68,9 @@ class Invoice_records_model extends CI_Model {
     // Retrieve all invoice records
     public function all()
     {
-        return $this->db->get('invoice_records')->result();
+        $this->db->select('invoice_records.*, students.first_name, students.last_name, students.student_reg_no, students.coursecode');
+        $this->db->from('invoice_records');
+        $this->db->join('students', 'invoice_records.student_id = students.id', 'left');
+        return $this->db->get()->result();
     }
 }
