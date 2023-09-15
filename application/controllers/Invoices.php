@@ -118,11 +118,12 @@ class Invoices extends Admin_Controller
             'Reference ' => $record->reference_number,
             'Name' => $record->first_name . ' ' . $record->last_name,
             'Registration No' => $record->student_reg_no,
+            'Course' => $record->coursecode,
             'Payment Type' => $record->payment_type,
             'Payment Method' => $record->payment_method,
             'Amount' => '$' . number_format($amount, 2),
             'Discount' => number_format($record->discount, 2) . "%",
-            'Timestamp' => $record->timestamp,
+            'Date & Time' => $record->timestamp,
         ];
 
         // Loop through the data and display two key-value pairs per row
