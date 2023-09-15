@@ -1,7 +1,8 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-
-class Invoices extends Admin_Controller {
+defined('BASEPATH') or exit('No direct script access allowed');
+require_once APPPATH . 'libraries/fpdf/fpdf.php';
+class Invoices extends Admin_Controller
+{
 
     private $amounts = [
         'EI' => 32000,
@@ -31,10 +32,10 @@ class Invoices extends Admin_Controller {
 
         $search = $this->input->get('search') ?? null;
 
-        if($search){
+        if ($search) {
             // Search for records based
             $records = $this->Invoice_records_model->search($search);
-        } else{
+        } else {
             // Call the model to get all records
             $records = $this->Invoice_records_model->all();
         }
@@ -74,7 +75,8 @@ class Invoices extends Admin_Controller {
         $this->load->view('layout/footer', $data);
     }
 
-    public function create(){
+    public function create()
+    {
 
         // Validation succeeded, process the payment data
         $data = array();
@@ -84,31 +86,74 @@ class Invoices extends Admin_Controller {
         $data['payment_method'] = $this->input->post('payment_method');
         $data['amount'] = $this->input->post('amount');
         $data['discount'] = $this->input->post('payment_type') == "full" ? $this->input->post('discount') : 0;
-
         $record = $this->Invoice_records_model->create($data);
 
-        // Convert the POST data array to a JSON string
-        $jsonData = json_encode($record);
+        if($record){
+            redirect(base_url('/invoices/print/' . $record));
 
-        // Output the JSON data
-        $this->output->set_content_type('application/json');
-        $this->output->set_output($jsonData);
-
-        // Return to previous page
-        $previous_url = $this->input->server('HTTP_REFERER');
-        if($previous_url){
-            redirect($previous_url);
-        } else{
-            redirect(base_url('invoices/student/' . $data['student_id']));
         }
     }
 
-    public function delete($id){
+    public function print($id)
+    {
+        $record = $this->Invoice_records_model->find($id)[0];
+
+        $pdf = new FPDF();
+        $pdf->AddPage('L', [210, 297 / 2]);   
+
+        // Set font and size for the cells
+        $pdf->SetFont('Arial', '', 14);
+
+        // Define column width and spacing
+        $col1X = 10; // X-coordinate of the first column
+        $col2X = 110; // X-coordinate of the second column
+        $colWidth = 90; // Width of each column
+        $lineHeight = 15; // Height of each line
+
+        $amount = $record->discount ? ($record->amount - ($record->discount / 100) * $record->amount) : $record->amount;
+
+
+        // Data to be displayed as key-value pairs
+        $recordData = [
+            'Reference ' => $record->reference_number,
+            'Name' => $record->first_name . ' ' . $record->last_name,
+            'Registration No' => $record->student_reg_no,
+            'Payment Type' => $record->payment_type,
+            'Payment Method' => $record->payment_method,
+            'Amount' => '$' . number_format($amount, 2),
+            'Discount' => number_format($record->discount, 2) . "%",
+            'Timestamp' => $record->timestamp,
+        ];
+
+        // Loop through the data and display two key-value pairs per row
+        $keys = array_keys($recordData);
+        $values = array_values($recordData);
+
+        for ($i = 0; $i < count($recordData); $i += 2) {
+            // Display the first key-value pair in the first column
+            $pdf->SetX($col1X);
+            $pdf->Cell($colWidth, $lineHeight, $keys[$i] . ': ' . $values[$i], 0);
+
+            // Display the second key-value pair in the second column
+            $pdf->SetX($col2X);
+            if ($i + 1 < count($recordData)) {
+                $pdf->Cell($colWidth, $lineHeight, $keys[$i + 1] . ': ' . $values[$i + 1], 0);
+            }
+
+            // Move to the next line
+            $pdf->Ln();
+        }
+        // Output the PDF
+        $pdf->Output();
+    }
+
+    public function delete($id)
+    {
         $this->Invoice_records_model->delete($id);
         $previous_url = $this->input->server('HTTP_REFERER');
-        if($previous_url){
+        if ($previous_url) {
             redirect($previous_url);
-        } else{
+        } else {
             redirect(base_url('/invoices/all'));
         }
     }

@@ -106,7 +106,6 @@
                 <tbody>
                     <?php foreach ($records as $record) {
                         $amount = $record->discount ? ($record->amount - ($record->discount / 100) * $record->amount) : $record->amount
-
                     ?>
                         <tr class="my-auto d-flex align-items-center">
                             <td><?php echo $record->reference_number ?></td>
@@ -116,8 +115,8 @@
                             <td><?php echo $record->discount ?>%</td>
                             <td><?php echo $record->timestamp ?></td>
                             <td class="d-flex" style="min-width: 100px;">
-                                <button class="btn btn-primary btn-sm">Print</button>
-                                <button class="btn btn-primary btn-sm">Email</button>
+                                <button class="btn btn-primary btn-sm" style="opacity: 0.5;">Email</button>
+                                <a href="<?php echo base_url('/invoices/print/' . $record->id) ?>" class="btn btn-primary btn-sm">Print</a>
                                 <a href="<?php echo base_url('/invoices/delete/' . $record->id) ?>" class="btn btn-primary btn-sm">Delete</a>
                             </td>
                         </tr>
