@@ -3,6 +3,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Invoices extends Admin_Controller {
 
+    private $amounts = [
+        'EI' => 32000,
+        'GI' => 50000,
+        'MG' => 70000,
+    ];
+
     public function __construct()
     {
         parent::__construct();
@@ -61,6 +67,7 @@ class Invoices extends Admin_Controller {
         $data['title'] = 'All Invoices';
         $data['records'] = $records;
         $data['student'] = $student[0];
+        $data['course_full_amount'] = $this->amounts[$student[0]['coursecode']] ?? 30000;
 
         $this->load->view('layout/header', $data);
         $this->load->view('invoices/student', $data);
