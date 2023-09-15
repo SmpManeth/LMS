@@ -10,14 +10,17 @@ class Invoice_records_model extends CI_Model {
     // Create a new invoice record
     public function create($data)
     {
+        // Generate a unique reference_number
+        $data['reference_number'] = $this->customlib->generateRandomString(10);
+
         $this->db->insert('invoice_records', $data);
         return $this->db->insert_id();
     }
 
-    // Find an invoice record by reference_number
-    public function find($reference_number)
+    // Find an invoice record by id
+    public function find($id)
     {
-        $this->db->where('reference_number', $reference_number);
+        $this->db->where('id', $id);
         return $this->db->get('invoice_records')->row();
     }
 
@@ -28,17 +31,17 @@ class Invoice_records_model extends CI_Model {
         return $this->db->get('invoice_records')->result();
     }
 
-    // Update an existing invoice record by reference_number
-    public function update($reference_number, $data)
+    // Update an existing invoice record by id
+    public function update($id, $data)
     {
-        $this->db->where('reference_number', $reference_number);
+        $this->db->where('id', $id);
         $this->db->update('invoice_records', $data);
     }
 
-    // Delete an invoice record by reference_number
-    public function delete($reference_number)
+    // Delete an invoice record by id
+    public function delete($id)
     {
-        $this->db->where('reference_number', $reference_number);
+        $this->db->where('id', $id);
         $this->db->delete('invoice_records');
     }
 
@@ -51,7 +54,7 @@ class Invoice_records_model extends CI_Model {
 
         if (!empty($criteria)) {
             $this->db->group_start();
-            $this->db->like('invoice_records.reference_number', $criteria);
+            $this->db->like('invoice_records.id', $criteria);
             $this->db->or_like('invoice_records.payment_type', $criteria);
             $this->db->or_like('invoice_records.payment_method', $criteria);
             $this->db->or_like('students.first_name', $criteria);
