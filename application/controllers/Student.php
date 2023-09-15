@@ -544,7 +544,7 @@ class Student extends Admin_Controller
                 // die();
                 $this->session->set_flashdata('msg', '<div class="alert alert-success">' . $this->lang->line('success_message') . '</div>');
 
-                redirect('student/create');
+                redirect(base_url('/invoices/student/' . $insert_id));
             } else {
 
                 $data['error_message'] = $this->lang->line('admission_no') . ' ' . $admission_no . ' ' . $this->lang->line('already_exists');
