@@ -316,6 +316,32 @@
                 }
             }
 
+            // Invoicing
+            if ($this->module_lib->hasActive('student_information')) {
+
+                if ($this->rbac->hasPrivilege('student', 'can_view') || $this->rbac->hasPrivilege('student', 'can_add')){
+
+                ?>
+
+                    <li class="treeview <?php echo set_Topmenu('Invoices'); ?>">
+                        <a href="#">
+                            <i class="fa fa-money ftlayer"></i> <span>Invoices</span> <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+
+                        <ul class="treeview-menu">
+
+                            <!-- MenuItem -->
+                            <?php if ($this->rbac->hasPrivilege('student', 'can_view')) { ?>
+                                <li class="<?php echo set_Submenu('invoices/all'); ?>"><a href="<?php echo base_url(); ?>invoices/all"><i class="fa fa-angle-double-right"></i>All Invoices</a></li>
+                            <?php } ?>
+                        </ul>
+                    </li>
+
+                <?php
+
+                }
+            }
+
 
             if ($this->module_lib->hasActive('lead_information')) {
                 if (($this->rbac->hasPrivilege('student', 'can_view') ||
