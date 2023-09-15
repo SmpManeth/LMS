@@ -31,7 +31,7 @@
         <div style="padding: 10px; border-bottom: 2px solid darkred; border-radius: 4px;">
             <h3>Create Invoice</h3>
             <form action="<?php echo base_url(); ?>/invoices/create" method="post">
-                <input type="hidden" id="fullPayment" value="15000">
+                <input type="hidden" id="fullPayment" value="<?php echo $course_full_amount ?>">
                 <input type="hidden" name="student_id" value="<?php echo $student['id'] ?>">
                 <div class="row">
                     <div class="col-md-4">
