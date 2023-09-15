@@ -12,10 +12,10 @@
             <h3>All Invoices</h3>
             <form style="display: flex; justify-content: end; height: 30px;">
                 <input type="text" name="search" c>
-                <button class="btn btn-sm btn-danger">Search</button>
+                <button class="btn btn-sm btn-primary">Search</button>
             </form>
         </div> 
-        <div class="box-body" style="overflow: scroll; border: 1px solid darkred; margin-top: 10px; border-radius: 4px;">
+        <div style="padding: 10px; border-bottom: 2px solid darkred; border-radius: 4px;">
                 <table class="table table-striped table-bordered table-hover">
                     <thead>
                         <tr style="border-bottom: 2px solid gray;">
@@ -44,9 +44,10 @@
                                 <td><?php echo $record->amount ?> LKR</td>
                                 <td><?php echo $record->discount ?>%</td>
                                 <td><?php echo $record->timestamp ?></td>
-                                <td class="d-flex" style="min-width: 100px;">
-                                    <button class="btn btn-danger btn-sm">Print</button>
-                                    <button class="btn btn-danger btn-sm">Email</button>
+                                <td class="d-flex" style="min-width: 1px;">
+                                    <button class="btn btn-primary btn-sm">Print</button>
+                                    <button class="btn btn-primary btn-sm">Email</button>
+                                    <a href="<?php echo base_url('/invoices/delete/' . $record->id) ?>" class="btn btn-primary btn-sm">Delete</a>
                                 </td>
                             </tr>
                         <?php  } ?>
@@ -54,5 +55,4 @@
                 </table>
         </div>
     </section>
-
 </div>

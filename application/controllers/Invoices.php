@@ -8,6 +8,7 @@ class Invoices extends Admin_Controller {
         parent::__construct();
         // Load the Invoice_records_model
         $this->load->model('Invoice_records_model');
+        $this->load->model('Student_model');
     }
 
     // get all invoice records
@@ -38,5 +39,70 @@ class Invoices extends Admin_Controller {
         $this->load->view('layout/header', $data);
         $this->load->view('invoices/all', $data);
         $this->load->view('layout/footer', $data);
+    }
+
+    // get all invoice records
+    public function student($student_id)
+    {
+
+        if (!$this->rbac->hasPrivilege('student', 'can_view')) {
+
+            access_denied();
+        }
+
+        // Set selected menu to none
+        $this->session->set_userdata('top_menu', '');
+        $this->session->set_userdata('sub_menu', '');
+
+        // Call the model to get all records
+        $records = $this->Invoice_records_model->find_by_student_id($student_id);
+        $student = $this->Student_model->get($student_id);
+
+        $data['title'] = 'All Invoices';
+        $data['records'] = $records;
+        $data['student'] = $student[0];
+
+        $this->load->view('layout/header', $data);
+        $this->load->view('invoices/student', $data);
+        $this->load->view('layout/footer', $data);
+    }
+
+    public function create(){
+
+        // Validation succeeded, process the payment data
+        $data = array();
+        $data['student_id'] = $this->input->post('student_id');
+        $data['staff_id'] = $this->customlib->getUserData()['id'];
+        $data['payment_type'] = $this->input->post('payment_type');
+        $data['payment_method'] = $this->input->post('payment_method');
+        $data['amount'] = $this->input->post('amount');
+        $data['discount'] = $this->input->post('payment_type') == "full" ? $this->input->post('discount') : 0;
+
+        $record = $this->Invoice_records_model->create($data);
+
+        // Convert the POST data array to a JSON string
+        $jsonData = json_encode($record);
+
+        // Output the JSON data
+        $this->output->set_content_type('application/json');
+        $this->output->set_output($jsonData);
+
+        // Return to previous page
+        $previous_url = $this->input->server('HTTP_REFERER');
+        if($previous_url){
+            redirect($previous_url);
+        } else{
+            redirect(base_url('invoices/student/' . $data['student_id']));
+        }
+    }
+
+    public function delete($id){
+        $this->Invoice_records_model->delete($id);
+        $previous_url = $this->input->server('HTTP_REFERER');
+        if($previous_url){
+            redirect($previous_url);
+        } else{
+            redirect(base_url('/invoices/all'));
+        }
     }
 }
