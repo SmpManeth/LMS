@@ -20,8 +20,11 @@ class Invoice_records_model extends CI_Model {
     // Find an invoice record by id
     public function find($id)
     {
-        $this->db->where('id', $id);
-        return $this->db->get('invoice_records')->row();
+        $this->db->select('invoice_records.*, students.first_name, students.last_name, students.student_reg_no, students.coursecode');
+        $this->db->where('invoice_records.id', $id);
+        $this->db->from('invoice_records');
+        $this->db->join('students', 'invoice_records.student_id = students.id', 'left');
+        return $this->db->get()->result();
     }
 
     // Find invoice records by student_id
