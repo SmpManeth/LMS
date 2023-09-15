@@ -22,8 +22,16 @@ class Invoices extends Admin_Controller {
         $this->session->set_userdata('top_menu', 'Invoices');
         $this->session->set_userdata('sub_menu', 'invoices/all');
 
-        // Call the model to get all records
-        $records = $this->Invoice_records_model->all();
+        $search = $this->input->get('search') ?? null;
+
+        if($search){
+            // Search for records based
+            $records = $this->Invoice_records_model->search($search);
+        } else{
+            // Call the model to get all records
+            $records = $this->Invoice_records_model->all();
+        }
+
         $data['title'] = 'All Invoices';
         $data['records'] = $records;
 

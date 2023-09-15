@@ -48,7 +48,7 @@ class Invoice_records_model extends CI_Model {
     // Search for invoice records based on criteria
     public function search($criteria)
     {
-        $this->db->select('invoice_records.*, students.first_name, students.last_name');
+        $this->db->select('invoice_records.*, students.first_name, students.last_name, students.student_reg_no, students.coursecode');
         $this->db->from('invoice_records');
         $this->db->join('students', 'invoice_records.student_id = students.id', 'left');
 
@@ -59,6 +59,8 @@ class Invoice_records_model extends CI_Model {
             $this->db->or_like('invoice_records.payment_method', $criteria);
             $this->db->or_like('students.first_name', $criteria);
             $this->db->or_like('students.last_name', $criteria);
+            $this->db->or_like('students.student_reg_no', $criteria);
+            $this->db->or_like('students.coursecode', $criteria);
             $this->db->group_end();
         }
 
