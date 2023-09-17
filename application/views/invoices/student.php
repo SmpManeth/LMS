@@ -114,7 +114,7 @@
                             <td><?php echo $amount ?> LKR</td>
                             <td><?php echo $record->discount ?>%</td>
                             <td><?php echo $record->timestamp ?></td>
-                            <td class="d-flex" style="min-width: 100px;">
+                            <td class="d-flex" style="min-width: 200px;">
                                 <button class="btn btn-primary btn-sm" style="opacity: 0.5;">Email</button>
                                 <a href="<?php echo base_url('/invoices/print/' . $record->id) ?>" class="btn btn-primary btn-sm">Print</a>
                                 <a href="<?php echo base_url('/invoices/delete/' . $record->id) ?>" class="btn btn-primary btn-sm">Delete</a>
