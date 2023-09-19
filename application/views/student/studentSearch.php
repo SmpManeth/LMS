@@ -81,7 +81,7 @@ $currency_symbol = $this->customlib->getSchoolCurrencyFormat();
 
             <div class="tab-content">
 
-                <div class="tab-pane active table-responsive no-padding" id="tab_1">
+                <div class="tab-pane active table-responsive no-padding" id="tab_1" style="overflow-x: auto; max-height: 60vh;">
 
                     <table class="table table-striped table-bordered table-hover student-list" data-export-title="<?php echo $this->lang->line('student') . " " . $this->lang->line('list'); ?>">
 

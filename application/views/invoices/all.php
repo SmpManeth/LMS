@@ -39,8 +39,8 @@
                                 <td><?php echo $record->first_name . ' ' . $record->last_name ?></td>
                                 <td><?php echo $record->student_reg_no ?></td>
                                 <td><?php echo $record->coursecode ?></td>
-                                <td><?php echo $record->payment_type ?></td>
-                                <td><?php echo $record->payment_method ?></td>
+                                <td><?php echo $payment_types[$record->payment_type] ?></td>
+                                <td><?php echo $payment_methods[$record->payment_method] ?></td>
                                 <td><?php echo $record->amount ?> LKR</td>
                                 <td><?php echo $record->discount ?>%</td>
                                 <td><?php echo $record->timestamp ?></td>

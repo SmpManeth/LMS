@@ -68,7 +68,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="totalAmount">Amount:</label>
-                            <input type="number" class="form-control" id="totalAmount" name="amount" value="0" min="0" oninput="update_amount()">
+                            <input type="number" class="form-control" id="totalAmount" name="amount" value="0" min="0"  max="<?php echo $course_full_amount ?>" oninput="update_amount()">
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -109,8 +109,8 @@
                     ?>
                         <tr class="my-auto d-flex align-items-center">
                             <td><?php echo $record->reference_number ?></td>
-                            <td><?php echo $record->payment_type ?></td>
-                            <td><?php echo $record->payment_method ?></td>
+                            <td><?php echo $payment_types[$record->payment_type] ?></td>
+                            <td><?php echo $payment_methods[$record->payment_method] ?></td>
                             <td><?php echo $amount ?> LKR</td>
                             <td><?php echo $record->discount ?>%</td>
                             <td><?php echo $record->timestamp ?></td>
