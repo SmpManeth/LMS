@@ -164,7 +164,7 @@
     </script>
 
     <div class="wrapper">
-        <header class="main-header" id="alert">
+        <header class="main-header" id="alert" style="background-color: #bb121d;">
 
             <a href="<?php echo base_url(); ?>admin/admin/dashboard" class="logo">
 

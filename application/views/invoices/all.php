@@ -33,15 +33,17 @@
                     </thead>
 
                     <tbody>
-                        <?php foreach ($records as $record) { ?>
+                        <?php foreach ($records as $record) { 
+                            $amount = $record->discount ? ($record->amount - ($record->discount / 100) * $record->amount) : $record->amount
+                        ?>
                             <tr class="my-auto d-flex align-items-center">
                                 <td><?php echo $record->reference_number ?></td>
                                 <td><?php echo $record->first_name . ' ' . $record->last_name ?></td>
                                 <td><?php echo $record->student_reg_no ?></td>
                                 <td><?php echo $record->coursecode ?></td>
-                                <td><?php echo $record->payment_type ?></td>
-                                <td><?php echo $record->payment_method ?></td>
-                                <td><?php echo $record->amount ?> LKR</td>
+                                <td><?php echo $payment_types[$record->payment_type] ?></td>
+                                <td><?php echo $payment_methods[$record->payment_method] ?></td>
+                                <td><?php echo $amount ?> LKR</td>
                                 <td><?php echo $record->discount ?>%</td>
                                 <td><?php echo $record->timestamp ?></td>
                                 <td class="d-flex" style="min-width: 200px;">

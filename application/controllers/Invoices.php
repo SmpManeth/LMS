@@ -34,13 +34,13 @@ class Invoices extends Admin_Controller
         parent::__construct();
         // Load the Invoice_records_model
         $this->load->model('Invoice_records_model');
+        $this->load->model('Invoice_course_amounts_model');
         $this->load->model('Student_model');
     }
 
     // get all invoice records
     public function all()
     {
-
         if (!$this->rbac->hasPrivilege('student', 'can_view')) {
 
             access_denied();
@@ -61,6 +61,8 @@ class Invoices extends Admin_Controller
 
         $data['title'] = 'All Invoices';
         $data['records'] = $records;
+        $data['payment_types'] = $this->payment_types;
+        $data['payment_methods'] = $this->payment_methods;
 
         $this->load->view('layout/header', $data);
         $this->load->view('invoices/all', $data);
@@ -84,10 +86,19 @@ class Invoices extends Admin_Controller
         $records = $this->Invoice_records_model->find_by_student_id($student_id);
         $student = $this->Student_model->get($student_id);
 
+        // Get full course amount for the student
+        $course_full_amount = $this->Invoice_course_amounts_model->find_by_coursecode_bandscore($student[0]['coursecode'], $student[0]['expected_band_score']);
+
+        if(!$course_full_amount){
+            $course_full_amount = $this->Invoice_course_amounts_model->find_by_coursecode_bandscore($student[0]['coursecode'], 0.0);
+        }
+
         $data['title'] = 'All Invoices';
         $data['records'] = $records;
         $data['student'] = $student[0];
-        $data['course_full_amount'] = $this->amounts[$student[0]['coursecode']] ?? 30000;
+        $data['course_full_amount'] = $course_full_amount->amount;
+        $data['payment_types'] = $this->payment_types;
+        $data['payment_methods'] = $this->payment_methods;
 
         $this->load->view('layout/header', $data);
         $this->load->view('invoices/student', $data);
@@ -96,14 +107,25 @@ class Invoices extends Admin_Controller
 
     public function create()
     {
+        if (!$this->rbac->hasPrivilege('student', 'can_view')) {
 
-        // Validation succeeded, process the payment data
-        $data = array();
+            access_denied();
+        }
+
+        $student = $this->Student_model->get($this->input->post('student_id'));
+
+        // Get full course amount for the student
+        $course_full_amount = $this->Invoice_course_amounts_model->find_by_coursecode_bandscore($student[0]['coursecode'], $student[0]['expected_band_score']);
+
+        if(!$course_full_amount){
+            $course_full_amount = $this->Invoice_course_amounts_model->find_by_coursecode_bandscore($student[0]['coursecode'], 0.0);
+        }
+
         $data['student_id'] = $this->input->post('student_id');
         $data['staff_id'] = $this->customlib->getUserData()['id'];
         $data['payment_type'] = $this->input->post('payment_type');
         $data['payment_method'] = $this->input->post('payment_method');
-        $data['amount'] = $this->input->post('amount');
+        $data['amount'] = $this->input->post('payment_type') == "full" ? $course_full_amount->amount : $this->input->post('amount');
         $data['discount'] = $this->input->post('payment_type') == "full" ? $this->input->post('discount') : 0;
         $record = $this->Invoice_records_model->create($data);
 
@@ -114,10 +136,14 @@ class Invoices extends Admin_Controller
 
     public function print($id)
     {
+        if (!$this->rbac->hasPrivilege('student', 'can_view')) {
+
+            access_denied();
+        }
 
         $record = $this->Invoice_records_model->find($id)[0];
         $amount = $record->discount ? ($record->amount - ($record->discount / 100) * $record->amount) : $record->amount;
-        
+
         $recordData = [
             'reference' => $record->reference_number,
             'name' => $record->first_name . ' ' . $record->last_name,
@@ -159,7 +185,7 @@ class Invoices extends Admin_Controller
         $pdf->Write(0, $record->coursecode);
 
         $pdf->SetXY(108, 83);
-        $pdf->Write(0, number_format($record->bandscore, 2));
+        $pdf->Write(0, number_format($record->expected_band_score, 2));
 
         $pdf->SetXY(35 , 103);
         $pdf->Write(0,  $this->payment_types[$record->payment_type]);
@@ -184,6 +210,10 @@ class Invoices extends Admin_Controller
 
     public function delete($id)
     {
+        if (!$this->rbac->hasPrivilege('student', 'can_view')) {
+
+            access_denied();
+        }
         $this->Invoice_records_model->delete($id);
         $previous_url = $this->input->server('HTTP_REFERER');
         if ($previous_url) {

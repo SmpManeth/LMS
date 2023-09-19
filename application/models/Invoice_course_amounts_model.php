@@ -34,6 +34,14 @@ class Invoice_course_amounts_model extends CI_Model {
         $this->db->where('id', $id);
         $this->db->delete('invoice_course_amounts');
     }
+ 
+    // Find by course code and bandscore
+    public function find_by_coursecode_bandscore($coursecode, $bandscore)
+    {
+        $this->db->where('coursecode', $coursecode);
+        $this->db->where('bandscore', $bandscore);
+        return $this->db->get('invoice_course_amounts')->row();
+    }
 
     // Retrieve all course amount records
     public function all()
