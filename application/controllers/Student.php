@@ -1627,6 +1627,14 @@ class Student extends Admin_Controller
             access_denied();
         }
 
+        $curr_flashdata = $this->session->flashdata('msg');
+        if($curr_flashdata == $this->session->flashdata('prev_msg')){
+            $this->session->set_flashdata('msg', '');
+            $this->session->set_flashdata('prev_msg', '');
+        } else{ 
+            $this->session->set_flashdata('prev_msg', $curr_flashdata);
+        }
+
         $course_slots                = $this->Course_slots_model->get();
         $data['course_slots'] = $course_slots;
 
