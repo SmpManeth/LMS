@@ -30,7 +30,7 @@
 
         <div style="padding: 10px; border-bottom: 2px solid darkred; border-radius: 4px;">
             <h3>Create Invoice</h3>
-            <form action="<?php echo base_url(); ?>/invoices/create" method="post">
+            <form action="<?php echo base_url(); ?>/invoices/create" method="post" target="_blank" onsubmit="setTimeout(function () { window.location.reload(); }, 2500)">
                 <input type="hidden" id="fullPayment" value="<?php echo $course_full_amount ?>">
                 <input type="hidden" name="student_id" value="<?php echo $student['id'] ?>">
                 <div class="row">
@@ -73,14 +73,14 @@
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="amount">Discounted Amount:</label>
-                            <input type="number" class="form-control" id="amount" disabled>
+                            <label for="discount">Discount:</label>
+                            <input type="number" class="form-control" id="discount" name="discount" value="0" min="0" max="20" oninput="update_amount()" readonly>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="discount">Discount:</label>
-                            <input type="number" class="form-control" id="discount" name="discount" value="0" min="0" max="20" oninput="update_amount()" readonly>
+                            <label for="amount">Discounted Amount:</label>
+                            <input type="number" class="form-control" id="amount" disabled>
                         </div>
                     </div>
                 </div>
