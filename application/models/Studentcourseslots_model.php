@@ -73,6 +73,13 @@ class Studentcourseslots_model extends MY_Model
         return $query->result_array();
     }
 
+    public function removeByStudentID($id = null)
+    {
+        $this->db->select()->from('student_course_slots');
+        $this->db->where('student_course_slots.student_id', $id);
+        $this->db->delete();
+    }
+
     /**
 
      * This function will delete the record based on the id

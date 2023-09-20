@@ -20,7 +20,7 @@ class Invoice_records_model extends CI_Model {
     // Find an invoice record by id
     public function find($id)
     {
-        $this->db->select('invoice_records.*, students.first_name, students.last_name, students.student_reg_no, students.coursecode, students.phone, students.expected_band_score, staff.name as staff_first_name, staff.surname as staff_last_name');
+        $this->db->select('invoice_records.*, students.first_name, students.last_name, students.student_reg_no, students.coursecode, students.phone, students.bandscore, staff.name as staff_first_name, staff.surname as staff_last_name');
         $this->db->from('invoice_records');
         $this->db->join('students', 'invoice_records.student_id = students.id', 'left');
         $this->db->join('staff', 'invoice_records.staff_id = staff.id', 'left');
@@ -34,7 +34,7 @@ class Invoice_records_model extends CI_Model {
     // Find invoice records by student_id
     public function find_by_student_id($student_id)
     {
-        $this->db->select('invoice_records.*, students.first_name, students.last_name, students.student_reg_no, students.coursecode, students.phone, students.expected_band_score, staff.name as staff_first_name, staff.surname as staff_last_name');
+        $this->db->select('invoice_records.*, students.first_name, students.last_name, students.student_reg_no, students.coursecode, students.phone, students.bandscore, staff.name as staff_first_name, staff.surname as staff_last_name');
         $this->db->where('invoice_records.student_id', $student_id);
         $this->db->from('invoice_records');
         $this->db->join('students', 'invoice_records.student_id = students.id', 'left');
@@ -59,7 +59,7 @@ class Invoice_records_model extends CI_Model {
     // Search for invoice records based on criteria
     public function search($criteria)
     {
-        $this->db->select('invoice_records.*, students.first_name, students.last_name, students.student_reg_no, students.coursecode, students.phone, students.expected_band_score, staff.name as staff_first_name, staff.surname as staff_last_name');
+        $this->db->select('invoice_records.*, students.first_name, students.last_name, students.student_reg_no, students.coursecode, students.phone, students.bandscore, staff.name as staff_first_name, staff.surname as staff_last_name');
         $this->db->from('invoice_records');
         $this->db->join('students', 'invoice_records.student_id = students.id', 'left');
         $this->db->join('staff', 'invoice_records.staff_id = staff.id', 'right');

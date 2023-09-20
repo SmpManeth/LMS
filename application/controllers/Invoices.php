@@ -87,7 +87,7 @@ class Invoices extends Admin_Controller
         $student = $this->Student_model->get($student_id);
 
         // Get full course amount for the student
-        $course_full_amount = $this->Invoice_course_amounts_model->find_by_coursecode_bandscore($student[0]['coursecode'], $student[0]['expected_band_score']);
+        $course_full_amount = $this->Invoice_course_amounts_model->find_by_coursecode_bandscore($student[0]['coursecode'], $student[0]['bandscore']);
 
         if(!$course_full_amount){
             $course_full_amount = $this->Invoice_course_amounts_model->find_by_coursecode_bandscore($student[0]['coursecode'], 0.0);
@@ -115,7 +115,7 @@ class Invoices extends Admin_Controller
         $student = $this->Student_model->get($this->input->post('student_id'));
 
         // Get full course amount for the student
-        $course_full_amount = $this->Invoice_course_amounts_model->find_by_coursecode_bandscore($student[0]['coursecode'], $student[0]['expected_band_score']);
+        $course_full_amount = $this->Invoice_course_amounts_model->find_by_coursecode_bandscore($student[0]['coursecode'], $student[0]['bandscore']);
 
         if(!$course_full_amount){
             $course_full_amount = $this->Invoice_course_amounts_model->find_by_coursecode_bandscore($student[0]['coursecode'], 0.0);
@@ -185,7 +185,7 @@ class Invoices extends Admin_Controller
         $pdf->Write(0, $record->coursecode);
 
         $pdf->SetXY(108, 83);
-        $pdf->Write(0, number_format($record->expected_band_score, 2));
+        $pdf->Write(0, number_format($record->bandscore, 2));
 
         $pdf->SetXY(35 , 103);
         $pdf->Write(0,  $this->payment_types[$record->payment_type]);
