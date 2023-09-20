@@ -438,7 +438,7 @@ class Student extends Admin_Controller
 
                 'ielts_course'   => $this->input->post('ielts_course'),
 
-                'expected_band_score' => $this->input->post('expected_band_score'),
+                'expected_band_score' => $this->input->post('bandscore'),
 
                 'coursecode'          => $this->input->post('coursecode'),
                 'passportNo'          => $this->input->post('passportNo'),
@@ -1471,7 +1471,6 @@ class Student extends Admin_Controller
         $this->form_validation->set_rules('first_name', ' ', 'trim|required|xss_clean');
         $this->form_validation->set_rules('email', ' ', 'trim|required|xss_clean');
         $this->form_validation->set_rules('ielts_course', ' ', 'trim|required|xss_clean');
-        $this->form_validation->set_rules('coursecode', ' ', 'trim|required|xss_clean');
         $this->form_validation->set_rules('bandscore', ' ', 'trim|required|xss_clean');
 
 
@@ -1484,6 +1483,11 @@ class Student extends Admin_Controller
 
             $this->load->view('layout/footer', $data);
         } else {
+            if($data['new_student']['ielts_course'] != $this->input->post('ielts_course')){
+                // Unassign all slots when course is changed
+                $this->Studentcourseslots_model->removeByStudentID($data['new_student']['id']);
+            }
+            $coursecode = $this->Section_model->get_by_id($this->input->post('ielts_course'))->coursecode;
             $data_insert = array(
 
                 'id' => $id,
@@ -1505,9 +1509,9 @@ class Student extends Admin_Controller
 
                 'ielts_course'   => $this->input->post('ielts_course'),
 
-                'expected_band_score' => $this->input->post('expected_band_score'),
+                'expected_band_score' => $this->input->post('bandscore'),
 
-                'coursecode'          => $this->input->post('coursecode'),
+                'coursecode'          => $coursecode,
                 'passportNo'          => $this->input->post('passportNo'),
                 'purpose'          => $this->input->post('purpose'),
 
@@ -1531,13 +1535,6 @@ class Student extends Admin_Controller
             //echo "<pre>", print_r( $this->input->post('ielts_course_slot'), true), "</pre>";
             // die();
             $this->student_model->add($data_insert);
-
-
-
-
-
-
-
 
             $this->session->set_flashdata('msg', '<div class="alert alert-success">' . $this->lang->line('success_message') . '</div>');
 

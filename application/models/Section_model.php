@@ -20,6 +20,10 @@ class Section_model extends MY_Model
     }
 
 
+    public function get_by_id($id){
+        $this->db->where('id', $id);
+        return $this->db->get('sections')->row();
+    }
 
     public function get($id = null)
     {

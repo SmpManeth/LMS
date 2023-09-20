@@ -53,20 +53,18 @@
 
                                             </div>
 
-                                            <!-- Course Code  -->
+                                            <!-- IELT Course  -->
                                             <div class="col-md-3">
                                                 <div class="form-group">
-                                                    <label for="coursecode">Course Code</label><small class="req"> *</small>
-                                                    <select id="coursecode" name="coursecode" class="form-control">
-                                                        <option selected value="<?php echo $new_student['coursecode']; ?>"><?php echo $new_student['coursecode']; ?></option>
-                                                        <?php foreach ($classlist as $class) { ?>
-                                                            <option value="<?php echo $class['class'] ?>"><?php echo $class['class'] ?></option>
-
+                                                    <label for="ielts_course">IELTS Course</label><small class="req"> *</small>
+                                                    <select id="ielts-courses" name="ielts_course" class="form-control">
+                                                        <option selected value="Select">Select</option>
+                                                        <?php foreach ($ieltscourses as $course) { ?>
+                                                            <option value="<?php echo $course['id'] ?>" <?php if($course['id'] == $new_student['ielts_course']) { echo 'selected';} ?> ><?php echo $course['section'], ' - ',  $course['coursecode'] ?></option>
                                                         <?php } ?>
                                                     </select>
-                                                    <span class="text-danger"><?php echo form_error('coursecode'); ?></span>
+                                                    <span class="text-danger"><?php echo form_error('ielts_course'); ?></span>
                                                 </div>
-
                                             </div>
 
                                             <!-- Band Score  -->
@@ -74,31 +72,22 @@
                                                 <div class="form-group">
                                                     <label for="bandscore">Band Score</label><small class="req"> *</small>
                                                     <select id="bandscore" name="bandscore" class="form-control">
-                                                        <option value="<?php echo $new_student['bandscore']; ?>"><?php echo $new_student['bandscore']; ?></option>
                                                         <?php foreach ($band_scrore as $class) { ?>
-                                                            <option value="<?php echo $class['band_score'] ?>"><?php echo $class['band_score'] ?></option>
-
+                                                            <option value="<?php echo $class['band_score'] ?>" <?php if($class['band_score'] == $new_student['bandscore']) { echo 'selected';}?>> <?php echo $class['band_score'] ?></option>
                                                         <?php } ?>
                                                     </select>
                                                     <span class="text-danger"><?php echo form_error('bandscore'); ?></span>
                                                 </div>
-
                                             </div>
 
-                                            <!-- Date of birth  -->
+                                            <!-- Purpose Of IELTS  -->
                                             <div class="col-md-3">
-
                                                 <div class="form-group">
-
-                                                    <label for="DOB">Date of Birth</label>
-
-                                                    <input autofocus="" id="dob" name="dob" placeholder="" type="date" class="form-control" value="<?php echo set_value('dob', $new_student['dob']); ?>" />
-
-                                                    <span class="text-danger"><?php echo form_error('dob'); ?></span>
-
+                                                    <label for="purpose">Purpose Of IELTS</label>
+                                                    <input autofocus="" id="purpose" name="purpose" placeholder="" type="text" class="form-control" value="<?php echo set_value('purpose', $new_student['purpose']); ?>" />
                                                 </div>
-
                                             </div>
+
                                         </div>
 
                                         <div class="row">
@@ -119,6 +108,33 @@
                                                 </div>
                                             </div>
 
+                                            <!-- Date of birth  -->
+                                            <div class="col-md-3">
+
+                                                <div class="form-group">
+
+                                                    <label for="DOB">Date of Birth</label>
+
+                                                    <input autofocus="" id="dob" name="dob" placeholder="" type="date" class="form-control" value="<?php echo set_value('dob', $new_student['dob']); ?>" />
+
+                                                    <span class="text-danger"><?php echo form_error('dob'); ?></span>
+
+                                                </div>
+                                            </div>
+
+                                            <!-- Address  -->
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="address">Address</label>
+                                                    <input autofocus="" id="address" name="address" placeholder="" type="text" class="form-control" value="<?php echo set_value('address', $new_student['address']); ?>" />
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row">
+
+
                                             <!-- Phone No  -->
                                             <div class="col-md-3">
                                                 <div class="form-group">
@@ -135,16 +151,6 @@
                                                     <span class="text-danger"><?php echo form_error('email'); ?></span>
                                                 </div>
                                             </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <!-- Address  -->
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label for="address">Address</label>
-                                                    <input autofocus="" id="address" name="address" placeholder="" type="text" class="form-control" value="<?php echo set_value('address', $new_student['address']); ?>" />
-                                                </div>
-                                            </div>
 
                                             <!-- Occupation  -->
                                             <div class="col-md-3">
@@ -153,16 +159,7 @@
                                                     <input autofocus="" id="occupation" name="occupation" placeholder="" type="text" class="form-control" value="<?php echo set_value('occupation', $new_student['occupation']); ?>" />
                                                 </div>
                                             </div>
-                                            <!-- Expected band Score  -->
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label for="expected_band_score">Expected Band Score</label>
-                                                    <input autofocus="" id="expected_band_score" name="expected_band_score" placeholder="" type="text" class="form-control" value="<?php echo set_value('expected_band_score', $new_student['expected_band_score']); ?>" />
-                                                </div>
-                                            </div>
-                                        </div>
 
-                                        <div class="row">
                                             <!-- Parsport No  -->
                                             <div class="col-md-3">
                                                 <div class="form-group">
@@ -171,61 +168,14 @@
                                                 </div>
                                             </div>
 
-                                            <!-- Purpose Of IELTS  -->
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label for="purpose">Purpose Of IELTS</label>
-                                                    <input autofocus="" id="purpose" name="purpose" placeholder="" type="text" class="form-control" value="<?php echo set_value('purpose', $new_student['purpose']); ?>" />
-                                                </div>
-                                            </div>
-                                        </div>
 
-                                        <div class="row">
-                                            <!-- IELT Course  -->
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label for="ielts_course">IELTS Course</label><small class="req"> *</small>
-                                                    <select id="ielts-courses" name="ielts_course" class="form-control">
-                                                        <option selected value="Select">Select</option>
-                                                        <?php foreach ($ieltscourses as $course) { ?>
-                                                            <option value="<?php echo $course['id'] ?>"><?php echo $course['section'] ?></option>
-                                                        <?php } ?>
-                                                    </select>
-                                                    <span class="text-danger"><?php echo form_error('ielts_course'); ?></span>
-                                                </div>
-                                            </div>
-                                            <style>
-                                                .mock-slots-container {
-                                                    margin: 5px;
-                                                }
-
-                                                .slot-item {
-                                                    width: 150px;
-                                                    float: left;
-                                                    margin-right: 20px;
-                                                }
-
-                                                .slot-item label {
-                                                    display: block;
-                                                    margin-bottom: 5px;
-                                                }
-
-                                                .course_slots_div-label {
-                                                    font-weight: 600;
-                                                }
-
-                                                hr {
-                                                    border: 1px solid #c6c6c6;
-                                                    font-size: 5px;
-                                                }
-                                            </style>
                                         </div>
 
                                         <!-- Course Slots  -->
                                         <div class="row">
                                             <div class="box-body">
                                                 <div class="col-md-4 course_slots_div">
-                                                    <label class="course_slots_div-label" for="course_slots">Ielts Slots</label>
+                                                    <label class="course_slots_div-label" for="course_slots">IELTS Slots</label>
                                                     <div class="form-group ">
                                                         <div id="class-slots-ielts" class="mock-slots-container" style="margin: 5px;">
 
@@ -276,6 +226,32 @@
 
                                                 </div>
                                             </div>
+
+                                                                                        <style>
+                                                .mock-slots-container {
+                                                    margin: 5px;
+                                                }
+
+                                                .slot-item {
+                                                    width: 150px;
+                                                    float: left;
+                                                    margin-right: 20px;
+                                                }
+
+                                                .slot-item label {
+                                                    display: block;
+                                                    margin-bottom: 5px;
+                                                }
+
+                                                .course_slots_div-label {
+                                                    font-weight: 600;
+                                                }
+
+                                                hr {
+                                                    border: 1px solid #c6c6c6;
+                                                    font-size: 5px;
+                                                }
+                                            </style>
                                         </div>
                                     </div>
 
@@ -313,12 +289,14 @@
             $("#class-slotss-One-to-One").empty();
             var ieltsCourseid = $(this).val();
 
+            console.log(ieltsCourseid);
+
             $.ajax({
-                url: `https://lms.ieltsatcia.com/student/getcourseslotdata/${ieltsCourseid}`,
+                url: `<?php echo base_url(); ?>/student/getcourseslotdata/${ieltsCourseid}`,
                 type: "GET",
                 success: function(classSlots) {
                     $.ajax({
-                        url: `https://lms.ieltsatcia.com/student/getcourseslotdataofStudents/${studentid}`,
+                        url: `<?php echo base_url(); ?>/student/getcourseslotdataofStudents/${studentid}`,
                         type: "GET",
                         success: function(selectedSlotss) {
                             console.log(selectedSlotss, " vvvv")
@@ -382,9 +360,9 @@
 
                 }
             });
-
-
         });
+
+        document.getElementById("ielts-courses").dispatchEvent( new Event('change'));
     });
 </script>
 <script type="text/javascript" src="<?php echo base_url(); ?>backend/dist/js/savemode.js"></script>
