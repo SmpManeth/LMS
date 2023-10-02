@@ -1,6 +1,8 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
+
 use \setasign\Fpdi\Fpdi;
+
 require_once APPPATH . 'libraries/fpdf/fpdf.php';
 require_once APPPATH . 'libraries/fpdi2/src/autoload.php';
 
@@ -89,7 +91,7 @@ class Invoices extends Admin_Controller
         // Get full course amount for the student
         $course_full_amount = $this->Invoice_course_amounts_model->find_by_coursecode_bandscore($student[0]['coursecode'], $student[0]['bandscore']);
 
-        if(!$course_full_amount){
+        if (!$course_full_amount) {
             $course_full_amount = $this->Invoice_course_amounts_model->find_by_coursecode_bandscore($student[0]['coursecode'], 0.0);
         }
 
@@ -116,8 +118,7 @@ class Invoices extends Admin_Controller
 
         // Get full course amount for the student
         $course_full_amount = $this->Invoice_course_amounts_model->find_by_coursecode_bandscore($student[0]['coursecode'], $student[0]['bandscore']);
-
-        if(!$course_full_amount){
+        if (!$course_full_amount) {
             $course_full_amount = $this->Invoice_course_amounts_model->find_by_coursecode_bandscore($student[0]['coursecode'], 0.0);
         }
 
@@ -142,7 +143,13 @@ class Invoices extends Admin_Controller
         }
 
         $record = $this->Invoice_records_model->find($id)[0];
-        $amount = $record->discount ? ($record->amount - ($record->discount / 100) * $record->amount) : $record->amount;
+        $discounted_amount = $record->discount ? ($record->amount - ($record->discount / 100) * $record->amount) : $record->amount;
+       
+        // Get full course amount for the student
+        $course_full_amount = $this->Invoice_course_amounts_model->find_by_coursecode_bandscore($record->coursecode, $record->bandscore);
+        if (!$course_full_amount) {
+            $course_full_amount = $this->Invoice_course_amounts_model->find_by_coursecode_bandscore($record->coursecode, 0.0);
+        }
 
         $recordData = [
             'reference' => $record->reference_number,
@@ -163,49 +170,79 @@ class Invoices extends Admin_Controller
         $template_page = $pdf->importPage(1);
         $pdf->useImportedPage($template_page, 0, 0);
 
-        $pdf->SetFont('Helvetica', '', 12);
-        $pdf->SetTextColor(50, 50, 100);
+        $pdf->SetFont('Helvetica', '', 11);
+        $pdf->SetTextColor(50, 50, 75);
 
-        $pdf->SetXY(29, 47);
+        $pdf->SetXY(30, 52);
         $pdf->Write(0, $record->reference_number);
 
-        $pdf->SetXY(96, 47);
+        $pdf->SetXY(91, 52);
         $pdf->Write(0, $record->timestamp);
 
-        $pdf->SetXY(21, 59);
+        $pdf->SetXY(30, 61);
         $pdf->Write(0, $record->first_name . ' ' . $record->last_name);
 
-        $pdf->SetXY(24, 71);
+        $pdf->SetXY(30, 69);
         $pdf->Write(0, $record->student_reg_no);
 
-        $pdf->SetXY(79, 71);
+        $pdf->SetXY(91, 69);
         $pdf->Write(0, $record->phone);
 
-        $pdf->SetXY(22, 83);
+        $pdf->SetXY(30, 78);
         $pdf->Write(0, $record->coursecode);
 
-        $pdf->SetXY(108, 83);
-        $pdf->Write(0, number_format($record->bandscore, 2));
+        // $pdf->SetXY(108, 78);
+        // $pdf->Write(0, number_format($record->bandscore, 2));
 
-        $pdf->SetXY(35 , 103);
+        $pdf->SetXY(30, 94);
         $pdf->Write(0,  $this->payment_types[$record->payment_type]);
 
-        $pdf->SetXY(41 , 115);
-        $pdf->Write(0,  $this->payment_methods[$record->payment_method]);
+        // $this->payment_methods[$record->payment_method]
+        switch ($record->payment_method) {
+            case 'cash':
+                $pdf->SetXY(39.25, 104);
+                $pdf->Write(0, 'X');
+                break;
+            case 'card':
+                $pdf->SetXY(56.5, 104);
+                $pdf->Write(0, 'X');
+                break;
+            case 'cheque':
+                $pdf->SetXY(73.5, 104);
+                $pdf->Write(0, 'X');
+                break;
+            case 'bank_transfer':
+                $pdf->SetXY(95, 104);
+                $pdf->Write(0, 'X');
+                break;
+            default:
+                $pdf->SetXY(125, 104);
+                $pdf->Write(0, 'X');
+                break;
+        }
 
-        $pdf->SetXY(34, 127);
-        $pdf->Write(0,  number_format($record->amount,2) . ' LKR');
+        // COURSE FEE
+        $pdf->SetXY(30, 112);
+        $pdf->Write(0,  number_format($course_full_amount->amount, 2) . ' LKR');
 
-        $pdf->SetXY(33, 139);
-        $pdf->Write(0,  number_format($record->discount,2) . '%');
+        $pdf->SetXY(91, 112);
+        $pdf->Write(0,  number_format($record->amount, 2) . ' LKR');
 
-        $pdf->SetXY(47, 151);
-        $pdf->Write(0,  number_format($amount,2) . ' LKR');
+        $pdf->SetXY(30, 120);
+        $pdf->Write(0,  number_format($record->discount, 2) . '%');
 
-        $pdf->SetXY(33, 170);
+        $pdf->SetXY(91, 120);
+        $pdf->Write(0,  number_format($discounted_amount, 2) . ' LKR');
+
+        $text = "";
+
+        $pdf->SetXY(10, 145);
+        $pdf->Write(5,$text);
+
+        $pdf->SetXY(30, 171);
         $pdf->Write(0, $record->staff_first_name . ' ' . $record->staff_last_name);
 
-        $pdf->Output('',$record->reference_number);
+        $pdf->Output('', $record->reference_number);
     }
 
     public function delete($id)
