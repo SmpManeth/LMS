@@ -49,8 +49,6 @@ class Section_model extends MY_Model
         }
     }
 
-
-
     public function remove($id)
     {
 
@@ -242,7 +240,10 @@ class Section_model extends MY_Model
         return $query->result_array();
     }
 
-
+    public function getByCourseCode($coursecode){
+        $this->db->where('coursecode', $coursecode);
+        return $this->db->get('sections')->row();
+    }
 
     public function add($data)
     {
