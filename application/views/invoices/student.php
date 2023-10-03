@@ -84,6 +84,14 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="totalAmount">Special Notes:</label>
+                            <textarea class="form-control" name="notes" style="padding: 5px;"></textarea>
+                        </div>
+                    </div>
+                </div>
                 <button type="submit" class="btn btn-primary">Create</button>
             </form>
         </div>
@@ -99,6 +107,7 @@
                         <th>Amount</th>
                         <th>Discount</th>
                         <th>Date & Time</th>
+                        <th>Special Notes</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -114,6 +123,7 @@
                             <td><?php echo $amount ?> LKR</td>
                             <td><?php echo $record->discount ?>%</td>
                             <td><?php echo $record->timestamp ?></td>
+                            <td style="max-width: 150px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><?php echo $record->notes ?></td>
                             <td class="d-flex" style="min-width: 200px;">
                                 <button class="btn btn-primary btn-sm" style="opacity: 0.5;">Email</button>
                                 <a href="<?php echo base_url('/invoices/print/' . $record->id) ?>" class="btn btn-primary btn-sm">Print</a>

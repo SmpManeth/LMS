@@ -8,13 +8,6 @@ require_once APPPATH . 'libraries/fpdi2/src/autoload.php';
 
 class Invoices extends Admin_Controller
 {
-
-    private $amounts = [
-        'EI' => 32000,
-        'GI' => 50000,
-        'MG' => 70000,
-    ];
-
     private $payment_types = [
         'advance' => 'Advance',
         'first_installment' => 'First Installment',
@@ -38,6 +31,7 @@ class Invoices extends Admin_Controller
         $this->load->model('Invoice_records_model');
         $this->load->model('Invoice_course_amounts_model');
         $this->load->model('Student_model');
+        $this->load->model("Section_model");
     }
 
     // get all invoice records
@@ -128,6 +122,7 @@ class Invoices extends Admin_Controller
         $data['payment_method'] = $this->input->post('payment_method');
         $data['amount'] = $this->input->post('payment_type') == "full" ? $course_full_amount->amount : $this->input->post('amount');
         $data['discount'] = $this->input->post('payment_type') == "full" ? $this->input->post('discount') : 0;
+        $data['notes'] = $this->input->post('notes');
         $record = $this->Invoice_records_model->create($data);
 
         if ($record) {
@@ -144,24 +139,14 @@ class Invoices extends Admin_Controller
 
         $record = $this->Invoice_records_model->find($id)[0];
         $discounted_amount = $record->discount ? ($record->amount - ($record->discount / 100) * $record->amount) : $record->amount;
-       
+
         // Get full course amount for the student
         $course_full_amount = $this->Invoice_course_amounts_model->find_by_coursecode_bandscore($record->coursecode, $record->bandscore);
         if (!$course_full_amount) {
             $course_full_amount = $this->Invoice_course_amounts_model->find_by_coursecode_bandscore($record->coursecode, 0.0);
         }
 
-        $recordData = [
-            'reference' => $record->reference_number,
-            'name' => $record->first_name . ' ' . $record->last_name,
-            'student_reg_no' => $record->student_reg_no,
-            'coursecode' => $record->coursecode,
-            'payment_type' => $record->payment_type,
-            'payment_method' => $record->payment_method,
-            'Amount' => '$' . number_format($amount, 2),
-            'Discount' => number_format($record->discount, 2) . "%",
-            'Date & Time' => $record->timestamp,
-        ];
+        $course_section = $this->Section_model->getByCourseCode($record->coursecode);
 
         $pdf = new Fpdi();
         $pdf->AddPage('P', 'A5');
@@ -189,7 +174,7 @@ class Invoices extends Admin_Controller
         $pdf->Write(0, $record->phone);
 
         $pdf->SetXY(30, 78);
-        $pdf->Write(0, $record->coursecode);
+        $pdf->Write(0, $course_section->section . ' - ' . $record->coursecode);
 
         // $pdf->SetXY(108, 78);
         // $pdf->Write(0, number_format($record->bandscore, 2));
@@ -234,10 +219,8 @@ class Invoices extends Admin_Controller
         $pdf->SetXY(91, 120);
         $pdf->Write(0,  number_format($discounted_amount, 2) . ' LKR');
 
-        $text = "";
-
         $pdf->SetXY(10, 145);
-        $pdf->Write(5,$text);
+        $pdf->Write(5, $record->notes);
 
         $pdf->SetXY(30, 171);
         $pdf->Write(0, $record->staff_first_name . ' ' . $record->staff_last_name);
