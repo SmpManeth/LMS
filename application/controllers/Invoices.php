@@ -145,8 +145,10 @@ class Invoices extends Admin_Controller
         if (!$course_full_amount) {
             $course_full_amount = $this->Invoice_course_amounts_model->find_by_coursecode_bandscore($record->coursecode, 0.0);
         }
-
+        
         $course_section = $this->Section_model->getByCourseCode($record->coursecode);
+
+        $timestamp_converted = $this->customlib->convertTimezone($record->timestamp, 'Asia/Colombo');
 
         $pdf = new Fpdi();
         $pdf->AddPage('P', 'A5');
@@ -162,7 +164,7 @@ class Invoices extends Admin_Controller
         $pdf->Write(0, $record->reference_number);
 
         $pdf->SetXY(91, 52);
-        $pdf->Write(0, $record->timestamp);
+        $pdf->Write(0, $timestamp_converted);
 
         $pdf->SetXY(30, 61);
         $pdf->Write(0, $record->first_name . ' ' . $record->last_name);

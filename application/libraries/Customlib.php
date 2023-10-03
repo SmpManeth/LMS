@@ -3201,4 +3201,14 @@ class Customlib
         return $randomString;
     }
 
+    function convertTimezone($time, $timezone, $original_timezone = '') {
+        if($original_timezone == ''){
+            $original_timezone = date_default_timezone_get();
+        }
+
+        $changetime = new DateTime($time, new DateTimeZone($original_timezone));
+        $changetime->setTimezone(new DateTimeZone($timezone));
+        return $changetime->format('d/m/Y, h:i A');
+    }
+
 }
