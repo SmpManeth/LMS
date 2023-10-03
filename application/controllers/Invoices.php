@@ -148,7 +148,7 @@ class Invoices extends Admin_Controller
         
         $course_section = $this->Section_model->getByCourseCode($record->coursecode);
 
-        $timestamp_converted = $this->customlib->convertTimezone($record->timestamp, 'Asia/Colombo');
+        $timestamp_converted = $this->customlib->convertTimezone($record->timestamp, 'Asia/Colombo', 'America/Los_Angeles');
 
         $pdf = new Fpdi();
         $pdf->AddPage('P', 'A5');

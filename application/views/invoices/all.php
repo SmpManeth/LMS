@@ -46,7 +46,7 @@
                                 <td><?php echo $payment_methods[$record->payment_method] ?></td>
                                 <td><?php echo $amount ?> LKR</td>
                                 <td><?php echo $record->discount ?>%</td>
-                                <td><?php echo $this->customlib->convertTimezone($record->timestamp, 'Asia/Colombo'); ?></td>
+                                <td><?php echo $this->customlib->convertTimezone($record->timestamp, 'Asia/Colombo', 'America/Los_Angeles'); ?></td>
                                 <td style="max-width: 150px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><?php echo $record->notes ?></td>
                                 <td class="d-flex" style="min-width: 200px;">
                                     <button class="btn btn-primary btn-sm" style="opacity: 0.5;">Email</button>
