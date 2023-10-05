@@ -12,7 +12,7 @@
 
         <meta name="theme-color" content="#424242" />
 
-        <title>Login : <?php echo $name; ?></title>
+        <title> xxx Login : <?php echo $name; ?></title>
 
         <link href="<?php echo base_url(); ?>uploads/school_content/admin_small_logo/<?php $this->setting_model->getAdminsmalllogo();?>" rel="shortcut icon" type="image/x-icon">
 
