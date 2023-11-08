@@ -332,7 +332,8 @@
 
                             <!-- MenuItem -->
                             <?php if ($this->rbac->hasPrivilege('student', 'can_view')) { ?>
-                                <li class="<?php echo set_Submenu('invoices/all'); ?>"><a href="<?php echo base_url(); ?>invoices/all"><i class="fa fa-angle-double-right"></i>All Invoices</a></li>
+                                <li class="<?php echo set_Submenu('invoices/all'); ?>"><a href="<?php echo base_url(); ?>invoices/all"><i class="fa fa-angle-double-right"></i>Registration Invoices</a></li>
+                                <li class="<?php echo set_Submenu('invoices/all_exam'); ?>"><a href="<?php echo base_url(); ?>invoices/all_exam"><i class="fa fa-angle-double-right"></i>Exam Invoices</a></li>
                             <?php } ?>
                         </ul>
                     </li>

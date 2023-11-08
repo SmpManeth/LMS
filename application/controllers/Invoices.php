@@ -32,6 +32,7 @@ class Invoices extends Admin_Controller
         $this->load->model('Invoice_course_amounts_model');
         $this->load->model('Student_model');
         $this->load->model("Section_model");
+        $this->load->model('Exam_Invoice_records_model');
     }
 
     // get all invoice records
@@ -65,8 +66,95 @@ class Invoices extends Admin_Controller
         $this->load->view('layout/footer', $data);
     }
 
+    public function add_exam()
+    {
+        if (!$this->rbac->hasPrivilege('student', 'can_view')) {
+
+            access_denied();
+        }
+
+        $this->session->set_userdata('top_menu', 'Invoices');
+        $this->session->set_userdata('sub_menu', 'invoices/all_exam');
+
+        $data['title'] = 'Add Exam Invoice';
+
+        $data['payment_types'] = $this->payment_types;
+        $data['payment_methods'] = $this->payment_methods;
+
+        $this->load->view('layout/header', $data);
+        $this->load->view('invoices/exam/student', $data);
+        $this->load->view('layout/footer', $data);
+    }
+
+    // get all_exam invoice records
+    public function all_exam()
+    {
+        if (!$this->rbac->hasPrivilege('student', 'can_view')) {
+
+            access_denied();
+        }
+
+        $this->session->set_userdata('top_menu', 'Invoices');
+        $this->session->set_userdata('sub_menu', 'invoices/all_exam');
+
+        $search = $this->input->get('search') ?? null;
+
+        if ($search) {
+            // Search for records based on the search term
+            $records = $this->Exam_Invoice_records_model->search($search);
+        } else {
+            // Call the model to get all records
+            $records = $this->Exam_Invoice_records_model->all();
+        }
+
+        $data['title'] = 'Exam Invoices';
+        $data['records'] = $records;
+        $data['payment_types'] = $this->payment_types;
+        $data['payment_methods'] = $this->payment_methods;
+
+        $this->load->view('layout/header', $data);
+        $this->load->view('invoices/exam/all', $data);
+        $this->load->view('layout/footer', $data);
+    }
+
     // get invoice records based on student id
     public function student($student_id)
+    {
+
+        if (!$this->rbac->hasPrivilege('student', 'can_view')) {
+
+            access_denied();
+        }
+
+        // Set selected menu to none
+        $this->session->set_userdata('top_menu', '');
+        $this->session->set_userdata('sub_menu', '');
+
+        // Call the model to get all records
+        $records = $this->Invoice_records_model->find_by_student_id($student_id);
+        $student = $this->Student_model->get($student_id);
+
+        // Get full course amount for the student
+        $course_full_amount = $this->Invoice_course_amounts_model->find_by_coursecode_bandscore($student[0]['coursecode'], $student[0]['bandscore']);
+
+        if (!$course_full_amount) {
+            $course_full_amount = $this->Invoice_course_amounts_model->find_by_coursecode_bandscore($student[0]['coursecode'], 0.0);
+        }
+
+        $data['title'] = 'All Invoices';
+        $data['records'] = $records;
+        $data['student'] = $student[0];
+        $data['course_full_amount'] = $course_full_amount->amount;
+        $data['payment_types'] = $this->payment_types;
+        $data['payment_methods'] = $this->payment_methods;
+
+        $this->load->view('layout/header', $data);
+        $this->load->view('invoices/student', $data);
+        $this->load->view('layout/footer', $data);
+    }
+
+    // get exam invoice records based on student id
+    public function student_exam($student_id)
     {
 
         if (!$this->rbac->hasPrivilege('student', 'can_view')) {
@@ -130,6 +218,34 @@ class Invoices extends Admin_Controller
         }
     }
 
+    public function exam_create()
+    {
+        if (!$this->rbac->hasPrivilege('student', 'can_view')) {
+
+            access_denied();
+        }
+ 
+        // Retrieve data from the form
+        $data['student_id'] = 308;
+        $data['exam_type'] = $this->input->post('exam_type');
+        $data['exam_purpose'] = $this->input->post('purpose');
+        $data['test_venue'] = $this->input->post('test_venue');
+        $data['payment_type'] = $this->input->post('payment_type');
+        $data['payment_method'] = $this->input->post('payment_method');
+        $data['exam_Fee'] = $this->input->post('exam_fee');
+       // $data['contact'] = $this->input->post('contact');
+        $data['country'] = $this->input->post('country');
+        $data['timestamp'] = $this->input->post('timestamp');
+        $data['staff_id'] = $this->customlib->getUserData()['id'];
+
+        
+        $record = $this->Exam_Invoice_records_model->create($data);
+
+        if ($record) {
+            redirect(base_url('/invoices/all_exam' . $record));
+        }
+    }
+
     public function print($id)
     {
         if (!$this->rbac->hasPrivilege('student', 'can_view')) {
@@ -145,7 +261,7 @@ class Invoices extends Admin_Controller
         if (!$course_full_amount) {
             $course_full_amount = $this->Invoice_course_amounts_model->find_by_coursecode_bandscore($record->coursecode, 0.0);
         }
-        
+
         $course_section = $this->Section_model->getByCourseCode($record->coursecode);
 
         $timestamp_converted = $this->customlib->convertTimezone($record->timestamp, 'Asia/Colombo', 'America/Los_Angeles');
@@ -237,6 +353,120 @@ class Invoices extends Admin_Controller
             access_denied();
         }
         $this->Invoice_records_model->delete($id);
+        $previous_url = $this->input->server('HTTP_REFERER');
+        if ($previous_url) {
+            redirect($previous_url);
+        } else {
+            redirect(base_url('/invoices/all'));
+        }
+    }
+
+    public function exam_print($id)
+    {
+        if (!$this->rbac->hasPrivilege('student', 'can_view')) {
+
+            access_denied();
+        }
+
+        $record = $this->Exam_Invoice_records_model->find($id)[0];
+
+        $timestamp_converted = $this->customlib->convertTimezone($record->timestamp, 'Asia/Colombo', 'America/Los_Angeles');
+
+        $pdf = new Fpdi();
+        $pdf->AddPage('P', 'A5');
+        $pdf->setSourceFile("uploads/invoicing/template_exams.pdf");
+
+        $template_page = $pdf->importPage(1);
+        $pdf->useImportedPage($template_page, 0, 0);
+
+        $pdf->SetFont('Helvetica', '', 11);
+        $pdf->SetTextColor(50, 50, 75);
+
+        $pdf->SetXY(30, 55);
+        $pdf->Write(0, $record->reference_number);
+
+        $pdf->SetXY(91, 55);
+        $pdf->Write(0, $timestamp_converted);
+
+        $pdf->SetXY(33, 63);
+        $pdf->Write(0, $record->student_reg_no);
+
+        $pdf->SetXY(97, 63);
+        $pdf->Write(0, $record->exam_reg_no);
+
+        $pdf->SetXY(33, 71);
+        $pdf->Write(0, $record->first_name . ' ' . $record->last_name);
+
+        $pdf->SetFont('Helvetica', '', 8);
+        $pdf->SetTextColor(50, 50, 75);
+
+        $pdf->SetXY(27, 79);
+        $pdf->Write(0, $record->exam_type);
+
+        $pdf->SetFont('Helvetica', '', 11);
+        $pdf->SetTextColor(50, 50, 75);
+
+        $pdf->SetXY(93, 79);
+        $pdf->Write(0, $record->phone);
+
+        $pdf->SetXY(27, 87);
+        $pdf->Write(0, $record->exam_purpose);
+
+        $pdf->SetXY(93, 87);
+        $pdf->Write(0, $record->country);
+
+        $pdf->SetXY(33, 95);
+        $pdf->Write(0, $record->test_venue);
+
+        $pdf->SetXY(33, 106);
+        $pdf->Write(0, $record->payment_type);
+
+
+
+
+        switch ($record->payment_method) {
+            case 'cash':
+                $pdf->SetXY(39.35, 116);
+                $pdf->Write(0, 'X');
+                break;
+            case 'card':
+                $pdf->SetXY(56.5, 116);
+                $pdf->Write(0, 'X');
+                break;
+            case 'cheque':
+                $pdf->SetXY(73.5, 116);
+                $pdf->Write(0, 'X');
+                break;
+            case 'bank_transfer':
+                $pdf->SetXY(95, 116);
+                $pdf->Write(0, 'X');
+                break;
+            default:
+                $pdf->SetXY(125, 116);
+                $pdf->Write(0, 'X');
+                break;
+        }
+
+        $pdf->SetXY(33, 123);
+        $pdf->Write(0, 'Rs ' . $record->exam_Fee . '.00');
+
+        $pdf->SetXY(33, 176);
+        $pdf->Write(0, $record->name . ' ' . $record->surname);
+
+
+
+
+
+        $pdf->Output('', $record->reference_number);
+    }
+
+    public function exam_delete($id)
+    {
+        if (!$this->rbac->hasPrivilege('student', 'can_view')) {
+
+            access_denied();
+        }
+        $this->Exam_Invoice_records_model->delete($id);
         $previous_url = $this->input->server('HTTP_REFERER');
         if ($previous_url) {
             redirect($previous_url);
