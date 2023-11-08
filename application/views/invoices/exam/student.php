@@ -11,7 +11,8 @@
 
         <div style="padding: 10px; border-bottom: 2px solid darkred; border-radius: 4px;">
             <h3>Create Invoice</h3>
-            <form action="<?php echo base_url(); ?>/invoices/exam_create" method="post">
+            <form action="<?php echo base_url(); ?>invoices/exam_create" method="post">
+                <input type="text" hidden id="student_id" name="student_id" value="<?php echo $student['id'] ?>">
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
@@ -22,7 +23,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="studentName">Student Name:</label>
-                            <input type="text" class="form-control" id="studentName" name="student_name">
+                            <input type="text" class="form-control" id="studentName" name="student_name" value="<?php echo $student['first_name']  ?> <?php echo $student['last_name']  ?>">
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -55,9 +56,9 @@
                         <div class="form-group">
                             <label for="purpose">Purpose:</label>
                             <select class="form-control" id="purpose" name="purpose">
-                                <option value="Student Visa">Student Visa</option>
-                                <option value="PR">PR</option>
-                                <option value="Work Permit">Work Permit</option>
+                                <option value="Student Visa" <?php echo ($student['purpose'] == 'Student Visa') ? 'selected' : ''; ?>>Student Visa</option>
+                                <option value="PR" <?php echo ($student['purpose'] == 'PR') ? 'selected' : ''; ?>>PR</option>
+                                <option value="Work Permit" <?php echo ($student['purpose'] == 'Work Permit') ? 'selected' : ''; ?>>Work Permit</option>
                             </select>
                         </div>
 
@@ -80,8 +81,8 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="paymentMethod">Payment Method:</label>
+                        <div class="form-group"> 
+                                                       <label for="paymentMethod">Payment Method:</label>
                             <select class="form-control" id="paymentMethod" name="payment_method">
                                 <option value="cash">Cash</option>
                                 <option value="bank_transfer">Bank Transfer</option>
@@ -102,7 +103,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="contact">Contact:</label>
-                            <input type="text" class="form-control" id="contact" name="contact">
+                            <input type="text" class="form-control" id="contact" name="contact" value="<?php echo $student['phone']  ?>">
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -127,7 +128,7 @@
 
 <script>
     const dateTimeInput = document.getElementById("dateTime");
-     function updateDateTimeField() {
+    function updateDateTimeField() {
         var now = new Date();
 
         now.setMinutes(now.getMinutes() - now.getTimezoneOffset());

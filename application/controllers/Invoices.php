@@ -66,7 +66,7 @@ class Invoices extends Admin_Controller
         $this->load->view('layout/footer', $data);
     }
 
-    public function add_exam()
+    public function add_exam($student_id =null)
     {
         if (!$this->rbac->hasPrivilege('student', 'can_view')) {
 
@@ -76,6 +76,9 @@ class Invoices extends Admin_Controller
         $this->session->set_userdata('top_menu', 'Invoices');
         $this->session->set_userdata('sub_menu', 'invoices/all_exam');
 
+       
+       $student= $this->Student_model->get($student_id);
+       $data['student'] = $student[0];
         $data['title'] = 'Add Exam Invoice';
 
         $data['payment_types'] = $this->payment_types;
@@ -89,10 +92,7 @@ class Invoices extends Admin_Controller
     // get all_exam invoice records
     public function all_exam()
     {
-        if (!$this->rbac->hasPrivilege('student', 'can_view')) {
-
-            access_denied();
-        }
+       
 
         $this->session->set_userdata('top_menu', 'Invoices');
         $this->session->set_userdata('sub_menu', 'invoices/all_exam');
@@ -220,30 +220,28 @@ class Invoices extends Admin_Controller
 
     public function exam_create()
     {
-        if (!$this->rbac->hasPrivilege('student', 'can_view')) {
-
-            access_denied();
-        }
+   
  
         // Retrieve data from the form
-        $data['student_id'] = 308;
+        $data['student_id'] = $this->input->post('student_id');
+        if ( $data['student_id'] === "" || empty( $data['student_id']) ||  $data['student_id'] == null) {
+            $data['student_id']=0;
+        }
+        $data['student_name'] = $this->input->post('student_name');
         $data['exam_type'] = $this->input->post('exam_type');
         $data['exam_purpose'] = $this->input->post('purpose');
         $data['test_venue'] = $this->input->post('test_venue');
         $data['payment_type'] = $this->input->post('payment_type');
         $data['payment_method'] = $this->input->post('payment_method');
         $data['exam_Fee'] = $this->input->post('exam_fee');
-       // $data['contact'] = $this->input->post('contact');
+        $data['contact'] = $this->input->post('contact');
         $data['country'] = $this->input->post('country');
         $data['timestamp'] = $this->input->post('timestamp');
         $data['staff_id'] = $this->customlib->getUserData()['id'];
-
-        
         $record = $this->Exam_Invoice_records_model->create($data);
+    
+        redirect(base_url('invoices/all_exam'));
 
-        if ($record) {
-            redirect(base_url('/invoices/all_exam' . $record));
-        }
     }
 
     public function print($id)
@@ -395,7 +393,7 @@ class Invoices extends Admin_Controller
         $pdf->Write(0, $record->exam_reg_no);
 
         $pdf->SetXY(33, 71);
-        $pdf->Write(0, $record->first_name . ' ' . $record->last_name);
+        $pdf->Write(0, $record->student_name);
 
         $pdf->SetFont('Helvetica', '', 8);
         $pdf->SetTextColor(50, 50, 75);
@@ -407,7 +405,7 @@ class Invoices extends Admin_Controller
         $pdf->SetTextColor(50, 50, 75);
 
         $pdf->SetXY(93, 79);
-        $pdf->Write(0, $record->phone);
+        $pdf->Write(0, $record->contact);
 
         $pdf->SetXY(27, 87);
         $pdf->Write(0, $record->exam_purpose);

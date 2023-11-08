@@ -47,7 +47,7 @@
                         ?>
                             <tr class="my-auto d-flex align-items-center">
                                 <td><?php echo $record->reference_number ?></td>
-                                <td><?php echo $record->first_name . ' ' . $record->last_name ?></td>
+                                <td><?php echo $record->student_name?></td>
                                 <td><?php echo $record->exam_reg_no ?></td>
                                 <td><?php echo $record->exam_type ?></td>
                                 <td><?php echo $record->exam_purpose ?></td>
@@ -55,7 +55,7 @@
                                 <td><?php echo $record->payment_type ?></td>
                                 <td><?php echo $record->payment_method ?></td>
                                 <td><?php echo $record->exam_Fee ?></td>
-                                <td><?php echo $record->phone ?></td>
+                                <td><?php echo $record->contact ?></td>
                                 <td><?php echo $record->country ?></td>
                                 <td><?php echo $this->customlib->convertTimezone($record->timestamp, 'Asia/Colombo', 'America/Los_Angeles'); ?></td>
                                 <td class="d-flex" style="min-width: 200px;">
